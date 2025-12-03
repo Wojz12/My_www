@@ -108,9 +108,9 @@ export async function POST(request: Request) {
 
     if (geminiApiKey) {
       try {
-        // Użyj Google Gemini API
+        // Użyj Google Gemini API (gemini-pro jako fallback)
         const response = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`,
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`,
           {
             method: 'POST',
             headers: {
@@ -119,53 +119,30 @@ export async function POST(request: Request) {
             body: JSON.stringify({
               contents: [
                 {
-                  role: 'user',
                   parts: [
                     {
-                      text: `${SYSTEM_PROMPT}\n\nUżytkownik napisał: "${message}"\n\nOdpowiedz jako Wojtek:`
+                      text: `${SYSTEM_PROMPT}\n\nUżytkownik napisał: "${message}"\n\nOdpowiedz jako Wojtek (krótko, max 2-3 zdania):`
                     }
                   ]
                 }
               ],
               generationConfig: {
-                temperature: 0.8,
-                topK: 40,
-                topP: 0.95,
-                maxOutputTokens: 500,
+                temperature: 0.9,
+                maxOutputTokens: 300,
               },
-              safetySettings: [
-                {
-                  category: 'HARM_CATEGORY_HARASSMENT',
-                  threshold: 'BLOCK_MEDIUM_AND_ABOVE'
-                },
-                {
-                  category: 'HARM_CATEGORY_HATE_SPEECH',
-                  threshold: 'BLOCK_MEDIUM_AND_ABOVE'
-                },
-                {
-                  category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
-                  threshold: 'BLOCK_MEDIUM_AND_ABOVE'
-                },
-                {
-                  category: 'HARM_CATEGORY_DANGEROUS_CONTENT',
-                  threshold: 'BLOCK_MEDIUM_AND_ABOVE'
-                }
-              ]
             }),
           }
         )
 
-        if (response.ok) {
-          const data = await response.json()
-          const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text
-          
-          if (generatedText) {
-            return NextResponse.json({ response: generatedText })
-          }
+        const data = await response.json()
+        
+        if (response.ok && data.candidates?.[0]?.content?.parts?.[0]?.text) {
+          const generatedText = data.candidates[0].content.parts[0].text
+          return NextResponse.json({ response: generatedText })
         }
         
-        // Jeśli API nie zwróciło odpowiedzi, użyj fallback
-        console.error('Gemini API error or empty response')
+        // Log error dla debugowania
+        console.error('Gemini API response:', JSON.stringify(data, null, 2))
       } catch (apiError) {
         console.error('Gemini API Error:', apiError)
       }

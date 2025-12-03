@@ -18,7 +18,7 @@ export default function CV() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="section-title">Curriculum Vitae</h2>
+          <h2 className="section-title">CV</h2>
           <p className="section-subtitle mx-auto">
             Pobierz moje CV lub zobacz je online, aby poznać moje pełne doświadczenie zawodowe.
           </p>

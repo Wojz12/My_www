@@ -1,35 +1,9 @@
 {
   "images": [
     {
-      "src": "/images/gallery/project-1.jpg",
-      "alt": "Projekt E-commerce",
-      "category": "Projekty"
-    },
-    {
-      "src": "/images/gallery/project-2.jpg",
-      "alt": "Dashboard Analytics",
-      "category": "Projekty"
-    },
-    {
-      "src": "/images/gallery/workspace-1.jpg",
-      "alt": "Moje biurko",
-      "category": "Workspace"
-    },
-    {
-      "src": "/images/gallery/code-1.jpg",
-      "alt": "Coding session",
-      "category": "Coding"
-    },
-    {
-      "src": "/images/gallery/design-1.jpg",
-      "alt": "UI Design",
-      "category": "Design"
-    },
-    {
-      "src": "/images/gallery/event-1.jpg",
-      "alt": "Tech Conference",
-      "category": "Events"
+      "src": "/images/szwajcaria.jpg",
+      "alt": "Wycieczka do Szwajcarii - FinalSpark",
+      "category": "FinalSpark"
     }
   ]
 }
-

@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { ExternalLink, Github, Folder, Database, Brain, Cpu } from 'lucide-react'
+import { Github, Database, Brain } from 'lucide-react'
 
 const projects = [
   {
@@ -22,19 +22,19 @@ const projects = [
   },
   {
     title: 'Hexdag Contributions',
-    description: 'Wkład w open-source framework do orkiestracji agentów AI. Moduły Python do zarządzania zadaniami i bezpiecznego parsowania LLM.',
+    description: 'Wkład w rozwój open-source frameworka do orkiestracji agentów AI w firmie OMNIVISER.',
+    longDescription: `
+      Mój wkład w projekt Hexdag obejmuje:
+      • Tworzenie modułów Python do zarządzania zadaniami i przepływem pracy (flow management)
+      • Implementacja integracji z zewnętrznymi narzędziami i API
+      • Bezpieczne parsowanie i ekstrakcja danych z odpowiedzi LLM
+      • Tworzenie dokumentacji technicznej i przykładów użycia
+      • Code reviews i współpraca przy pull requestach
+    `,
     icon: Brain,
-    technologies: ['Python', 'LLMs', 'Open Source', 'Git'],
+    technologies: ['Python', 'LLMs', 'Open Source', 'Git', 'API Integration'],
     githubUrl: 'https://github.com',
     featured: true,
-  },
-  {
-    title: 'Portfolio Website',
-    description: 'Ta strona! Nowoczesne portfolio zbudowane w Next.js 14 z App Router, Tailwind CSS i Framer Motion.',
-    icon: Cpu,
-    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-    githubUrl: 'https://github.com',
-    featured: false,
   },
 ]
 
