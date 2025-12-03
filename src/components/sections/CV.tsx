@@ -92,12 +92,16 @@ export default function CV() {
                 </h5>
                 <div className="space-y-3">
                   <div className="pl-4 border-l-2 border-primary-500/30">
-                    <p className="text-white font-medium">Informatyka</p>
-                    <p className="text-sm text-gray-400">Uniwersytet XYZ • 2018-2022</p>
+                    <p className="text-white font-medium">Kognitywistyka</p>
+                    <p className="text-sm text-gray-400">Uniwersytet Warszawski • do 2026</p>
                   </div>
                   <div className="pl-4 border-l-2 border-primary-500/30">
-                    <p className="text-white font-medium">Kursy i certyfikaty</p>
-                    <p className="text-sm text-gray-400">AWS, Google Cloud, Meta</p>
+                    <p className="text-white font-medium">Erasmus Exchange</p>
+                    <p className="text-sm text-gray-400">University of the Basque Country • 2025</p>
+                  </div>
+                  <div className="pl-4 border-l-2 border-primary-500/30">
+                    <p className="text-white font-medium">Certyfikaty NVIDIA</p>
+                    <p className="text-sm text-gray-400">LLM Applications, RAG Agents</p>
                   </div>
                 </div>
               </div>
@@ -110,15 +114,11 @@ export default function CV() {
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-300">Polski</span>
-                    <span className="text-sm text-primary-400">Natywny</span>
+                    <span className="text-sm text-primary-400">Ojczysty</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-300">Angielski</span>
-                    <span className="text-sm text-primary-400">C1</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Niemiecki</span>
-                    <span className="text-sm text-primary-400">B1</span>
+                    <span className="text-sm text-primary-400">CAE (C1)</span>
                   </div>
                 </div>
               </div>

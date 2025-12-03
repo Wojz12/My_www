@@ -49,6 +49,11 @@ const books = [
     author: 'Ian Goodfellow',
     emoji: '🤖',
   },
+  {
+    title: 'The Last Economy',
+    author: 'Emad Mostaque',
+    emoji: '💹',
+  },
 ]
 
 export default function About() {

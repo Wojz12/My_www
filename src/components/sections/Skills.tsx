@@ -9,42 +9,22 @@ const skillCategories = [
   {
     title: 'Programowanie & AI',
     icon: '🐍',
-    skills: [
-      { name: 'Python', level: 85 },
-      { name: 'LLMs (Large Language Models)', level: 80 },
-      { name: 'Prompt Engineering', level: 85 },
-      { name: 'RAG Systems', level: 75 },
-      { name: 'Git', level: 80 },
-    ],
+    skills: ['Python', 'LLMs (Large Language Models)', 'Prompt Engineering', 'RAG Systems', 'Git'],
   },
   {
     title: 'Narzędzia AI',
     icon: '🤖',
-    skills: [
-      { name: 'ChatGPT', level: 90 },
-      { name: 'Cursor AI', level: 85 },
-      { name: 'Hugging Face', level: 70 },
-      { name: 'LangChain', level: 65 },
-    ],
+    skills: ['ChatGPT', 'Cursor AI', 'Hugging Face', 'LangChain'],
   },
   {
     title: 'Inne narzędzia',
     icon: '🛠️',
-    skills: [
-      { name: 'MS Office', level: 90 },
-      { name: 'Technical Documentation', level: 85 },
-      { name: 'Data Analysis', level: 75 },
-    ],
+    skills: ['MS Office', 'Technical Documentation', 'Data Analysis'],
   },
   {
     title: 'Soft Skills',
     icon: '💡',
-    skills: [
-      { name: 'Problem Solving', level: 90 },
-      { name: 'Technical Writing', level: 85 },
-      { name: 'Teaching & Mentoring', level: 88 },
-      { name: 'Communication', level: 85 },
-    ],
+    skills: ['Problem Solving', 'Technical Writing', 'Teaching & Mentoring', 'Communication'],
   },
 ]
 
@@ -99,27 +79,17 @@ export default function Skills() {
                 <h3 className="text-xl font-bold text-white">{category.title}</h3>
               </div>
 
-              <div className="space-y-4">
+              <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill, skillIndex) => (
-                  <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.5, delay: categoryIndex * 0.1 + skillIndex * 0.05 }}
+                  <motion.span
+                    key={skill}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ duration: 0.4, delay: categoryIndex * 0.1 + skillIndex * 0.05 }}
+                    className="px-4 py-2 rounded-xl bg-primary-500/10 text-primary-300 border border-primary-500/20 text-sm font-medium hover:bg-primary-500/20 transition-colors"
                   >
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-gray-300 font-medium">{skill.name}</span>
-                      <span className="text-primary-400 text-sm">{skill.level}%</span>
-                    </div>
-                    <div className="h-2 bg-white/5 rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={isInView ? { width: `${skill.level}%` } : {}}
-                        transition={{ duration: 1, delay: categoryIndex * 0.1 + skillIndex * 0.1 }}
-                        className="h-full bg-gradient-to-r from-primary-500 to-primary-400 rounded-full"
-                      />
-                    </div>
-                  </motion.div>
+                    {skill}
+                  </motion.span>
                 ))}
               </div>
             </motion.div>

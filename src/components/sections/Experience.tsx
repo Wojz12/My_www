@@ -222,7 +222,7 @@ export default function Experience() {
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-gray-300">Polski</span>
-                  <span className="text-sm text-primary-400">Natywny</span>
+                  <span className="text-sm text-primary-400">Ojczysty</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-300">Angielski</span>

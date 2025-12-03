@@ -11,18 +11,12 @@ const projects = [
     description: 'System Retrieval-Augmented Generation do odpowiadania na pytania w otwartej domenie. Architektura: BM25 Retrieval → CrossEncoder Reranking → TinyLlama Generation.',
     longDescription: `
       Projekt implementujący pełny pipeline RAG dla Question Answering:
-      • BM25 sparse retrieval na 10,000 dokumentów
+      • BM25 sparse retrieval do wyszukiwania dokumentów
       • CrossEncoder (MS-MARCO) do reranking top-10 → top-3
       • TinyLlama-1.1B-Chat do generowania odpowiedzi
-      • Osiągnięte wyniki: 39.80% Exact Match, 44.36% F1 Score
     `,
     icon: Database,
     technologies: ['Python', 'Transformers', 'BM25', 'CrossEncoder', 'TinyLlama', 'HuggingFace'],
-    metrics: [
-      { label: 'Exact Match', value: '39.80%' },
-      { label: 'F1 Score', value: '44.36%' },
-      { label: 'Index Size', value: '10,000' },
-    ],
     githubUrl: 'https://github.com/Wojz12/RAG_LLM_project',
     featured: true,
   },
@@ -104,18 +98,6 @@ export default function Projects() {
                         <pre className="text-sm text-gray-400 whitespace-pre-wrap font-sans">
                           {project.longDescription.trim()}
                         </pre>
-                      </div>
-                    )}
-
-                    {/* Metrics */}
-                    {project.metrics && (
-                      <div className="grid grid-cols-3 gap-4 mb-4">
-                        {project.metrics.map((metric) => (
-                          <div key={metric.label} className="text-center p-3 rounded-xl bg-white/5">
-                            <p className="text-xl font-bold gradient-text">{metric.value}</p>
-                            <p className="text-xs text-gray-500">{metric.label}</p>
-                          </div>
-                        ))}
                       </div>
                     )}
 

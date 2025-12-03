@@ -15,7 +15,7 @@ const initialMessages: Message[] = [
   {
     id: '1',
     role: 'assistant',
-    content: 'Cześć! 👋 Jestem asystentem Wojtka. Mogę opowiedzieć Ci o jego projektach AI, studiach kognitywistyki, doświadczeniu z LLMs lub ulubionych książkach!',
+    content: 'Cześć! 👋 Jestem Wojtek. Zapytaj mnie o projekty AI, studia kognitywistyki, ulubione książki lub doświadczenie z LLMs!',
     timestamp: new Date(),
   },
 ]
@@ -87,31 +87,31 @@ export default function Chatbot() {
     const lowercaseQuery = query.toLowerCase()
     
     if (lowercaseQuery.includes('projekt') || lowercaseQuery.includes('rag')) {
-      return 'Wojtek stworzył system RAG (Retrieval-Augmented Generation) do odpowiadania na pytania! Używa BM25 + CrossEncoder + TinyLlama. Osiągnął 39.8% Exact Match na TriviaQA. Sprawdź sekcję Projekty! 🚀'
+      return 'Stworzyłem system RAG do Question Answering! Używam BM25 + CrossEncoder + TinyLlama. Sprawdź na GitHub: github.com/Wojz12/RAG_LLM_project 🚀'
     }
     if (lowercaseQuery.includes('kontakt') || lowercaseQuery.includes('email')) {
-      return 'Możesz skontaktować się z Wojtkiem przez email: soczynskiwojtek@gmail.com lub telefon: +48 577 950 977 📧'
+      return 'Napisz do mnie! Email: soczynskiwojtek@gmail.com | Tel: +48 577 950 977 📧'
     }
     if (lowercaseQuery.includes('cv') || lowercaseQuery.includes('resume') || lowercaseQuery.includes('praca')) {
-      return 'Wojtek pracuje jako AI Intern w OMNIVISER, gdzie rozwija framework Hexdag do orkiestracji agentów AI. CV znajdziesz w sekcji CV! 📄'
+      return 'Pracuję jako AI Intern w OMNIVISER - rozwijam framework Hexdag do orkiestracji agentów AI. CV znajdziesz w sekcji CV! 📄'
     }
     if (lowercaseQuery.includes('umiejętności') || lowercaseQuery.includes('skills') || lowercaseQuery.includes('technologi')) {
-      return 'Wojtek specjalizuje się w: Python, LLMs, Prompt Engineering, Git, Cursor AI i ChatGPT. Ma certyfikaty NVIDIA z budowania aplikacji LLM i RAG! 💻'
+      return 'Specjalizuję się w: Python, LLMs, Prompt Engineering, RAG Systems, Git. Używam ChatGPT, Cursor AI, Hugging Face! 💻'
     }
     if (lowercaseQuery.includes('książ') || lowercaseQuery.includes('book') || lowercaseQuery.includes('czyta')) {
-      return 'Wojtek poleca: "Mózg na detoksie" (Perlmutter), "21 lekcji na XXI wiek" (Harari), "Jak działa umysł" (Pinker) i "Deep Learning" (Goodfellow). Sprawdź blog! 📚'
+      return 'Polecam: "Mózg na detoksie" (Perlmutter), "21 lekcji" (Harari), "Jak działa umysł" (Pinker), "Deep Learning" (Goodfellow) i "The Last Economy" (Mostaque)! 📚'
     }
     if (lowercaseQuery.includes('studi') || lowercaseQuery.includes('uniwer') || lowercaseQuery.includes('kognityw')) {
-      return 'Wojtek studiuje Kognitywistykę na Uniwersytecie Warszawskim. Aktualnie jest na wymianie Erasmus na University of the Basque Country w Hiszpanii! 🎓'
+      return 'Studiuję Kognitywistykę na UW! Aktualnie jestem na Erasmusie na University of the Basque Country w Hiszpanii 🇪🇸 🎓'
     }
     if (lowercaseQuery.includes('cześć') || lowercaseQuery.includes('hej') || lowercaseQuery.includes('hello')) {
-      return 'Cześć! 👋 Jestem asystentem Wojtka. Zapytaj mnie o jego projekty AI, studia, książki lub umiejętności!'
+      return 'Cześć! 👋 Jestem Wojtek. Zapytaj mnie o projekty AI, studia kognitywistyki lub ulubione książki!'
     }
-    if (lowercaseQuery.includes('konkurs') || lowercaseQuery.includes('nagroda') || lowercaseQuery.includes('finalspark')) {
-      return 'Wojtek wygrał konkurs "Praca jak ze snu" z Just Join IT! 🏆 W nagrodę brał udział w filmie dokumentalnym o FinalSpark - startupie tworzącym komputer oparty na ludzkich neuronach!'
+    if (lowercaseQuery.includes('konkurs') || lowercaseQuery.includes('nagroda') || lowercaseQuery.includes('finalspark') || lowercaseQuery.includes('szwajcari')) {
+      return 'Wygrałem konkurs "Praca jak ze snu" z Just Join IT! 🏆 W nagrodę brałem udział w filmie o FinalSpark - startupie tworzącym komputer na ludzkich neuronach. Byłem w Szwajcarii!'
     }
     
-    return 'Dziękuję za wiadomość! Chatbot działa w trybie demo. Zapytaj o projekty AI Wojtka, jego studia kognitywistyki lub ulubione książki! ✨'
+    return 'Hej! Chatbot działa w trybie demo. Dodaj GEMINI_API_KEY do .env.local żeby włączyć pełne odpowiedzi! W międzyczasie zapytaj o moje projekty AI 🤖'
   }
 
   return (
