@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import Image from 'next/image'
+// import Image from 'next/image' // Odkomentuj gdy dodasz zdjęcia
 import { Calendar, Tag, ArrowRight, Search } from 'lucide-react'
 import type { PostMeta } from '@/lib/blog'
 
@@ -110,18 +110,20 @@ export default function BlogList({ posts, tags }: BlogListProps) {
                 <div className="glass-card rounded-2xl overflow-hidden card-hover h-full flex flex-col">
                   {/* Image */}
                   <div className="relative h-48 overflow-hidden">
-                    {post.image ? (
+                    {/* Zawsze pokaż gradient fallback - działa nawet bez zdjęć */}
+                    <div className="w-full h-full bg-gradient-to-br from-primary-500/20 to-primary-700/20 flex items-center justify-center">
+                      <span className="text-4xl">📝</span>
+                    </div>
+                    {/* Odkomentuj gdy dodasz zdjęcia:
+                    {post.image && (
                       <Image
                         src={post.image}
                         alt={post.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
                       />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-primary-500/20 to-primary-700/20 flex items-center justify-center">
-                        <span className="text-4xl">📝</span>
-                      </div>
                     )}
+                    */}
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent" />
                   </div>
 

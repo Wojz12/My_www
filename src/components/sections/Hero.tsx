@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react'
-import Image from 'next/image'
+// import Image from 'next/image' // Odkomentuj gdy dodasz zdjęcie profilowe
 import Link from 'next/link'
 
 export default function Hero() {
@@ -104,6 +104,11 @@ export default function Hero() {
               {/* Image container */}
               <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden
                             border-4 border-primary-500/30 shadow-2xl animate-float">
+                {/* Użyj własnego zdjęcia lub fallback z inicjałami */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-600 to-primary-800 flex items-center justify-center">
+                  <span className="text-7xl sm:text-8xl lg:text-9xl font-bold text-white/80">TI</span>
+                </div>
+                {/* Odkomentuj poniższe gdy dodasz zdjęcie public/images/profile.jpg
                 <Image
                   src="/images/profile.jpg"
                   alt="Profile"
@@ -111,6 +116,7 @@ export default function Hero() {
                   className="object-cover"
                   priority
                 />
+                */}
                 {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-900/50 to-transparent" />
               </div>

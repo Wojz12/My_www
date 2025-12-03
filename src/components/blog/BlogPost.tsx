@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
+// import Image from 'next/image' // Odkomentuj gdy dodasz zdjęcia
 import Link from 'next/link'
 import { ArrowLeft, Calendar, Tag, User, Clock } from 'lucide-react'
 import type { BlogPost as BlogPostType } from '@/lib/blog'
@@ -88,7 +88,8 @@ export default function BlogPost({ post }: BlogPostProps) {
           </div>
         </motion.header>
 
-        {/* Featured Image */}
+        {/* Featured Image - odkomentuj gdy dodasz zdjęcia */}
+        {/* 
         {post.image && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -105,6 +106,7 @@ export default function BlogPost({ post }: BlogPostProps) {
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent" />
           </motion.div>
         )}
+        */}
 
         {/* Content */}
         <motion.div
@@ -169,12 +171,11 @@ export default function BlogPost({ post }: BlogPostProps) {
                 ),
                 img: ({ src, alt }) => (
                   <span className="block my-6">
-                    <Image
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                       src={src || ''}
                       alt={alt || ''}
-                      width={800}
-                      height={400}
-                      className="rounded-xl shadow-glass"
+                      className="rounded-xl shadow-glass max-w-full h-auto"
                     />
                   </span>
                 ),

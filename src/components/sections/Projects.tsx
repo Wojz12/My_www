@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import Image from 'next/image'
+// import Image from 'next/image' // Odkomentuj gdy dodasz zdjęcia projektów
 import { ExternalLink, Github, Folder } from 'lucide-react'
 
 const projects = [
@@ -97,12 +97,18 @@ export default function Projects() {
             >
               {/* Image */}
               <div className="relative h-56 overflow-hidden">
+                {/* Gradient fallback - zamień na Image gdy dodasz zdjęcia */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-600/50 to-primary-900/80 flex items-center justify-center">
+                  <Folder className="w-16 h-16 text-primary-300/50" />
+                </div>
+                {/* Odkomentuj gdy dodasz zdjęcia do public/images/projects/
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
+                */}
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent" />
                 
                 {/* Links overlay */}
