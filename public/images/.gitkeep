@@ -1,0 +1,9 @@
+# Folder na zdjęcia
+# 
+# Struktura:
+# /images
+#   /profile.jpg       - Zdjęcie profilowe (używane w Hero)
+#   /blog/             - Zdjęcia do postów blogowych
+#   /projects/         - Zdjęcia projektów
+#   /gallery/          - Zdjęcia do galerii
+

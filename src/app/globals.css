@@ -1,0 +1,268 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --font-poppins: 'Poppins', sans-serif;
+  
+  /* Colors */
+  --color-primary: #8b5cf6;
+  --color-primary-dark: #7c3aed;
+  --color-primary-light: #a78bfa;
+  --color-lavender: #c4b5fd;
+  --color-pastel-purple: #e9d5ff;
+  
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px 0 rgba(139, 92, 246, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: var(--font-poppins);
+  background: linear-gradient(135deg, #0f0a1e 0%, #1a1033 50%, #0d0618 100%);
+  color: #f8fafc;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(139, 92, 246, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8b5cf6 0%, #7c3aed 100%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #a78bfa 0%, #8b5cf6 100%);
+}
+
+/* Selection */
+::selection {
+  background: rgba(139, 92, 246, 0.4);
+  color: #fff;
+}
+
+/* Glassmorphism utility classes */
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-card {
+    background: linear-gradient(
+      135deg,
+      rgba(139, 92, 246, 0.1) 0%,
+      rgba(168, 85, 247, 0.05) 50%,
+      rgba(139, 92, 246, 0.08) 100%
+    );
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15);
+  }
+
+  .glass-card:hover {
+    border-color: rgba(139, 92, 246, 0.4);
+    box-shadow: 0 20px 60px rgba(139, 92, 246, 0.25);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #a78bfa 0%, #c084fc 50%, #f0abfc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-border {
+    position: relative;
+    background: transparent;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #8b5cf6, #c084fc, #f0abfc);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  .glow-effect {
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.4);
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-medium rounded-xl
+           hover:from-primary-600 hover:to-primary-700 transition-all duration-300
+           shadow-lg hover:shadow-glow transform hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 glass-card text-white font-medium rounded-xl
+           hover:bg-primary-500/20 transition-all duration-300
+           transform hover:-translate-y-0.5;
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold gradient-text mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-gray-400 mb-12 max-w-2xl;
+  }
+
+  .card-hover {
+    @apply transition-all duration-500 hover:-translate-y-2;
+  }
+
+  /* Animated background blobs */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.5;
+    animation: blob 7s infinite;
+  }
+
+  .blob-1 {
+    width: 400px;
+    height: 400px;
+    background: rgba(139, 92, 246, 0.3);
+    top: 10%;
+    left: 10%;
+  }
+
+  .blob-2 {
+    width: 350px;
+    height: 350px;
+    background: rgba(192, 132, 252, 0.3);
+    top: 50%;
+    right: 10%;
+    animation-delay: 2s;
+  }
+
+  .blob-3 {
+    width: 300px;
+    height: 300px;
+    background: rgba(240, 171, 252, 0.2);
+    bottom: 10%;
+    left: 30%;
+    animation-delay: 4s;
+  }
+}
+
+/* MDX content styling */
+.prose {
+  @apply text-gray-300 leading-relaxed;
+}
+
+.prose h1 {
+  @apply text-4xl font-bold gradient-text mb-6 mt-8;
+}
+
+.prose h2 {
+  @apply text-3xl font-semibold text-white mb-4 mt-8;
+}
+
+.prose h3 {
+  @apply text-2xl font-semibold text-white mb-3 mt-6;
+}
+
+.prose p {
+  @apply mb-4 text-gray-300;
+}
+
+.prose a {
+  @apply text-primary-400 hover:text-primary-300 underline underline-offset-2;
+}
+
+.prose code {
+  @apply bg-primary-900/30 text-primary-300 px-2 py-1 rounded text-sm;
+}
+
+.prose pre {
+  @apply bg-gray-900/50 border border-primary-500/20 rounded-xl p-4 overflow-x-auto mb-4;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0;
+}
+
+.prose ul {
+  @apply list-disc list-inside mb-4 space-y-2;
+}
+
+.prose ol {
+  @apply list-decimal list-inside mb-4 space-y-2;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-primary-500 pl-4 italic text-gray-400 my-4;
+}
+
+.prose img {
+  @apply rounded-xl shadow-glass my-6;
+}
+
+/* Input styling */
+input, textarea {
+  @apply bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white
+         placeholder:text-gray-500 focus:outline-none focus:border-primary-500/50
+         focus:ring-2 focus:ring-primary-500/20 transition-all duration-300;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animation-delay-100 { animation-delay: 0.1s; }
+.animation-delay-200 { animation-delay: 0.2s; }
+.animation-delay-300 { animation-delay: 0.3s; }
+.animation-delay-400 { animation-delay: 0.4s; }
+.animation-delay-500 { animation-delay: 0.5s; }
+
