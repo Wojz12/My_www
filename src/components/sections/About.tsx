@@ -3,28 +3,51 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Code2, Palette, Rocket, Coffee } from 'lucide-react'
+import { Brain, BookOpen, Globe, Trophy } from 'lucide-react'
 
-const highlights = [
+const interests = [
   {
-    icon: Code2,
-    title: 'Clean Code',
-    description: 'Piszę czytelny, dobrze udokumentowany kod z myślą o przyszłości.',
+    icon: Brain,
+    title: 'Kognitywistyka',
+    description: 'Fascynuje mnie badanie umysłu, procesów poznawczych i ich związków z AI.',
   },
   {
-    icon: Palette,
-    title: 'Design',
-    description: 'Tworzę estetyczne interfejsy z dbałością o każdy detal.',
+    icon: BookOpen,
+    title: 'AI & LLMs',
+    description: 'Tworzę systemy oparte o Large Language Models i Retrieval-Augmented Generation.',
   },
   {
-    icon: Rocket,
-    title: 'Performance',
-    description: 'Optymalizuję aplikacje pod kątem szybkości i wydajności.',
+    icon: Globe,
+    title: 'Erasmus',
+    description: 'Rozwijam się na wymianie w University of the Basque Country w Hiszpanii.',
   },
   {
-    icon: Coffee,
-    title: 'Pasja',
-    description: 'Programowanie to moja pasja, nie tylko praca.',
+    icon: Trophy,
+    title: 'Osiągnięcia',
+    description: 'Zwycięzca konkursu "Praca jak ze snu" z Just Join IT.',
+  },
+]
+
+const books = [
+  {
+    title: 'Mózg na detoksie',
+    author: 'David Perlmutter',
+    emoji: '🧠',
+  },
+  {
+    title: '21 lekcji na XXI wiek',
+    author: 'Yuval Noah Harari',
+    emoji: '📚',
+  },
+  {
+    title: 'Jak działa umysł',
+    author: 'Steven Pinker',
+    emoji: '💭',
+  },
+  {
+    title: 'Deep Learning: Głęboka Rewolucja',
+    author: 'Ian Goodfellow',
+    emoji: '🤖',
   },
 ]
 
@@ -43,85 +66,129 @@ export default function About() {
         >
           <h2 className="section-title">O mnie</h2>
           <p className="section-subtitle mx-auto">
-            Poznaj mnie bliżej - moją historię, pasje i to, co mnie napędza do tworzenia.
+            Poznaj mnie bliżej - moje zainteresowania, inspiracje i to, co mnie napędza.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Text content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="glass-card p-8 rounded-2xl">
+            <div className="glass-card p-8 rounded-2xl mb-8">
               <h3 className="text-2xl font-bold text-white mb-4">
                 Kim jestem?
               </h3>
               <div className="space-y-4 text-gray-300">
                 <p>
-                  Jestem Full-Stack Developerem z wieloletnim doświadczeniem w tworzeniu 
-                  nowoczesnych aplikacji webowych. Specjalizuję się w technologiach 
-                  JavaScript/TypeScript, React, Next.js oraz Node.js.
+                  Jestem studentem <span className="text-primary-400 font-medium">Kognitywistyki</span> na 
+                  Uniwersytecie Warszawskim, pasjonującym się sztuczną inteligencją, 
+                  Large Language Models i rozumowaniem opartym na danych.
                 </p>
                 <p>
-                  Moją pasją jest tworzenie rozwiązań, które łączą piękny design 
-                  z wysoką funkcjonalnością. Wierzę, że kod powinien być nie tylko 
-                  działający, ale również elegancki i łatwy w utrzymaniu.
+                  Mam doświadczenie w <span className="text-primary-400 font-medium">Pythonie</span>, 
+                  analizie danych i dokumentacji technicznej. Specjalizuję się w tworzeniu 
+                  workflow AI i integrowaniu modeli językowych w praktyczne systemy.
                 </p>
                 <p>
-                  Poza programowaniem interesuję się nowymi technologiami, 
-                  uczeniem maszynowym i rozwojem osobistym. Lubię również 
-                  dzielić się wiedzą poprzez pisanie bloga i mentoring.
+                  Aktualnie realizuję wymianę <span className="text-primary-400 font-medium">Erasmus</span> na 
+                  University of the Basque Country w Hiszpanii, poszerzając swoje horyzonty 
+                  w naukach kognitywnych i obliczeniowych.
                 </p>
-              </div>
-
-              <div className="mt-6 pt-6 border-t border-white/10">
-                <div className="grid grid-cols-3 gap-4 text-center">
-                  <div>
-                    <div className="text-3xl font-bold gradient-text">5+</div>
-                    <div className="text-sm text-gray-400">Lat doświadczenia</div>
-                  </div>
-                  <div>
-                    <div className="text-3xl font-bold gradient-text">50+</div>
-                    <div className="text-sm text-gray-400">Projektów</div>
-                  </div>
-                  <div>
-                    <div className="text-3xl font-bold gradient-text">20+</div>
-                    <div className="text-sm text-gray-400">Zadowolonych klientów</div>
-                  </div>
-                </div>
               </div>
             </div>
+
+            {/* Achievement highlight */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="glass-card p-6 rounded-2xl border-l-4 border-yellow-500"
+            >
+              <div className="flex items-start gap-4">
+                <span className="text-4xl">🏆</span>
+                <div>
+                  <h4 className="text-lg font-bold text-white mb-2">
+                    Zwycięzca konkursu "Praca jak ze snu"
+                  </h4>
+                  <p className="text-gray-400 text-sm mb-3">
+                    We współpracy z Just Join IT. W ramach wygranej brałem udział w nagrywaniu 
+                    filmu dokumentalnego o startupie <span className="text-primary-400">FinalSpark</span> - 
+                    tworzącym pierwszy komputer wykorzystujący ludzkie neurony do obliczeń!
+                  </p>
+                  <a 
+                    href="https://www.facebook.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-primary-400 hover:text-primary-300 text-sm font-medium"
+                  >
+                    🗺️ Zobacz moją wycieczkę do Szwajcarii →
+                  </a>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
 
-          {/* Highlights grid */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid sm:grid-cols-2 gap-4"
-          >
-            {highlights.map((item, index) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                className="glass-card p-6 rounded-xl card-hover group"
-              >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500/20 to-primary-700/20
-                              flex items-center justify-center mb-4 group-hover:shadow-glow-sm transition-all duration-300">
-                  <item.icon className="w-6 h-6 text-primary-400" />
-                </div>
-                <h4 className="text-lg font-semibold text-white mb-2">{item.title}</h4>
-                <p className="text-sm text-gray-400">{item.description}</p>
-              </motion.div>
-            ))}
-          </motion.div>
+          {/* Right column */}
+          <div className="space-y-8">
+            {/* Interests grid */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="grid sm:grid-cols-2 gap-4"
+            >
+              {interests.map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                  className="glass-card p-6 rounded-xl card-hover group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500/20 to-primary-700/20
+                                flex items-center justify-center mb-4 group-hover:shadow-glow-sm transition-all duration-300">
+                    <item.icon className="w-6 h-6 text-primary-400" />
+                  </div>
+                  <h4 className="text-lg font-semibold text-white mb-2">{item.title}</h4>
+                  <p className="text-sm text-gray-400">{item.description}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Books section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="glass-card p-6 rounded-2xl"
+            >
+              <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                📖 Książki, które mnie inspirują
+              </h4>
+              <div className="space-y-3">
+                {books.map((book, index) => (
+                  <motion.div
+                    key={book.title}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.4, delay: 0.7 + index * 0.1 }}
+                    className="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors"
+                  >
+                    <span className="text-2xl">{book.emoji}</span>
+                    <div>
+                      <p className="text-white font-medium text-sm">{book.title}</p>
+                      <p className="text-gray-500 text-xs">{book.author}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
   )
 }
-

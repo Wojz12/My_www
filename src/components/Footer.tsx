@@ -1,11 +1,11 @@
 import Link from 'next/link'
-import { Github, Linkedin, Twitter, Mail, Heart, Sparkles } from 'lucide-react'
+import { Github, Linkedin, Mail, Phone, Heart, Sparkles } from 'lucide-react'
 
 const socialLinks = [
-  { name: 'GitHub', href: 'https://github.com', icon: Github },
-  { name: 'LinkedIn', href: 'https://linkedin.com', icon: Linkedin },
-  { name: 'Twitter', href: 'https://twitter.com', icon: Twitter },
-  { name: 'Email', href: 'mailto:contact@example.com', icon: Mail },
+  { name: 'GitHub', href: 'https://github.com/Wojz12', icon: Github },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/wojciechsoczy%C5%84ski/', icon: Linkedin },
+  { name: 'Email', href: 'mailto:soczynskiwojtek@gmail.com', icon: Mail },
+  { name: 'Phone', href: 'tel:+48577950977', icon: Phone },
 ]
 
 const footerLinks = [
@@ -22,7 +22,7 @@ const footerLinks = [
     title: 'Więcej',
     links: [
       { name: 'CV', href: '/#cv' },
-      { name: 'Galeria', href: '/gallery' },
+      { name: 'Umiejętności', href: '/#skills' },
       { name: 'Kontakt', href: '/#contact' },
     ],
   },
@@ -42,11 +42,11 @@ export default function Footer() {
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center shadow-glow-sm">
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold gradient-text">Portfolio</span>
+              <span className="text-xl font-bold gradient-text">Wojciech Soczyński</span>
             </Link>
             <p className="text-gray-400 max-w-md mb-6">
-              Tworzę nowoczesne aplikacje webowe z pasją do czystego kodu i pięknego designu. 
-              Zawsze otwarty na nowe projekty i współpracę.
+              Student kognitywistyki pasjonujący się AI, LLMs i analizą danych. 
+              Zawsze otwarty na nowe projekty i możliwości współpracy.
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social) => (
@@ -89,10 +89,10 @@ export default function Footer() {
         <div className="mt-16 pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-gray-500 text-sm">
-              © {new Date().getFullYear()} Portfolio. Wszelkie prawa zastrzeżone.
+              © {new Date().getFullYear()} Wojciech Soczyński. Wszelkie prawa zastrzeżone.
             </p>
             <p className="text-gray-500 text-sm flex items-center gap-1">
-              Zrobione z <Heart className="w-4 h-4 text-red-500 fill-red-500" /> w Polsce
+              Zrobione z <Heart className="w-4 h-4 text-red-500 fill-red-500" /> w Warszawie
             </p>
           </div>
         </div>
@@ -100,4 +100,3 @@ export default function Footer() {
     </footer>
   )
 }
-

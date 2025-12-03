@@ -3,55 +3,66 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { Award } from 'lucide-react'
 
 const skillCategories = [
   {
-    title: 'Frontend',
-    icon: '🎨',
+    title: 'Programowanie & AI',
+    icon: '🐍',
     skills: [
-      { name: 'React', level: 95 },
-      { name: 'Next.js', level: 90 },
-      { name: 'TypeScript', level: 88 },
-      { name: 'Tailwind CSS', level: 92 },
-      { name: 'HTML/CSS', level: 95 },
-      { name: 'Vue.js', level: 75 },
+      { name: 'Python', level: 85 },
+      { name: 'LLMs (Large Language Models)', level: 80 },
+      { name: 'Prompt Engineering', level: 85 },
+      { name: 'RAG Systems', level: 75 },
+      { name: 'Git', level: 80 },
     ],
   },
   {
-    title: 'Backend',
-    icon: '⚙️',
+    title: 'Narzędzia AI',
+    icon: '🤖',
     skills: [
-      { name: 'Node.js', level: 88 },
-      { name: 'Express', level: 85 },
-      { name: 'Python', level: 70 },
-      { name: 'PostgreSQL', level: 82 },
-      { name: 'MongoDB', level: 80 },
-      { name: 'REST APIs', level: 90 },
+      { name: 'ChatGPT', level: 90 },
+      { name: 'Cursor AI', level: 85 },
+      { name: 'Hugging Face', level: 70 },
+      { name: 'LangChain', level: 65 },
     ],
   },
   {
-    title: 'Narzędzia',
+    title: 'Inne narzędzia',
     icon: '🛠️',
     skills: [
-      { name: 'Git', level: 92 },
-      { name: 'Docker', level: 75 },
-      { name: 'AWS', level: 70 },
-      { name: 'Figma', level: 78 },
-      { name: 'VS Code', level: 95 },
-      { name: 'Linux', level: 80 },
+      { name: 'MS Office', level: 90 },
+      { name: 'Technical Documentation', level: 85 },
+      { name: 'Data Analysis', level: 75 },
     ],
   },
   {
     title: 'Soft Skills',
     icon: '💡',
     skills: [
-      { name: 'Praca zespołowa', level: 95 },
-      { name: 'Komunikacja', level: 90 },
-      { name: 'Problem Solving', level: 92 },
-      { name: 'Time Management', level: 85 },
-      { name: 'Leadership', level: 80 },
-      { name: 'Mentoring', level: 88 },
+      { name: 'Problem Solving', level: 90 },
+      { name: 'Technical Writing', level: 85 },
+      { name: 'Teaching & Mentoring', level: 88 },
+      { name: 'Communication', level: 85 },
     ],
+  },
+]
+
+const certificates = [
+  {
+    name: 'Building LLM Applications With Prompt Engineering',
+    issuer: 'NVIDIA',
+    icon: '🟢',
+  },
+  {
+    name: 'Building RAG Agents with LLMs',
+    issuer: 'NVIDIA',
+    icon: '🟢',
+  },
+  {
+    name: 'Cambridge English Advanced (CAE)',
+    issuer: 'Cambridge',
+    icon: '🔵',
   },
 ]
 
@@ -70,11 +81,11 @@ export default function Skills() {
         >
           <h2 className="section-title">Umiejętności</h2>
           <p className="section-subtitle mx-auto">
-            Technologie i narzędzia, które wykorzystuję na co dzień do tworzenia projektów.
+            Technologie i narzędzia, które wykorzystuję w codziennej pracy.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
@@ -115,25 +126,53 @@ export default function Skills() {
           ))}
         </div>
 
-        {/* Additional skills badges */}
+        {/* Certificates */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-12 text-center"
+          className="glass-card p-8 rounded-2xl"
         >
-          <h4 className="text-lg font-medium text-gray-400 mb-6">Inne technologie i narzędzia</h4>
+          <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+            <Award className="w-6 h-6 text-primary-400" />
+            Certyfikaty
+          </h3>
+          
+          <div className="grid sm:grid-cols-3 gap-4">
+            {certificates.map((cert, index) => (
+              <motion.div
+                key={cert.name}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
+                className="p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/10"
+              >
+                <span className="text-2xl mb-2 block">{cert.icon}</span>
+                <h4 className="text-white font-medium text-sm mb-1">{cert.name}</h4>
+                <p className="text-gray-500 text-xs">{cert.issuer}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Technologies tags */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="mt-8 text-center"
+        >
+          <h4 className="text-lg font-medium text-gray-400 mb-6">Obecnie uczę się</h4>
           <div className="flex flex-wrap justify-center gap-3">
             {[
-              'GraphQL', 'Redux', 'Prisma', 'Jest', 'Cypress', 'Webpack',
-              'Vite', 'Firebase', 'Supabase', 'Vercel', 'Netlify', 'GitHub Actions',
-              'Sass', 'Styled Components', 'Framer Motion', 'Three.js'
+              'LangChain', 'Vector Databases', 'Transformers', 'Fine-tuning',
+              'Agent Systems', 'Semantic Search', 'NLP'
             ].map((tech, index) => (
               <motion.span
                 key={tech}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.3, delay: 0.6 + index * 0.03 }}
+                transition={{ duration: 0.3, delay: 0.8 + index * 0.03 }}
                 className="px-4 py-2 glass-card rounded-full text-sm text-gray-300 hover:text-white hover:border-primary-500/50 transition-all duration-300 cursor-default"
               >
                 {tech}
@@ -145,4 +184,3 @@ export default function Skills() {
     </section>
   )
 }
-

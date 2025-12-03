@@ -12,13 +12,13 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Moje Portfolio | Developer & Creator',
-  description: 'Profesjonalne portfolio - projekty, blog, doświadczenie i umiejętności',
-  keywords: ['portfolio', 'developer', 'programista', 'web development', 'blog'],
-  authors: [{ name: 'Your Name' }],
+  title: 'Wojciech Soczyński | AI & Cognitive Science',
+  description: 'Portfolio studenta kognitywistyki pasjonującego się AI, LLMs i analizą danych. Projekty, blog i doświadczenie.',
+  keywords: ['portfolio', 'AI', 'LLM', 'kognitywistyka', 'Python', 'RAG', 'machine learning', 'cognitive science'],
+  authors: [{ name: 'Wojciech Soczyński' }],
   openGraph: {
-    title: 'Moje Portfolio',
-    description: 'Profesjonalne portfolio developera',
+    title: 'Wojciech Soczyński | AI & Cognitive Science',
+    description: 'Portfolio studenta kognitywistyki - AI, LLMs, Python, RAG systems',
     type: 'website',
   },
 }

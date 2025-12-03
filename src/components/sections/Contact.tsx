@@ -3,26 +3,39 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
-import { Mail, Phone, MapPin, Send, Loader2, CheckCircle } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, Loader2, CheckCircle, Github, Linkedin } from 'lucide-react'
 
 const contactInfo = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'contact@example.com',
-    href: 'mailto:contact@example.com',
+    value: 'soczynskiwojtek@gmail.com',
+    href: 'mailto:soczynskiwojtek@gmail.com',
   },
   {
     icon: Phone,
     label: 'Telefon',
-    value: '+48 123 456 789',
-    href: 'tel:+48123456789',
+    value: '+48 577 950 977',
+    href: 'tel:+48577950977',
   },
   {
     icon: MapPin,
     label: 'Lokalizacja',
     value: 'Warszawa, Polska',
     href: '#',
+  },
+]
+
+const socialLinks = [
+  {
+    name: 'GitHub',
+    href: 'https://github.com/Wojz12',
+    icon: Github,
+  },
+  {
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/wojciechsoczy%C5%84ski/',
+    icon: Linkedin,
   },
 ]
 
@@ -93,8 +106,8 @@ export default function Contact() {
                 Porozmawiajmy!
               </h3>
               <p className="text-gray-400 mb-8">
-                Zawsze jestem otwarty na nowe projekty i możliwości współpracy. 
-                Skontaktuj się ze mną przez formularz lub bezpośrednio.
+                Jestem otwarty na nowe projekty, współpracę przy projektach AI 
+                i możliwości stażowe. Skontaktuj się ze mną!
               </p>
 
               <div className="space-y-6">
@@ -117,17 +130,20 @@ export default function Contact() {
                 ))}
               </div>
 
-              {/* Social CTA */}
+              {/* Social Links */}
               <div className="mt-8 pt-8 border-t border-white/10">
                 <p className="text-gray-400 mb-4">Znajdziesz mnie również na:</p>
                 <div className="flex gap-3">
-                  {['GitHub', 'LinkedIn', 'Twitter'].map((social) => (
+                  {socialLinks.map((social) => (
                     <a
-                      key={social}
-                      href="#"
-                      className="px-4 py-2 glass-card rounded-lg text-sm text-gray-300 hover:text-white hover:border-primary-500/50 transition-all duration-300"
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 glass-card rounded-lg text-sm text-gray-300 hover:text-white hover:border-primary-500/50 transition-all duration-300"
                     >
-                      {social}
+                      <social.icon className="w-4 h-4" />
+                      {social.name}
                     </a>
                   ))}
                 </div>
@@ -234,4 +250,3 @@ export default function Contact() {
     </section>
   )
 }
-

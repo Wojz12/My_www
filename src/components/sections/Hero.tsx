@@ -1,8 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react'
-// import Image from 'next/image' // Odkomentuj gdy dodasz zdjęcie profilowe
+import { ArrowDown, Github, Linkedin, Mail, Phone } from 'lucide-react'
 import Link from 'next/link'
 
 export default function Hero() {
@@ -27,7 +26,7 @@ export default function Hero() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-6"
             >
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              <span className="text-sm text-gray-300">Dostępny do współpracy</span>
+              <span className="text-sm text-gray-300">Student Kognitywistyki | AI Enthusiast</span>
             </motion.div>
 
             <motion.h1
@@ -37,7 +36,7 @@ export default function Hero() {
               className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6"
             >
               Cześć, jestem{' '}
-              <span className="gradient-text">Twoje Imię</span>
+              <span className="gradient-text">Wojciech Soczyński</span>
             </motion.h1>
 
             <motion.p
@@ -46,8 +45,9 @@ export default function Hero() {
               transition={{ delay: 0.4 }}
               className="text-lg sm:text-xl text-gray-400 mb-8 max-w-xl mx-auto lg:mx-0"
             >
-              Full-Stack Developer z pasją do tworzenia pięknych, 
-              funkcjonalnych i wydajnych aplikacji webowych.
+              Student kognitywistyki pasjonujący się sztuczną inteligencją, 
+              Large Language Models i analizą danych. Aktualnie na wymianie Erasmus 
+              na University of the Basque Country w Hiszpanii. 🇪🇸
             </motion.p>
 
             <motion.div
@@ -71,9 +71,10 @@ export default function Hero() {
               className="flex gap-4 justify-center lg:justify-start"
             >
               {[
-                { icon: Github, href: 'https://github.com', label: 'GitHub' },
-                { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-                { icon: Mail, href: 'mailto:contact@example.com', label: 'Email' },
+                { icon: Github, href: 'https://github.com/Wojz12', label: 'GitHub' },
+                { icon: Linkedin, href: 'https://www.linkedin.com/in/wojciechsoczy%C5%84ski/', label: 'LinkedIn' },
+                { icon: Mail, href: 'mailto:soczynskiwojtek@gmail.com', label: 'Email' },
+                { icon: Phone, href: 'tel:+48577950977', label: 'Telefon' },
               ].map((social) => (
                 <a
                   key={social.label}
@@ -104,20 +105,19 @@ export default function Hero() {
               {/* Image container */}
               <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden
                             border-4 border-primary-500/30 shadow-2xl animate-float">
-                {/* Użyj własnego zdjęcia lub fallback z inicjałami */}
+                {/* Inicjały jako fallback - zamień na zdjęcie gdy dodasz */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-600 to-primary-800 flex items-center justify-center">
-                  <span className="text-7xl sm:text-8xl lg:text-9xl font-bold text-white/80">TI</span>
+                  <span className="text-7xl sm:text-8xl lg:text-9xl font-bold text-white/80">WS</span>
                 </div>
-                {/* Odkomentuj poniższe gdy dodasz zdjęcie public/images/profile.jpg
+                {/* Odkomentuj gdy dodasz zdjęcie public/images/profile.jpg
                 <Image
                   src="/images/profile.jpg"
-                  alt="Profile"
+                  alt="Wojciech Soczyński"
                   fill
                   className="object-cover"
                   priority
                 />
                 */}
-                {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-900/50 to-transparent" />
               </div>
 
@@ -127,7 +127,7 @@ export default function Hero() {
                 transition={{ duration: 3, repeat: Infinity }}
                 className="absolute -right-4 top-10 px-4 py-2 glass-card rounded-xl"
               >
-                <span className="text-sm font-medium">⚡ Next.js</span>
+                <span className="text-sm font-medium">🧠 LLMs</span>
               </motion.div>
               
               <motion.div
@@ -135,7 +135,7 @@ export default function Hero() {
                 transition={{ duration: 3, repeat: Infinity, delay: 1 }}
                 className="absolute -left-4 bottom-20 px-4 py-2 glass-card rounded-xl"
               >
-                <span className="text-sm font-medium">🎨 React</span>
+                <span className="text-sm font-medium">🐍 Python</span>
               </motion.div>
               
               <motion.div
@@ -143,7 +143,7 @@ export default function Hero() {
                 transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
                 className="absolute right-8 bottom-0 px-4 py-2 glass-card rounded-xl"
               >
-                <span className="text-sm font-medium">💎 TypeScript</span>
+                <span className="text-sm font-medium">🤖 RAG</span>
               </motion.div>
             </div>
           </motion.div>
@@ -169,4 +169,3 @@ export default function Hero() {
     </section>
   )
 }
-

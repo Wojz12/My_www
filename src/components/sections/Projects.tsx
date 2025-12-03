@@ -3,61 +3,42 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-// import Image from 'next/image' // Odkomentuj gdy dodasz zdjęcia projektów
-import { ExternalLink, Github, Folder } from 'lucide-react'
+import { ExternalLink, Github, Folder, Database, Brain, Cpu } from 'lucide-react'
 
 const projects = [
   {
-    title: 'E-Commerce Platform',
-    description: 'Pełna platforma e-commerce z panelem administracyjnym, systemem płatności i zarządzaniem zamówieniami.',
-    image: '/images/projects/project1.jpg',
-    technologies: ['Next.js', 'TypeScript', 'Prisma', 'Stripe', 'PostgreSQL'],
-    liveUrl: 'https://example.com',
+    title: 'Open-Domain QA with RAG (TriviaQA)',
+    description: 'System Retrieval-Augmented Generation do odpowiadania na pytania w otwartej domenie. Architektura: BM25 Retrieval → CrossEncoder Reranking → TinyLlama Generation.',
+    longDescription: `
+      Projekt implementujący pełny pipeline RAG dla Question Answering:
+      • BM25 sparse retrieval na 10,000 dokumentów
+      • CrossEncoder (MS-MARCO) do reranking top-10 → top-3
+      • TinyLlama-1.1B-Chat do generowania odpowiedzi
+      • Osiągnięte wyniki: 39.80% Exact Match, 44.36% F1 Score
+    `,
+    icon: Database,
+    technologies: ['Python', 'Transformers', 'BM25', 'CrossEncoder', 'TinyLlama', 'HuggingFace'],
+    metrics: [
+      { label: 'Exact Match', value: '39.80%' },
+      { label: 'F1 Score', value: '44.36%' },
+      { label: 'Index Size', value: '10,000' },
+    ],
+    githubUrl: 'https://github.com/Wojz12/RAG_LLM_project',
+    featured: true,
+  },
+  {
+    title: 'Hexdag Contributions',
+    description: 'Wkład w open-source framework do orkiestracji agentów AI. Moduły Python do zarządzania zadaniami i bezpiecznego parsowania LLM.',
+    icon: Brain,
+    technologies: ['Python', 'LLMs', 'Open Source', 'Git'],
     githubUrl: 'https://github.com',
     featured: true,
   },
   {
-    title: 'Dashboard Analytics',
-    description: 'Interaktywny dashboard do analizy danych z wykresami real-time i eksportem raportów.',
-    image: '/images/projects/project2.jpg',
-    technologies: ['React', 'D3.js', 'Node.js', 'MongoDB', 'Socket.io'],
-    liveUrl: 'https://example.com',
-    githubUrl: 'https://github.com',
-    featured: true,
-  },
-  {
-    title: 'Social Media App',
-    description: 'Aplikacja społecznościowa z funkcjami real-time chat, stories i systemem powiadomień.',
-    image: '/images/projects/project3.jpg',
-    technologies: ['React Native', 'Firebase', 'Redux', 'Node.js'],
-    liveUrl: 'https://example.com',
-    githubUrl: 'https://github.com',
-    featured: true,
-  },
-  {
-    title: 'AI Content Generator',
-    description: 'Narzędzie do generowania treści z wykorzystaniem AI - artykuły, posty, opisy produktów.',
-    image: '/images/projects/project4.jpg',
-    technologies: ['Next.js', 'OpenAI API', 'Tailwind', 'Vercel'],
-    liveUrl: 'https://example.com',
-    githubUrl: 'https://github.com',
-    featured: false,
-  },
-  {
-    title: 'Task Management System',
-    description: 'System zarządzania zadaniami typu Kanban z drag & drop i integracjami.',
-    image: '/images/projects/project5.jpg',
-    technologies: ['Vue.js', 'Vuex', 'Express', 'MySQL'],
-    liveUrl: 'https://example.com',
-    githubUrl: 'https://github.com',
-    featured: false,
-  },
-  {
-    title: 'Portfolio Template',
-    description: 'Szablon portfolio dla developerów z systemem blogowym i ciemnym motywem.',
-    image: '/images/projects/project6.jpg',
-    technologies: ['Next.js', 'MDX', 'Tailwind', 'Framer Motion'],
-    liveUrl: 'https://example.com',
+    title: 'Portfolio Website',
+    description: 'Ta strona! Nowoczesne portfolio zbudowane w Next.js 14 z App Router, Tailwind CSS i Framer Motion.',
+    icon: Cpu,
+    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
     githubUrl: 'https://github.com',
     featured: false,
   },
@@ -81,141 +62,152 @@ export default function Projects() {
         >
           <h2 className="section-title">Projekty</h2>
           <p className="section-subtitle mx-auto">
-            Wybrane projekty, które pokazują moje umiejętności i doświadczenie.
+            Projekty, które pokazują moje umiejętności w AI i programowaniu.
           </p>
         </motion.div>
 
         {/* Featured Projects */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-12">
+        <div className="space-y-8 mb-12">
           {featuredProjects.map((project, index) => (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="group glass-card rounded-2xl overflow-hidden card-hover"
+              className="glass-card rounded-2xl overflow-hidden"
             >
-              {/* Image */}
-              <div className="relative h-56 overflow-hidden">
-                {/* Gradient fallback - zamień na Image gdy dodasz zdjęcia */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-600/50 to-primary-900/80 flex items-center justify-center">
-                  <Folder className="w-16 h-16 text-primary-300/50" />
-                </div>
-                {/* Odkomentuj gdy dodasz zdjęcia do public/images/projects/
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                */}
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent" />
-                
-                {/* Links overlay */}
-                <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
-                  >
-                    <Github className="w-5 h-5" />
-                  </a>
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
-                  >
-                    <ExternalLink className="w-5 h-5" />
-                  </a>
-                </div>
-              </div>
+              <div className="p-8">
+                <div className="flex flex-col lg:flex-row lg:items-start gap-6">
+                  {/* Icon */}
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500/20 to-primary-700/20 flex items-center justify-center flex-shrink-0">
+                    <project.icon className="w-8 h-8 text-primary-400" />
+                  </div>
 
-              {/* Content */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary-400 transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-gray-400 mb-4">{project.description}</p>
-                
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 text-xs font-medium bg-primary-500/10 text-primary-300 rounded-full border border-primary-500/20"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                  {/* Content */}
+                  <div className="flex-1">
+                    <div className="flex flex-wrap items-center gap-3 mb-3">
+                      <h3 className="text-2xl font-bold text-white">{project.title}</h3>
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+                      >
+                        <Github className="w-5 h-5 text-white" />
+                      </a>
+                    </div>
+
+                    <p className="text-gray-300 mb-4">{project.description}</p>
+
+                    {project.longDescription && (
+                      <div className="bg-black/20 rounded-xl p-4 mb-4">
+                        <pre className="text-sm text-gray-400 whitespace-pre-wrap font-sans">
+                          {project.longDescription.trim()}
+                        </pre>
+                      </div>
+                    )}
+
+                    {/* Metrics */}
+                    {project.metrics && (
+                      <div className="grid grid-cols-3 gap-4 mb-4">
+                        {project.metrics.map((metric) => (
+                          <div key={metric.label} className="text-center p-3 rounded-xl bg-white/5">
+                            <p className="text-xl font-bold gradient-text">{metric.value}</p>
+                            <p className="text-xs text-gray-500">{metric.label}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Technologies */}
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-3 py-1 text-xs font-medium bg-primary-500/10 text-primary-300 rounded-full border border-primary-500/20"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
+
+                {/* Architecture diagram for RAG project */}
+                {project.title.includes('RAG') && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { opacity: 1 } : {}}
+                    transition={{ delay: 0.5 }}
+                    className="mt-6 p-4 bg-black/30 rounded-xl overflow-x-auto"
+                  >
+                    <p className="text-xs text-gray-500 mb-2">Architektura systemu:</p>
+                    <pre className="text-xs text-primary-300 font-mono">
+{`┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│   Query     │ ──► │    BM25     │ ──► │  Reranker   │ ──► │  TinyLlama  │
+│             │     │  Retriever  │     │ CrossEncoder│     │  Generator  │
+└─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
+                         │                    │                    │
+                    Top-10 docs          Top-3 docs            Answer`}
+                    </pre>
+                  </motion.div>
+                )}
               </div>
             </motion.div>
           ))}
         </div>
 
         {/* Other Projects */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <h3 className="text-xl font-semibold text-white mb-6 text-center">Inne projekty</h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {otherProjects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                className="group glass-card p-6 rounded-xl card-hover"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500/20 to-primary-700/20 flex items-center justify-center">
-                    <Folder className="w-6 h-6 text-primary-400" />
+        {otherProjects.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <h3 className="text-xl font-semibold text-white mb-6 text-center">Inne projekty</h3>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {otherProjects.map((project, index) => (
+                <motion.div
+                  key={project.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                  className="group glass-card p-6 rounded-xl card-hover"
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500/20 to-primary-700/20 flex items-center justify-center">
+                      <Folder className="w-6 h-6 text-primary-400" />
+                    </div>
+                    <div className="flex gap-2">
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-white transition-colors"
+                      >
+                        <Github className="w-5 h-5" />
+                      </a>
+                    </div>
                   </div>
-                  <div className="flex gap-2">
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-white transition-colors"
-                    >
-                      <Github className="w-5 h-5" />
-                    </a>
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-white transition-colors"
-                    >
-                      <ExternalLink className="w-5 h-5" />
-                    </a>
+
+                  <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-primary-400 transition-colors">
+                    {project.title}
+                  </h4>
+                  <p className="text-sm text-gray-400 mb-4">{project.description}</p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.slice(0, 3).map((tech) => (
+                      <span key={tech} className="text-xs text-gray-500">
+                        {tech}
+                      </span>
+                    ))}
                   </div>
-                </div>
-
-                <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-primary-400 transition-colors">
-                  {project.title}
-                </h4>
-                <p className="text-sm text-gray-400 mb-4">{project.description}</p>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.slice(0, 3).map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-xs text-gray-500"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
       </div>
     </section>
   )
 }
-

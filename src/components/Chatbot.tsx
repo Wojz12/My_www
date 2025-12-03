@@ -15,7 +15,7 @@ const initialMessages: Message[] = [
   {
     id: '1',
     role: 'assistant',
-    content: 'Cześć! 👋 Jestem asystentem AI. Jak mogę Ci pomóc? Możesz zapytać o moje projekty, doświadczenie lub umiejętności.',
+    content: 'Cześć! 👋 Jestem asystentem Wojtka. Mogę opowiedzieć Ci o jego projektach AI, studiach kognitywistyki, doświadczeniu z LLMs lub ulubionych książkach!',
     timestamp: new Date(),
   },
 ]
@@ -86,23 +86,32 @@ export default function Chatbot() {
   const getFallbackResponse = (query: string): string => {
     const lowercaseQuery = query.toLowerCase()
     
-    if (lowercaseQuery.includes('projekt') || lowercaseQuery.includes('portfolio')) {
-      return 'Moje projekty znajdziesz w sekcji Projekty na stronie głównej. Pracowałem nad wieloma ciekawymi aplikacjami webowymi! 🚀'
+    if (lowercaseQuery.includes('projekt') || lowercaseQuery.includes('rag')) {
+      return 'Wojtek stworzył system RAG (Retrieval-Augmented Generation) do odpowiadania na pytania! Używa BM25 + CrossEncoder + TinyLlama. Osiągnął 39.8% Exact Match na TriviaQA. Sprawdź sekcję Projekty! 🚀'
     }
     if (lowercaseQuery.includes('kontakt') || lowercaseQuery.includes('email')) {
-      return 'Możesz się ze mną skontaktować przez formularz w sekcji Kontakt lub bezpośrednio na email: contact@example.com 📧'
+      return 'Możesz skontaktować się z Wojtkiem przez email: soczynskiwojtek@gmail.com lub telefon: +48 577 950 977 📧'
     }
-    if (lowercaseQuery.includes('cv') || lowercaseQuery.includes('resume')) {
-      return 'Moje CV znajdziesz w sekcji CV. Możesz je pobrać jako PDF! 📄'
+    if (lowercaseQuery.includes('cv') || lowercaseQuery.includes('resume') || lowercaseQuery.includes('praca')) {
+      return 'Wojtek pracuje jako AI Intern w OMNIVISER, gdzie rozwija framework Hexdag do orkiestracji agentów AI. CV znajdziesz w sekcji CV! 📄'
     }
     if (lowercaseQuery.includes('umiejętności') || lowercaseQuery.includes('skills') || lowercaseQuery.includes('technologi')) {
-      return 'Specjalizuję się w React, Next.js, TypeScript, Node.js i wielu innych technologiach. Sprawdź sekcję Umiejętności! 💻'
+      return 'Wojtek specjalizuje się w: Python, LLMs, Prompt Engineering, Git, Cursor AI i ChatGPT. Ma certyfikaty NVIDIA z budowania aplikacji LLM i RAG! 💻'
+    }
+    if (lowercaseQuery.includes('książ') || lowercaseQuery.includes('book') || lowercaseQuery.includes('czyta')) {
+      return 'Wojtek poleca: "Mózg na detoksie" (Perlmutter), "21 lekcji na XXI wiek" (Harari), "Jak działa umysł" (Pinker) i "Deep Learning" (Goodfellow). Sprawdź blog! 📚'
+    }
+    if (lowercaseQuery.includes('studi') || lowercaseQuery.includes('uniwer') || lowercaseQuery.includes('kognityw')) {
+      return 'Wojtek studiuje Kognitywistykę na Uniwersytecie Warszawskim. Aktualnie jest na wymianie Erasmus na University of the Basque Country w Hiszpanii! 🎓'
     }
     if (lowercaseQuery.includes('cześć') || lowercaseQuery.includes('hej') || lowercaseQuery.includes('hello')) {
-      return 'Cześć! Miło Cię poznać! 😊 Jak mogę Ci dzisiaj pomóc?'
+      return 'Cześć! 👋 Jestem asystentem Wojtka. Zapytaj mnie o jego projekty AI, studia, książki lub umiejętności!'
+    }
+    if (lowercaseQuery.includes('konkurs') || lowercaseQuery.includes('nagroda') || lowercaseQuery.includes('finalspark')) {
+      return 'Wojtek wygrał konkurs "Praca jak ze snu" z Just Join IT! 🏆 W nagrodę brał udział w filmie dokumentalnym o FinalSpark - startupie tworzącym komputer oparty na ludzkich neuronach!'
     }
     
-    return 'Dziękuję za wiadomość! Obecnie chatbot działa w trybie demo. Podłącz swoje API (np. OpenAI), aby uzyskać pełne odpowiedzi. W międzyczasie sprawdź moje portfolio! ✨'
+    return 'Dziękuję za wiadomość! Chatbot działa w trybie demo. Zapytaj o projekty AI Wojtka, jego studia kognitywistyki lub ulubione książki! ✨'
   }
 
   return (

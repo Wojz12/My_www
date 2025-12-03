@@ -2,13 +2,13 @@ import { NextResponse } from 'next/server'
 
 // Przykładowe odpowiedzi dla chatbota (fallback gdy nie ma podłączonego AI API)
 const fallbackResponses: Record<string, string> = {
-  default: 'Dziękuję za wiadomość! Obecnie chatbot działa w trybie demo. Podłącz swoje API (np. OpenAI), aby uzyskać pełne odpowiedzi. ✨',
-  greeting: 'Cześć! Miło Cię poznać! 😊 Jak mogę Ci dzisiaj pomóc?',
-  projects: 'Moje projekty znajdziesz w sekcji Projekty na stronie głównej. Pracowałem nad wieloma ciekawymi aplikacjami webowymi! 🚀',
-  contact: 'Możesz się ze mną skontaktować przez formularz w sekcji Kontakt lub bezpośrednio na email: contact@example.com 📧',
-  cv: 'Moje CV znajdziesz w sekcji CV. Możesz je pobrać jako PDF! 📄',
-  skills: 'Specjalizuję się w React, Next.js, TypeScript, Node.js i wielu innych technologiach. Sprawdź sekcję Umiejętności! 💻',
-  experience: 'Mam wieloletnie doświadczenie jako Full-Stack Developer. Szczegóły znajdziesz w sekcji Doświadczenie. 💼',
+  default: 'Dziękuję za wiadomość! Chatbot działa w trybie demo. Zapytaj o projekty AI, studia kognitywistyki lub ulubione książki! ✨',
+  greeting: 'Cześć! 👋 Jestem asystentem Wojtka. Zapytaj o jego projekty AI, studia czy książki!',
+  projects: 'Wojtek stworzył system RAG do Question Answering! BM25 + CrossEncoder + TinyLlama, 39.8% Exact Match. Zobacz sekcję Projekty! 🚀',
+  contact: 'Email: soczynskiwojtek@gmail.com | Tel: +48 577 950 977 | LinkedIn: wojciechsoczyński 📧',
+  cv: 'Wojtek jest AI Intern w OMNIVISER, gdzie pracuje nad frameworkiem Hexdag. CV do pobrania w sekcji CV! 📄',
+  skills: 'Umiejętności Wojtka: Python, LLMs, Prompt Engineering, Git, Cursor AI, ChatGPT. Certyfikaty NVIDIA! 💻',
+  experience: 'AI Intern @ OMNIVISER, Technical Support @ Reago Training, Korepetytor matematyki. Szczegóły w sekcji Doświadczenie! 💼',
 }
 
 function getKeywordResponse(message: string): string {
@@ -65,7 +65,7 @@ export async function POST(request: Request) {
             messages: [
               {
                 role: 'system',
-                content: `Jesteś pomocnym asystentem na stronie portfolio. Odpowiadasz na pytania o właściciela strony - developera specjalizującego się w React, Next.js, TypeScript i Node.js. Odpowiadaj krótko, przyjaźnie i pomocnie. Możesz kierować użytkowników do odpowiednich sekcji strony.`
+                content: `Jesteś pomocnym asystentem na stronie portfolio Wojciecha Soczyńskiego. Wojtek jest studentem Kognitywistyki na UW, pasjonuje się AI, LLMs i RAG systems. Pracuje jako AI Intern w OMNIVISER. Ma certyfikaty NVIDIA z LLM i RAG. Jego projekt RAG osiągnął 39.8% Exact Match na TriviaQA. Lubi książki: "Mózg na detoksie", "21 lekcji na XXI wiek", "Jak działa umysł", "Deep Learning". Jest na Erasmusie w Hiszpanii. Wygrał konkurs "Praca jak ze snu" i był w filmie o FinalSpark. Kontakt: soczynskiwojtek@gmail.com. Odpowiadaj krótko, przyjaźnie i pomocnie po polsku.`
               },
               {
                 role: 'user',

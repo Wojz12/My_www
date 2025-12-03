@@ -3,43 +3,73 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Briefcase, Calendar, MapPin } from 'lucide-react'
+import { Briefcase, Calendar, MapPin, GraduationCap } from 'lucide-react'
 
 const experiences = [
   {
-    title: 'Senior Full-Stack Developer',
-    company: 'Tech Company',
-    location: 'Warszawa / Remote',
-    period: '2022 - Obecnie',
-    description: 'Tworzenie i rozwijanie aplikacji webowych w Next.js i React. Prowadzenie zespołu 5 developerów. Implementacja CI/CD i DevOps practices.',
-    technologies: ['Next.js', 'React', 'TypeScript', 'Node.js', 'PostgreSQL', 'AWS'],
+    title: 'AI Intern',
+    company: 'OMNIVISER',
+    location: 'Warszawa',
+    period: '08/2025 - 11/2025',
+    description: 'Współtworzenie Hexdag - open-source frameworka do orkiestracji agentów AI. Tworzenie modułów Python do zarządzania zadaniami, integracji narzędzi i bezpiecznego parsowania LLM.',
+    highlights: [
+      'Rozwój frameworka Hexdag dla AI agents',
+      'Moduły Python do task & flow management',
+      'Dokumentacja techniczna komponentów',
+      'Code reviews i pull requests',
+    ],
+    technologies: ['Python', 'LLMs', 'Git', 'Open Source'],
     current: true,
   },
   {
-    title: 'Full-Stack Developer',
-    company: 'Software House',
-    location: 'Kraków',
-    period: '2020 - 2022',
-    description: 'Rozwój aplikacji e-commerce i systemów CMS. Praca z klientami zagranicznymi. Optymalizacja wydajności i SEO.',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'Redux'],
+    title: 'Office Assistant & Technical Support',
+    company: 'Reago Training',
+    location: 'Warszawa',
+    period: '01/2023 - 11/2025',
+    description: 'Szkolenie personelu medycznego z obsługi symulatorów high-fidelity. Tłumaczenie instrukcji technicznych urządzeń medycznych (EN→PL).',
+    highlights: [
+      'Szkolenia z symulatorów medycznych',
+      'Tłumaczenia techniczne EN→PL',
+      'Weryfikacja dostaw sprzętu medycznego',
+      'Wsparcie na konferencjach i warsztatach',
+    ],
+    technologies: ['Technical Documentation', 'Training', 'Translation'],
     current: false,
   },
   {
-    title: 'Frontend Developer',
-    company: 'Startup XYZ',
-    location: 'Remote',
-    period: '2019 - 2020',
-    description: 'Tworzenie interfejsów użytkownika dla aplikacji SaaS. Implementacja design systemów. Współpraca z UX/UI designers.',
-    technologies: ['React', 'Vue.js', 'SCSS', 'Figma', 'Git'],
+    title: 'Korepetytor Matematyki',
+    company: 'Korepetycje prywatne',
+    location: 'Warszawa',
+    period: '01/2022 - 11/2025',
+    description: 'Prowadzenie indywidualnych lekcji matematyki. Tworzenie spersonalizowanych planów nauki i adaptacja metod nauczania do potrzeb uczniów.',
+    highlights: [
+      'Indywidualne plany lekcji',
+      'Analiza postępów uczniów',
+      'Adaptacja metod nauczania',
+    ],
+    technologies: ['Teaching', 'Mathematics', 'Problem Solving'],
     current: false,
   },
+]
+
+const education = [
   {
-    title: 'Junior Developer',
-    company: 'Agency Digital',
-    location: 'Wrocław',
-    period: '2018 - 2019',
-    description: 'Tworzenie stron internetowych i landing pages. Nauka podstaw programowania i best practices.',
-    technologies: ['HTML', 'CSS', 'JavaScript', 'PHP', 'WordPress'],
+    degree: 'Kognitywistyka',
+    school: 'Uniwersytet Warszawski',
+    period: 'do 06/2026',
+    current: true,
+  },
+  {
+    degree: 'Erasmus Exchange Program',
+    school: 'University of the Basque Country (UPV/EHU)',
+    location: 'Hiszpania',
+    period: '09/2025',
+    current: true,
+  },
+  {
+    degree: 'Profil Matematyczno-Społeczny',
+    school: 'VIII LO im. Władysława IV',
+    period: 'do 05/2023',
     current: false,
   },
 ]
@@ -59,38 +89,40 @@ export default function Experience() {
         >
           <h2 className="section-title">Doświadczenie</h2>
           <p className="section-subtitle mx-auto">
-            Moja ścieżka kariery - od pierwszych kroków do pozycji senior developera.
+            Moja ścieżka zawodowa i edukacyjna.
           </p>
         </motion.div>
 
-        {/* Timeline */}
-        <div className="max-w-4xl mx-auto">
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary-500 via-primary-400 to-transparent transform md:-translate-x-1/2" />
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Work Experience */}
+          <div className="lg:col-span-2">
+            <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+              <Briefcase className="w-5 h-5 text-primary-400" />
+              Doświadczenie zawodowe
+            </h3>
+            
+            <div className="relative">
+              {/* Timeline line */}
+              <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-primary-500 via-primary-400 to-transparent" />
 
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={exp.title + exp.company}
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
-                className={`relative flex items-start gap-8 mb-12 ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                }`}
-              >
-                {/* Timeline dot */}
-                <div className="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 transform -translate-x-1/2 mt-2 shadow-glow-sm z-10">
-                  {exp.current && (
-                    <span className="absolute inset-0 rounded-full bg-primary-400 animate-ping opacity-50" />
-                  )}
-                </div>
+              {experiences.map((exp, index) => (
+                <motion.div
+                  key={exp.title + exp.company}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.6, delay: index * 0.15 }}
+                  className="relative pl-12 mb-8"
+                >
+                  {/* Timeline dot */}
+                  <div className="absolute left-2 w-4 h-4 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 shadow-glow-sm">
+                    {exp.current && (
+                      <span className="absolute inset-0 rounded-full bg-primary-400 animate-ping opacity-50" />
+                    )}
+                  </div>
 
-                {/* Content */}
-                <div className={`flex-1 pl-8 md:pl-0 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
-                  <div className={`glass-card p-6 rounded-xl card-hover ${index % 2 === 0 ? 'md:ml-auto' : ''}`}>
+                  <div className="glass-card p-6 rounded-xl">
                     {/* Header */}
-                    <div className={`flex flex-wrap items-center gap-2 mb-3 ${index % 2 === 0 ? 'md:justify-end' : ''}`}>
+                    <div className="flex flex-wrap items-center gap-2 mb-3">
                       {exp.current && (
                         <span className="px-3 py-1 text-xs font-medium bg-green-500/20 text-green-400 rounded-full">
                           Aktualnie
@@ -102,9 +134,9 @@ export default function Experience() {
                       </span>
                     </div>
 
-                    <h3 className="text-xl font-bold text-white mb-1">{exp.title}</h3>
+                    <h4 className="text-lg font-bold text-white mb-1">{exp.title}</h4>
                     
-                    <div className={`flex flex-wrap items-center gap-3 mb-4 text-gray-400 ${index % 2 === 0 ? 'md:justify-end' : ''}`}>
+                    <div className="flex flex-wrap items-center gap-3 mb-4 text-gray-400 text-sm">
                       <span className="flex items-center gap-1">
                         <Briefcase className="w-4 h-4" />
                         {exp.company}
@@ -115,10 +147,20 @@ export default function Experience() {
                       </span>
                     </div>
 
-                    <p className="text-gray-300 mb-4">{exp.description}</p>
+                    <p className="text-gray-300 text-sm mb-4">{exp.description}</p>
+
+                    {/* Highlights */}
+                    <ul className="space-y-1 mb-4">
+                      {exp.highlights.map((highlight) => (
+                        <li key={highlight} className="text-sm text-gray-400 flex items-start gap-2">
+                          <span className="text-primary-400 mt-1">▸</span>
+                          {highlight}
+                        </li>
+                      ))}
+                    </ul>
 
                     {/* Technologies */}
-                    <div className={`flex flex-wrap gap-2 ${index % 2 === 0 ? 'md:justify-end' : ''}`}>
+                    <div className="flex flex-wrap gap-2">
                       {exp.technologies.map((tech) => (
                         <span
                           key={tech}
@@ -129,16 +171,68 @@ export default function Experience() {
                       ))}
                     </div>
                   </div>
-                </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
 
-                {/* Empty space for alternating layout */}
-                <div className="hidden md:block flex-1" />
-              </motion.div>
-            ))}
+          {/* Education */}
+          <div>
+            <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+              <GraduationCap className="w-5 h-5 text-primary-400" />
+              Edukacja
+            </h3>
+
+            <div className="space-y-4">
+              {education.map((edu, index) => (
+                <motion.div
+                  key={edu.degree}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                  className="glass-card p-5 rounded-xl"
+                >
+                  <div className="flex items-start justify-between mb-2">
+                    <h4 className="font-semibold text-white">{edu.degree}</h4>
+                    {edu.current && (
+                      <span className="px-2 py-0.5 text-xs bg-green-500/20 text-green-400 rounded-full">
+                        Obecnie
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-primary-400 text-sm mb-1">{edu.school}</p>
+                  {edu.location && (
+                    <p className="text-gray-500 text-xs mb-1">📍 {edu.location}</p>
+                  )}
+                  <p className="text-gray-500 text-xs">{edu.period}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Languages */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="glass-card p-5 rounded-xl mt-6"
+            >
+              <h4 className="font-semibold text-white mb-4 flex items-center gap-2">
+                🌍 Języki
+              </h4>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-300">Polski</span>
+                  <span className="text-sm text-primary-400">Natywny</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-300">Angielski</span>
+                  <span className="text-sm text-primary-400">CAE (C1)</span>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
     </section>
   )
 }
-
