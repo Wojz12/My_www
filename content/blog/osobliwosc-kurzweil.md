@@ -3,7 +3,7 @@ title: "Osobliwość coraz bliżej - Wizja przyszłości Kurzweila"
 description: "Recenzja kultowej książki Ray'a Kurzweila o nadchodzącej technologicznej osobliwości i fuzji człowieka z maszyną."
 date: "2024-12-04"
 tags: ["książki", "AI", "futurologia", "singularity"]
-image: "/images/blog/osobliwosc.jpg"
+image: "/images/blog/osobliwosc.png"
 author: "Wojciech Soczyński"
 ---
 
