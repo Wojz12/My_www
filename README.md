@@ -1,52 +1,52 @@
-# 🚀 Moje Portfolio
+# 🚀 Portfolio - Wojciech Soczyński
 
 Nowoczesna strona portfolio z blogiem, zbudowana w Next.js 14 z App Router i Tailwind CSS.
-
-![Portfolio Preview](public/images/preview.png)
 
 ## ✨ Funkcje
 
 - 🎨 **Nowoczesny design** - Glassmorphism, gradienty fioletowe, animacje
 - 📱 **Responsywność** - Pełna obsługa mobile i desktop
-- 📝 **System blogowy** - Posty w formacie Markdown/MDX
-- 🖼️ **Galeria zdjęć** - Z lightboxem i kategoriami
-- 💬 **Chatbot AI** - Gotowy do podłączenia pod OpenAI
+- 📝 **System blogowy** - Recenzje książek w formacie Markdown
+- 💬 **Chatbot AI** - Podłączony pod Google Gemini API
 - 📄 **Sekcja CV** - Z możliwością pobrania PDF
-- 📧 **Formularz kontaktowy** - Z walidacją i API
+- 📧 **Sekcja Kontakt** - Dane kontaktowe i social media
 - 🔍 **SEO** - Pełna optymalizacja metadanych
 
 ## 🛠️ Technologie
 
-- [Next.js 14](https://nextjs.org/) - Framework React
+- [Next.js 14](https://nextjs.org/) - Framework React z App Router
 - [TypeScript](https://www.typescriptlang.org/) - Typowanie
 - [Tailwind CSS](https://tailwindcss.com/) - Style
 - [Framer Motion](https://www.framer.com/motion/) - Animacje
-- [MDX](https://mdxjs.com/) - Blog
+- [React Markdown](https://github.com/remarkjs/react-markdown) - Renderowanie Markdown
+- [Google Gemini API](https://ai.google.dev/) - Chatbot AI
 - [Lucide Icons](https://lucide.dev/) - Ikony
 
 ## 📁 Struktura projektu
 
 ```
 ├── content/
-│   └── blog/              # Posty blogowe (.md, .mdx)
+│   └── blog/              # Posty blogowe (.md) - recenzje książek
 ├── public/
 │   ├── cv/
-│   │   └── cv.pdf         # Twoje CV do pobrania
+│   │   └── cv.pdf         # CV do pobrania
 │   └── images/
 │       ├── profile.jpg    # Zdjęcie profilowe
-│       ├── blog/          # Zdjęcia do postów
-│       ├── projects/      # Zdjęcia projektów
-│       └── gallery/       # Galeria zdjęć
+│       ├── blog/          # Okładki książek
+│       └── szwajcaria.jpg # Zdjęcia
 ├── src/
 │   ├── app/               # App Router
-│   │   ├── api/           # API Routes
-│   │   ├── blog/          # Strony bloga
-│   │   └── gallery/       # Strona galerii
+│   │   ├── api/           # API Routes (chat, contact)
+│   │   └── blog/          # Strony bloga
 │   ├── components/        # Komponenty React
 │   │   ├── sections/      # Sekcje strony głównej
 │   │   ├── blog/          # Komponenty bloga
-│   │   └── gallery/       # Komponenty galerii
+│   │   ├── Navbar.tsx     # Menu nawigacyjne
+│   │   ├── Footer.tsx     # Stopka
+│   │   └── Chatbot.tsx    # Chatbot AI
 │   └── lib/               # Funkcje pomocnicze
+│       ├── blog.ts        # Obsługa postów blogowych
+│       └── gallery.ts     # Obsługa galerii
 └── tailwind.config.ts     # Konfiguracja Tailwind
 ```
 
@@ -56,7 +56,7 @@ Nowoczesna strona portfolio z blogiem, zbudowana w Next.js 14 z App Router i Tai
 
 ```bash
 # Sklonuj repozytorium
-git clone https://github.com/twoj-username/portfolio.git
+git clone https://github.com/Wojz12/portfolio.git
 cd portfolio
 
 # Zainstaluj zależności
@@ -67,10 +67,17 @@ npm install
 
 ```bash
 # Skopiuj plik zmiennych środowiskowych
-cp .env.example .env.local
+cp env.example .env.local
 ```
 
-Edytuj `.env.local` i dodaj swoje klucze API (opcjonalne).
+Edytuj `.env.local` i dodaj:
+
+```env
+# Google Gemini API Key (dla chatbota)
+GEMINI_API_KEY=AIza...
+```
+
+Uzyskaj klucz API: [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
 
 ### 3. Uruchomienie
 
@@ -89,7 +96,7 @@ Otwórz [http://localhost:3000](http://localhost:3000) w przeglądarce.
 
 ### Dodawanie postów blogowych
 
-1. Stwórz plik `.md` lub `.mdx` w folderze `content/blog/`
+1. Stwórz plik `.md` w folderze `content/blog/`
 2. Dodaj frontmatter na początku pliku:
 
 ```markdown
@@ -98,29 +105,14 @@ title: "Tytuł posta"
 description: "Krótki opis"
 date: "2024-12-01"
 tags: ["tag1", "tag2"]
-image: "/images/blog/nazwa.jpg"
-author: "Twoje Imię"
+image: "/images/blog/okladka.jpg"
+author: "Wojciech Soczyński"
 ---
 
 # Treść posta...
 ```
 
-### Dodawanie zdjęć do galerii
-
-1. Umieść zdjęcia w `public/images/gallery/`
-2. Edytuj `public/images/gallery/gallery.json`:
-
-```json
-{
-  "images": [
-    {
-      "src": "/images/gallery/zdjecie.jpg",
-      "alt": "Opis zdjęcia",
-      "category": "Kategoria"
-    }
-  ]
-}
-```
+3. Dodaj okładkę książki do `public/images/blog/`
 
 ### Zmiana CV
 
@@ -132,6 +124,17 @@ author: "Twoje Imię"
 1. Umieść zdjęcie jako `public/images/profile.jpg`
 2. Zalecany rozmiar: 500x500px lub większe (kwadratowe)
 
+### Personalizacja treści
+
+Edytuj dane w komponentach:
+- `src/components/sections/Hero.tsx` - Imię, opis, social media
+- `src/components/sections/About.tsx` - O mnie, książki, osiągnięcia
+- `src/components/sections/Experience.tsx` - Doświadczenie zawodowe
+- `src/components/sections/Skills.tsx` - Umiejętności i certyfikaty
+- `src/components/sections/Projects.tsx` - Projekty
+- `src/components/sections/Contact.tsx` - Dane kontaktowe
+- `src/components/Footer.tsx` - Social media linki
+
 ## 🎨 Personalizacja
 
 ### Kolory
@@ -141,37 +144,27 @@ Edytuj paletę kolorów w `tailwind.config.ts`:
 ```typescript
 colors: {
   primary: {
-    500: '#8b5cf6', // Główny kolor
+    500: '#8b5cf6', // Główny kolor fioletowy
     // ...
   }
 }
 ```
 
-### Treści
-
-Edytuj dane w komponentach:
-- `src/components/sections/Hero.tsx` - Imię, opis
-- `src/components/sections/About.tsx` - O mnie
-- `src/components/sections/Experience.tsx` - Doświadczenie
-- `src/components/sections/Skills.tsx` - Umiejętności
-- `src/components/sections/Projects.tsx` - Projekty
-- `src/components/Footer.tsx` - Social media linki
-
 ### Chatbot
 
-Podłącz chatbota pod OpenAI:
-1. Uzyskaj klucz API: https://platform.openai.com/api-keys
-2. Dodaj do `.env.local`: `OPENAI_API_KEY=sk-...`
+Chatbot używa Google Gemini API. Aby go włączyć:
+
+1. Uzyskaj klucz API: [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
+2. Dodaj do `.env.local`: `GEMINI_API_KEY=AIza...`
+3. System prompt jest w `src/app/api/chat/route.ts` - możesz go dostosować
 
 ## 🚀 Deployment
 
 ### Vercel (Zalecane)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/twoj-username/portfolio)
-
-1. Połącz repozytorium z Vercel
-2. Dodaj zmienne środowiskowe
-3. Deploy!
+1. Połącz repozytorium GitHub z Vercel
+2. Dodaj zmienną środowiskową `GEMINI_API_KEY` w ustawieniach projektu
+3. Deploy automatyczny przy każdym pushu
 
 ### Inne platformy
 
@@ -183,9 +176,10 @@ Projekt można hostować na:
 
 ## 📧 Kontakt
 
-Masz pytania? Skontaktuj się:
-- Email: contact@example.com
-- GitHub: [@twoj-username](https://github.com/twoj-username)
+- Email: soczynskiwojtek@gmail.com
+- Telefon: +48 577 950 977
+- GitHub: [@Wojz12](https://github.com/Wojz12)
+- LinkedIn: [wojciechsoczyński](https://www.linkedin.com/in/wojciechsoczyński/)
 
 ## 📄 Licencja
 
@@ -193,5 +187,4 @@ MIT License - używaj dowolnie!
 
 ---
 
-Made with 💜 by [Twoje Imię]
-
+Made with 💜 by Wojciech Soczyński
