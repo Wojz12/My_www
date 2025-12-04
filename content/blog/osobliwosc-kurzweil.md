@@ -1,6 +1,6 @@
 ---
 title: "Osobliwość coraz bliżej - Wizja przyszłości Kurzweila"
-description: "Recenzja kultowej książki Ray'a Kurzweila o nadchodzącej technologicznej osobliwości i fuzji człowieka z maszyną."
+description: "Osobiste przemyślenia po lekturze kultowej książki Ray'a Kurzweila o nadchodzącej technologicznej osobliwości."
 date: "2024-12-04"
 tags: ["książki", "AI", "futurologia", "singularity"]
 image: "/images/blog/osobliwosc.png"
@@ -9,72 +9,30 @@ author: "Wojciech Soczyński"
 
 # Osobliwość coraz bliżej - Ray Kurzweil
 
-## O autorze
+## Jak trafiłem na tę książkę?
 
-Ray Kurzweil to legenda futurologii i AI. Wynalazca, autor, dyrektor inżynierii w Google. Jego przewidywania technologiczne mają imponującą trafność - przewidział m.in. zwycięstwo komputera nad mistrzem szachowym i eksplozję internetu.
+To książka, którą jak zobaczyłem, od razu wiedziałem że muszę ją mieć. Ray Kurzweil, którego wywiad oglądałem na kanale "This is it", jest jednym z futurologów z Silicon Valley, który najlepiej przewidział dzisiejsze technologie. Przewidział smartfony, eksplozję internetu - jego track record jest imponujący.
 
-## Główna teza
+## Co mnie zafascynowało?
 
-**Osobliwość technologiczna** (Singularity) - moment, w którym sztuczna inteligencja przewyższy ludzką, nadejdzie około **2045 roku**.
+W książce opisuje futurystyczne wizje dotyczące technologicznej singularity, która z każdym dniem wydaje się bardziej realna. Pytanie tylko kiedy to nastąpi.
 
-### Kluczowe koncepcje:
+Interesujące było jego zaprezentowanie wykresów dotyczących wykładniczego wzrostu mocy obliczeniowej na dolara, którego wykładniczy trend jest stały od ponad 100 lat i wykracza poza tradycyjne prawo Moore'a. To pokazuje, że postęp technologiczny nie jest przypadkowy - ma swoje prawa i można je przewidzieć.
 
-1. **Prawo przyspieszających zwrotów** - postęp technologiczny jest wykładniczy, nie liniowy
-2. **GNR Revolution** - Genetyka, Nanotechnologia, Robotyka/AI
-3. **Fuzja człowieka z maszyną** - interfejsy mózg-komputer, nanoboty
-4. **Nieśmiertelność** - możliwość "uploadowania" świadomości
+## Moje przemyślenia
 
-## Co mnie zafascynowało
+Kurzweil eksploruje fascynujące nowe technologie takie jak nanotechnologie czy energia odnawialna, ukazując prawo przyspieszonych zwrotów. Jako osoba pracująca z AI, widzę jak wiele z jego przewidywań się materializuje - LLMs, multimodalność, coraz szybszy rozwój modeli.
 
-> "Nie jesteśmy w stanie intuicyjnie pojąć wykładniczego wzrostu."
+Szczególnie zapadły mi w pamięć fragmenty o:
+- Wykładniczym wzroście mocy obliczeniowej
+- Możliwości fuzji człowieka z maszyną
+- Nanotechnologii i jej potencjale
+- Prawie przyspieszających zwrotów
 
-Kurzweil pokazuje, jak nasze liniowe myślenie sprawia, że nie doceniamy tempa zmian:
+## Podsumowanie
 
-- 30 kroków liniowych = 30 metrów
-- 30 kroków wykładniczych = 1 miliard metrów (26x dookoła Ziemi!)
-
-### Przewidywania na 2020s-2030s
-
-Wiele z tego już się dzieje:
-- ✅ AI generujące tekst i obrazy (GPT, DALL-E)
-- ✅ Samochody autonomiczne
-- 🔄 Interfejsy mózg-komputer (Neuralink)
-- 🔄 Nanoboty medyczne
-
-## Połączenie z moją pracą
-
-Jako student kognitywistyki pracujący z LLM, widzę te trendy na własne oczy:
-
-- **GPT-4** wykazuje emergentne zachowania
-- **RAG systems** (mój projekt) to krok ku AGI
-- **Multimodalność** - AI rozumie tekst, obraz, dźwięk
-
-## Krytyczne spojrzenie
-
-Kurzweil bywa zbyt optymistyczny:
-
-**Za:**
-- Dane historyczne potwierdzają wykładniczy wzrost
-- Wiele przewidywań się sprawdziło
-
-**Przeciw:**
-- Ignoruje problemy społeczne i etyczne
-- Zakłada ciągłość postępu (a kryzysy?)
-- "Uploading świadomości" - czy to nadal "ty"?
-
-## Dla kogo?
-
-Polecam jeśli:
-- 🤖 Interesujesz się przyszłością AI
-- 🔬 Chcesz zrozumieć wykładniczy postęp
-- 🧠 Zastanawiasz się nad naturą świadomości
-- 📈 Planujesz karierę w tech
-
-## Ocena
-
-⭐⭐⭐⭐⭐ **5/5** - Obowiązkowa lektura dla każdego w branży AI. Nawet jeśli nie zgadzasz się ze wszystkim, zmienia sposób myślenia o przyszłości.
+To książka, która zmienia perspektywę na przyszłość technologii. Nawet jeśli nie wszystkie wizje Kurzweila się spełnią, jego sposób myślenia o wykładniczym postępie jest niezwykle wartościowy. Szczególnie polecam osobom zainteresowanym AI i futurologią.
 
 ---
 
-*Wierzysz w Singularity? Porozmawiajmy! 🚀*
-
+*Lektura, która zmusza do przemyślenia kierunku rozwoju technologii.*
