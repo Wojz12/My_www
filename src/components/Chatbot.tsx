@@ -15,7 +15,7 @@ const initialMessages: Message[] = [
   {
     id: '1',
     role: 'assistant',
-    content: 'Cześć! 👋 Jestem Wojtek. Zapytaj mnie o projekty AI, studia kognitywistyki, ulubione książki lub doświadczenie z LLMs!',
+    content: 'Cześć! Jestem Wojtek. Zapytaj mnie o projekty AI, studia kognitywistyki, ulubione książki lub moje doświadczenie z LLMs',
     timestamp: new Date(),
   },
 ]
