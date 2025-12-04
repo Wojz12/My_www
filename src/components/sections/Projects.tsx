@@ -7,6 +7,22 @@ import { Github, Database, Brain, MessageCircle } from 'lucide-react'
 
 const projects = [
   {
+    title: 'Hexdag Contributions',
+    description: 'Wkład w rozwój open-source frameworka do orkiestracji agentów AI w firmie OMNIVISER.',
+    longDescription: `
+      Mój wkład w projekt Hexdag obejmuje:
+      • Tworzenie modułów Python do zarządzania zadaniami i przepływem pracy (flow management)
+      • Implementacja integracji z zewnętrznymi narzędziami i API
+      • Bezpieczne parsowanie i ekstrakcja danych z odpowiedzi LLM
+      • Tworzenie dokumentacji technicznej i przykładów użycia
+      • Code reviews i współpraca przy pull requestach
+    `,
+    icon: Brain,
+    technologies: ['Python', 'LLMs', 'Open Source', 'Git', 'API Integration'],
+    githubUrl: 'https://github.com',
+    featured: true,
+  },
+  {
     title: 'Open-Domain QA with RAG (TriviaQA)',
     description: 'System Retrieval-Augmented Generation do odpowiadania na pytania w otwartej domenie. Architektura: BM25 Retrieval → CrossEncoder Reranking → TinyLlama Generation.',
     longDescription: `
@@ -22,34 +38,17 @@ const projects = [
   },
   {
     title: 'Helpdesk Chatbot Assistant',
-    description: 'Konsolowy asystent AI wykorzystujący Google Gemini API do interaktywnego wypełniania formularzy helpdesk. Projekt zrealizowany w ramach zadania rekrutacyjnego.',
+    description: 'Konsolowy asystent AI wykorzystujący Google Gemini API do interaktywnego wypełniania formularzy helpdesk.',
     longDescription: `
       Aplikacja konsolowa wykorzystująca generatywne AI:
       • Interaktywny chat do zbierania danych formularza
       • Walidacja pól (imię, nazwisko, email, powód kontaktu, pilność 1-10)
       • Zapis do JSON po zakończeniu rozmowy
-      • Komendy: "show form" (podgląd), "exit" (zakończ)
       • Pełna konteneryzacja Docker
     `,
     icon: MessageCircle,
     technologies: ['Python', 'Google Gemini API', 'Docker', 'JSON'],
     githubUrl: 'https://github.com/Wojz12/AssigmentProject2025ApiLLM',
-    featured: true,
-  },
-  {
-    title: 'Hexdag Contributions',
-    description: 'Wkład w rozwój open-source frameworka do orkiestracji agentów AI w firmie OMNIVISER.',
-    longDescription: `
-      Mój wkład w projekt Hexdag obejmuje:
-      • Tworzenie modułów Python do zarządzania zadaniami i przepływem pracy (flow management)
-      • Implementacja integracji z zewnętrznymi narzędziami i API
-      • Bezpieczne parsowanie i ekstrakcja danych z odpowiedzi LLM
-      • Tworzenie dokumentacji technicznej i przykładów użycia
-      • Code reviews i współpraca przy pull requestach
-    `,
-    icon: Brain,
-    technologies: ['Python', 'LLMs', 'Open Source', 'Git', 'API Integration'],
-    githubUrl: 'https://github.com',
     featured: true,
   },
 ]
