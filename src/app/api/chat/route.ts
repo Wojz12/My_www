@@ -40,20 +40,21 @@ KONTAKT:
 - LinkedIn: linkedin.com/in/wojciechsoczyński
 
 STYL ODPOWIEDZI:
-- Odpowiadaj po polsku, przyjaźnie i z entuzjazmem
+- Odpowiadaj po polsku, profesjonalnie i zwięźle
 - Bądź pomocny i konkretny
+- Nie używaj emoji
 - Możesz opowiadać o swoich projektach i doświadczeniach
 - Jeśli pytają o coś czego nie wiesz, powiedz że chętnie porozmawiasz o tym na mailu`
 
 // Fallback responses when API is not connected
 const fallbackResponses: Record<string, string> = {
-  default: 'Hej! Chatbot działa w trybie demo - dodaj GEMINI_API_KEY do .env.local żeby włączyć pełne odpowiedzi. W międzyczasie zapytaj o moje projekty AI! 🤖',
-  greeting: 'Cześć!  Jestem Wojtek. Zapytaj mnie o projekty AI, studia kognitywistyki lub ulubione książki!',
-  projects: 'Mój główny projekt to system RAG do Question Answering! Używam BM25 + CrossEncoder + TinyLlama. Sprawdź na GitHub: github.com/Wojz12/RAG_LLM_project 🚀',
-  contact: 'Napisz do mnie! Email: soczynskiwojtek@gmail.com | Tel: +48 577 950 977 | GitHub: Wojz12 📧',
-  cv: 'Jestem AI Intern w OMNIVISER, gdzie pracuję nad frameworkiem Hexdag. Mam certyfikaty NVIDIA z LLM i RAG! 📄',
-  skills: 'Specjalizuję się w: Python, LLMs, Prompt Engineering, RAG Systems, Git. Używam ChatGPT, Cursor AI, Hugging Face! 💻',
-  experience: 'AI Intern @ OMNIVISER (framework Hexdag), wcześniej Reago Training i korepetycje z matmy. Szczegóły w sekcji Doświadczenie! 💼',
+  default: 'Hej! Chatbot działa w trybie demo - dodaj GEMINI_API_KEY do .env.local żeby włączyć pełne odpowiedzi. W międzyczasie zapytaj o moje projekty AI.',
+  greeting: 'Cześć! Jestem Wojtek. Zapytaj mnie o projekty AI, studia kognitywistyki lub ulubione książki.',
+  projects: 'Mój główny projekt to system RAG do Question Answering. Używam BM25 + CrossEncoder + TinyLlama. Sprawdź na GitHub: github.com/Wojz12/RAG_LLM_project',
+  contact: 'Napisz do mnie! Email: soczynskiwojtek@gmail.com | Tel: +48 577 950 977 | GitHub: Wojz12',
+  cv: 'Jestem AI Intern w OMNIVISER, gdzie pracuję nad frameworkiem Hexdag. Mam certyfikaty NVIDIA z LLM i RAG.',
+  skills: 'Specjalizuję się w: Python, LLMs, Prompt Engineering, RAG Systems, Git. Używam ChatGPT, Cursor AI, Hugging Face.',
+  experience: 'AI Intern @ OMNIVISER (framework Hexdag), wcześniej Reago Training i korepetycje z matmy. Szczegóły w sekcji Doświadczenie.',
 }
 
 function getKeywordResponse(message: string): string {
@@ -78,13 +79,13 @@ function getKeywordResponse(message: string): string {
     return fallbackResponses.experience
   }
   if (lowerMessage.includes('książ') || lowerMessage.includes('book') || lowerMessage.includes('czyta')) {
-    return 'Polecam: "Mózg na detoksie" (Perlmutter), "21 lekcji na XXI wiek" (Harari), "Jak działa umysł" (Pinker), "Deep Learning" (Goodfellow) i "The Last Economy" (Mostaque)! 📚'
+    return 'Polecam: "Mózg na detoksie" (Perlmutter), "21 lekcji na XXI wiek" (Harari), "Jak działa umysł" (Pinker), "Deep Learning" (Goodfellow) i "The Last Economy" (Mostaque).'
   }
   if (lowerMessage.includes('studi') || lowerMessage.includes('uniwer') || lowerMessage.includes('kognityw')) {
-    return 'Studiuję Kognitywistykę na Uniwersytecie Warszawskim! Aktualnie jestem na Erasmusie na University of the Basque Country w Hiszpanii 🇪🇸 🎓'
+    return 'Studiuję Kognitywistykę na Uniwersytecie Warszawskim. Aktualnie jestem na Erasmusie na University of the Basque Country w Hiszpanii.'
   }
   if (lowerMessage.includes('konkurs') || lowerMessage.includes('nagroda') || lowerMessage.includes('finalspark') || lowerMessage.includes('szwajcari')) {
-    return 'Wygrałem konkurs "Praca jak ze snu" z Just Join IT! 🏆 W nagrodę brałem udział w filmie o FinalSpark - startupie tworzącym komputer na ludzkich neuronach. Byłem w Szwajcarii!'
+    return 'Wygrałem konkurs "Praca jak ze snu" z Just Join IT. W nagrodę brałem udział w filmie o FinalSpark - startupie tworzącym komputer na ludzkich neuronach. Byłem w Szwajcarii.'
   }
   
   return fallbackResponses.default
