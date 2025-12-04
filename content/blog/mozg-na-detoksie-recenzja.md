@@ -3,6 +3,7 @@ title: "Mózg na detoksie - Jak odzyskać jasność umysłu"
 description: "Recenzja książki Davida Perlmuttera o tym, jak dieta i styl życia wpływają na nasz mózg i zdolności poznawcze."
 date: "2024-12-01"
 tags: ["książki", "neurobiologia", "zdrowie", "kognitywistyka"]
+image: "/images/blog/mozg-na-detoksie.jpg"
 author: "Wojciech Soczyński"
 ---
 

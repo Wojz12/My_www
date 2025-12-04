@@ -3,6 +3,7 @@ title: "Deep Learning - Biblia uczenia głębokiego"
 description: "Omówienie legendarnej książki Goodfellowa, Bengio i Courville'a o sieciach neuronowych i deep learning."
 date: "2024-09-15"
 tags: ["książki", "deep learning", "AI", "sieci neuronowe"]
+image: "/images/blog/deep-learning.jpg"
 author: "Wojciech Soczyński"
 ---
 

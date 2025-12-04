@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-// import Image from 'next/image' // Odkomentuj gdy dodasz zdjęcia
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, Calendar, Tag, User, Clock } from 'lucide-react'
 import type { BlogPost as BlogPostType } from '@/lib/blog'
@@ -88,25 +88,22 @@ export default function BlogPost({ post }: BlogPostProps) {
           </div>
         </motion.header>
 
-        {/* Featured Image - odkomentuj gdy dodasz zdjęcia */}
-        {/* 
+        {/* Featured Image */}
         {post.image && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="relative h-64 md:h-96 rounded-2xl overflow-hidden mb-12"
+            className="relative h-64 md:h-96 rounded-2xl overflow-hidden mb-12 bg-gradient-to-br from-primary-500/20 to-primary-700/20"
           >
             <Image
               src={post.image}
               alt={post.title}
               fill
-              className="object-cover"
+              className="object-contain"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent" />
           </motion.div>
         )}
-        */}
 
         {/* Content */}
         <motion.div

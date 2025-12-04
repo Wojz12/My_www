@@ -3,6 +3,7 @@ title: "21 lekcji na XXI wiek - Harari o przyszłości AI"
 description: "Przemyślenia po lekturze książki Yuvala Noaha Harariego o wyzwaniach współczesnego świata i roli sztucznej inteligencji."
 date: "2024-11-15"
 tags: ["książki", "AI", "przyszłość", "filozofia"]
+image: "/images/blog/21-lekcji.jpg"
 author: "Wojciech Soczyński"
 ---
 

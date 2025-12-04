@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-// import Image from 'next/image' // Odkomentuj gdy dodasz zdjęcia
+import Image from 'next/image'
 import { Calendar, Tag, ArrowRight, Search } from 'lucide-react'
 import type { PostMeta } from '@/lib/blog'
 
@@ -42,7 +42,7 @@ export default function BlogList({ posts, tags }: BlogListProps) {
       >
         <h1 className="section-title">Blog</h1>
         <p className="section-subtitle mx-auto">
-          Artykuły o programowaniu, nowych technologiach i moich doświadczeniach.
+          Recenzje książek o AI, kognitywistyce i futurologii.
         </p>
       </motion.div>
 
@@ -109,22 +109,20 @@ export default function BlogList({ posts, tags }: BlogListProps) {
               <Link href={`/blog/${post.slug}`}>
                 <div className="glass-card rounded-2xl overflow-hidden card-hover h-full flex flex-col">
                   {/* Image */}
-                  <div className="relative h-48 overflow-hidden">
-                    {/* Zawsze pokaż gradient fallback - działa nawet bez zdjęć */}
-                    <div className="w-full h-full bg-gradient-to-br from-primary-500/20 to-primary-700/20 flex items-center justify-center">
-                      <span className="text-4xl">📝</span>
-                    </div>
-                    {/* Odkomentuj gdy dodasz zdjęcia:
-                    {post.image && (
+                  <div className="relative h-56 overflow-hidden bg-gradient-to-br from-primary-500/20 to-primary-700/20">
+                    {post.image ? (
                       <Image
                         src={post.image}
                         alt={post.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
                       />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <span className="text-6xl">📚</span>
+                      </div>
                     )}
-                    */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/20 to-transparent" />
                   </div>
 
                   {/* Content */}
@@ -135,11 +133,11 @@ export default function BlogList({ posts, tags }: BlogListProps) {
                       {formatDate(post.date)}
                     </div>
 
-                    <h2 className="text-xl font-bold text-white mb-2 group-hover:text-primary-400 transition-colors">
+                    <h2 className="text-xl font-bold text-white mb-2 group-hover:text-primary-400 transition-colors line-clamp-2">
                       {post.title}
                     </h2>
 
-                    <p className="text-gray-400 text-sm mb-4 flex-1">
+                    <p className="text-gray-400 text-sm mb-4 flex-1 line-clamp-3">
                       {post.description}
                     </p>
 
@@ -183,4 +181,3 @@ export default function BlogList({ posts, tags }: BlogListProps) {
     </div>
   )
 }
-

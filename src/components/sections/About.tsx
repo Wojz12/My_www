@@ -55,6 +55,11 @@ const books = [
     author: 'Emad Mostaque',
     emoji: '💹',
   },
+  {
+    title: 'Osobliwość coraz bliżej',
+    author: 'Ray Kurzweil',
+    emoji: '🚀',
+  },
 ]
 
 export default function About() {

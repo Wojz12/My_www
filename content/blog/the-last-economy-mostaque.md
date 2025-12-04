@@ -3,6 +3,7 @@ title: "The Last Economy - Przyszłość inteligentnej ekonomii"
 description: "Omówienie wizjonerskiej książki Emada Mostaque o tym, jak AI zmieni ekonomię i społeczeństwo."
 date: "2024-12-03"
 tags: ["książki", "AI", "ekonomia", "przyszłość"]
+image: "/images/blog/the-last-economy.jpg"
 author: "Wojciech Soczyński"
 ---
 
