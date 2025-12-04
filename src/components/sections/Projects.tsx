@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Github, Database, Brain } from 'lucide-react'
+import { Github, Database, Brain, MessageCircle } from 'lucide-react'
 
 const projects = [
   {
@@ -18,6 +18,22 @@ const projects = [
     icon: Database,
     technologies: ['Python', 'Transformers', 'BM25', 'CrossEncoder', 'TinyLlama', 'HuggingFace'],
     githubUrl: 'https://github.com/Wojz12/RAG_LLM_project',
+    featured: true,
+  },
+  {
+    title: 'Helpdesk Chatbot Assistant',
+    description: 'Konsolowy asystent AI wykorzystujący Google Gemini API do interaktywnego wypełniania formularzy helpdesk. Projekt zrealizowany w ramach zadania rekrutacyjnego.',
+    longDescription: `
+      Aplikacja konsolowa wykorzystująca generatywne AI:
+      • Interaktywny chat do zbierania danych formularza
+      • Walidacja pól (imię, nazwisko, email, powód kontaktu, pilność 1-10)
+      • Zapis do JSON po zakończeniu rozmowy
+      • Komendy: "show form" (podgląd), "exit" (zakończ)
+      • Pełna konteneryzacja Docker
+    `,
+    icon: MessageCircle,
+    technologies: ['Python', 'Google Gemini API', 'Docker', 'JSON'],
+    githubUrl: 'https://github.com/Wojz12/AssigmentProject2025ApiLLM',
     featured: true,
   },
   {
