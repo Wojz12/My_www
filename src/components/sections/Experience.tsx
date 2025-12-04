@@ -10,7 +10,7 @@ const experiences = [
     title: 'AI Intern',
     company: 'OMNIVISER',
     location: 'Warszawa',
-    period: '08/2025 - 11/2025',
+    period: '08/2024 - 11/2024',
     description: 'Współtworzenie Hexdag - open-source frameworka do orkiestracji agentów AI. Tworzenie modułów Python do zarządzania zadaniami, integracji narzędzi i bezpiecznego parsowania LLM.',
     highlights: [
       'Rozwój frameworka Hexdag dla AI agents',
@@ -19,7 +19,7 @@ const experiences = [
       'Code reviews i pull requests',
     ],
     technologies: ['Python', 'LLMs', 'Git', 'Open Source'],
-    current: true,
+    current: false,
   },
   {
     title: 'Office Assistant & Technical Support',

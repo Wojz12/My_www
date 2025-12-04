@@ -4,6 +4,16 @@ import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { Mail, Phone, MapPin, Send, Loader2, CheckCircle, Github, Linkedin } from 'lucide-react'
+import emailjs from '@emailjs/browser'
+
+// EmailJS konfiguracja - UZUPEŁNIJ SWOJE DANE!
+// 1. Załóż konto na https://emailjs.com (darmowe 200 emaili/miesiąc)
+// 2. Stwórz Email Service (np. Gmail)
+// 3. Stwórz Email Template z polami: from_name, from_email, subject, message
+// 4. Skopiuj ID poniżej:
+const EMAILJS_SERVICE_ID = 'service_xxxxxxx' // Twój Service ID
+const EMAILJS_TEMPLATE_ID = 'template_xxxxxxx' // Twój Template ID  
+const EMAILJS_PUBLIC_KEY = 'xxxxxxxxxxxxxxx' // Twój Public Key
 
 const contactInfo = [
   {
@@ -41,6 +51,7 @@ const socialLinks = [
 
 export default function Contact() {
   const ref = useRef(null)
+  const formRef = useRef<HTMLFormElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
   
   const [formData, setFormData] = useState({
@@ -58,22 +69,36 @@ export default function Contact() {
     setIsLoading(true)
     setError('')
 
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
+    // Sprawdź czy EmailJS jest skonfigurowany
+    if (EMAILJS_SERVICE_ID.includes('xxxxxxx')) {
+      // Fallback - otwórz klienta email
+      const mailtoLink = `mailto:soczynskiwojtek@gmail.com?subject=${encodeURIComponent(formData.subject || 'Wiadomość z portfolio')}&body=${encodeURIComponent(`Od: ${formData.name} (${formData.email})\n\n${formData.message}`)}`
+      window.open(mailtoLink, '_blank')
+      setIsSuccess(true)
+      setFormData({ name: '', email: '', subject: '', message: '' })
+      setTimeout(() => setIsSuccess(false), 5000)
+      setIsLoading(false)
+      return
+    }
 
-      if (response.ok) {
-        setIsSuccess(true)
-        setFormData({ name: '', email: '', subject: '', message: '' })
-        setTimeout(() => setIsSuccess(false), 5000)
-      } else {
-        throw new Error('Błąd wysyłania wiadomości')
-      }
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject || 'Wiadomość z portfolio',
+          message: formData.message,
+        },
+        EMAILJS_PUBLIC_KEY
+      )
+
+      setIsSuccess(true)
+      setFormData({ name: '', email: '', subject: '', message: '' })
+      setTimeout(() => setIsSuccess(false), 5000)
     } catch {
-      setError('Wystąpił błąd. Spróbuj ponownie później.')
+      setError('Wystąpił błąd. Spróbuj napisać bezpośrednio na email.')
     } finally {
       setIsLoading(false)
     }
@@ -157,7 +182,7 @@ export default function Contact() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <form onSubmit={handleSubmit} className="glass-card p-8 rounded-2xl">
+            <form ref={formRef} onSubmit={handleSubmit} className="glass-card p-8 rounded-2xl">
               <div className="grid sm:grid-cols-2 gap-4 mb-4">
                 <div>
                   <label htmlFor="name" className="block text-sm text-gray-400 mb-2">
@@ -166,6 +191,7 @@ export default function Contact() {
                   <input
                     type="text"
                     id="name"
+                    name="from_name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
@@ -180,6 +206,7 @@ export default function Contact() {
                   <input
                     type="email"
                     id="email"
+                    name="from_email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
@@ -196,6 +223,7 @@ export default function Contact() {
                 <input
                   type="text"
                   id="subject"
+                  name="subject"
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   className="w-full"
@@ -209,6 +237,7 @@ export default function Contact() {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
@@ -243,6 +272,10 @@ export default function Contact() {
                   </>
                 )}
               </button>
+              
+              <p className="text-xs text-gray-500 mt-4 text-center">
+                Formularz otworzy Twojego klienta email z przygotowaną wiadomością.
+              </p>
             </form>
           </motion.div>
         </div>

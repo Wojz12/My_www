@@ -4,12 +4,13 @@ import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Brain, BookOpen, Globe, Trophy } from 'lucide-react'
+import Image from 'next/image'
 
 const interests = [
   {
     icon: Brain,
     title: 'Kognitywistyka',
-    description: 'Fascynuje mnie badanie umysłu, procesów poznawczych i ich związków z AI.',
+    description: 'Fascynują mnie algorytmy uczenia maszynowego, futurologia, modelowanie i nauki kognitywne.',
   },
   {
     icon: BookOpen,
@@ -124,15 +125,32 @@ export default function About() {
                     tworzącym pierwszy komputer wykorzystujący ludzkie neurony do obliczeń!
                   </p>
                   <a 
-                    href="https://www.facebook.com" 
+                    href="https://www.facebook.com/photo/?fbid=1169531118294064&set=a.193826049197914" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-primary-400 hover:text-primary-300 text-sm font-medium"
                   >
-                    🗺️ Zobacz moją wycieczkę do Szwajcarii →
+                    🗺️ Zobacz więcej na Facebooku →
                   </a>
                 </div>
               </div>
+              
+              {/* Switzerland photo */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="mt-4 rounded-xl overflow-hidden"
+              >
+                <Image
+                  src="/images/szwajcaria.jpg"
+                  alt="Wycieczka do Szwajcarii - FinalSpark"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto object-cover rounded-xl hover:scale-105 transition-transform duration-500"
+                />
+                <p className="text-xs text-gray-500 mt-2 text-center">📍 Szwajcaria - wizyta w FinalSpark</p>
+              </motion.div>
             </motion.div>
           </motion.div>
 
