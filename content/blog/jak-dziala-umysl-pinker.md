@@ -1,6 +1,6 @@
 ---
 title: "Jak działa umysł - Pinker o psychologii ewolucyjnej"
-description: "Recenzja klasycznej książki Stevena Pinkera łączącej psychologię ewolucyjną z naukami kognitywnymi."
+description: "Osobiste przemyślenia po lekturze klasycznej książki Stevena Pinkera łączącej psychologię ewolucyjną z naukami kognitywnymi."
 date: "2024-10-20"
 tags: ["książki", "kognitywistyka", "psychologia", "ewolucja"]
 image: "/images/blog/jak-dziala-umysl.jpg"
@@ -9,71 +9,27 @@ author: "Wojciech Soczyński"
 
 # Jak działa umysł - Steven Pinker
 
-## Dlaczego ta książka jest ważna?
+## Jak trafiłem na tę książkę?
 
-Steven Pinker to jeden z najbardziej wpływowych myślicieli w dziedzinie nauk kognitywnych. "Jak działa umysł" to monumentalne dzieło łączące:
+Książkę polecił mi mój wujek. To obszerna pozycja, która zawiera bardzo ciekawe przemyślenia dotyczące działania naszego mózgu jak i natury człowieka.
 
-- Psychologię ewolucyjną
-- Naukę o sztucznej inteligencji
-- Neurobiologię
-- Filozofię umysłu
+## Co mnie zafascynowało?
 
-## Główne idee
+Autor często zanurza się w tematy psychologii ewolucyjnej, które są szczególnie ciekawe z mojej perspektywy. Jest w niej dużo eksperymentów i ich opisów, co sprawia, że teorie nie są tylko abstrakcyjnymi konceptami, ale mają solidne podstawy empiryczne.
 
-### 1. Umysł jako system obliczeniowy
+## Moje przemyślenia
 
-Pinker argumentuje, że umysł to w pewnym sensie "komputer biologiczny":
+Książka jest raczej bardziej popularnonaukowa, więc nie powinno być problemu ze zrozumieniem tych idei nawet dla ludzi spoza branży. Pinker ma talent do tłumaczenia skomplikowanych konceptów w przystępny sposób, jednocześnie nie tracąc głębi.
 
-> "Umysł jest tym, co robi mózg."
+Szczególnie zapadły mi w pamięć fragmenty o:
+- Modularności umysłu
+- Ewolucyjnych podstawach naszych zachowań
+- Eksperymentach pokazujących jak działają nasze procesy poznawcze
 
-Ale to nie znaczy, że AI = ludzka inteligencja. Różnice są fundamentalne:
-- **Embodiment** - nasze ciało kształtuje myślenie
-- **Emocje** - nie są błędem, lecz adaptacją
-- **Świadomość** - wciąż największa zagadka
+## Podsumowanie
 
-### 2. Psychologia ewolucyjna
-
-Nasze umysły ukształtowały się przez miliony lat ewolucji. Pinker pokazuje, jak:
-
-- Strach przed wężami (nawet u ludzi, którzy nigdy ich nie widzieli)
-- Preferencje estetyczne (krajobrazy sawanny)
-- Dynamika społeczna (hierarchie, koalicje)
-
-...są produktami doboru naturalnego.
-
-### 3. Modularność umysłu
-
-Pinker popiera teorię, że umysł składa się z wyspecjalizowanych "modułów":
-
-```
-Umysł
-├── Moduł językowy
-├── Moduł rozpoznawania twarzy
-├── Moduł teorii umysłu
-├── Moduł nawigacji przestrzennej
-└── ... wiele innych
-```
-
-## Połączenie z moimi studiami
-
-Jako student kognitywistyki, ta książka pomogła mi zrozumieć:
-
-1. **Dlaczego AI jest trudna** - umysł to nie jeden algorytm
-2. **Skąd biorą się błędy poznawcze** - ewolucja nie projektowała nas do logiki
-3. **Jak łączyć dyscypliny** - Pinker masterfully integruje różne podejścia
-
-## Krytyka
-
-Książka nie jest bez wad:
-- Miejscami zbyt deterministyczna
-- Psychologia ewolucyjna bywa spekulatywna
-- Niektóre teorie się zdezaktualizowały (napisana w 1997)
-
-## Ocena
-
-⭐⭐⭐⭐ **4.5/5** - Klasyka nauk kognitywnych, choć wymaga krytycznego czytania.
+Bardzo polecam każdemu, kto chce zagłębić się w ten temat. To jedna z tych książek, które zmieniają sposób patrzenia na to, jak myślimy i działamy.
 
 ---
 
-*Interesujesz się kognitywistyką? Porozmawiajmy!*
-
+*Klasyka nauk kognitywnych, która wciąż pozostaje aktualna.*
