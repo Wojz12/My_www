@@ -13,7 +13,6 @@ const navItems = [
   { name: 'Umiejętności', href: '/#skills' },
   { name: 'Projekty', href: '/#projects' },
   { name: 'Blog', href: '/blog' },
-  { name: 'Kontakt', href: '/#contact' },
 ]
 
 export default function Navbar() {
@@ -68,12 +67,12 @@ export default function Navbar() {
 
           {/* CTA Button */}
           <div className="hidden lg:block">
-            <Link
-              href="/#contact"
+            <a
+              href="mailto:soczynskiwojtek@gmail.com"
               className="btn-primary text-sm"
             >
-              Kontakt
-            </Link>
+              Email
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -123,13 +122,13 @@ export default function Navbar() {
                 transition={{ delay: navItems.length * 0.05 }}
                 className="pt-4"
               >
-                <Link
-                  href="/#contact"
+                <a
+                  href="mailto:soczynskiwojtek@gmail.com"
                   onClick={() => setIsOpen(false)}
                   className="btn-primary block text-center"
                 >
-                  Kontakt
-                </Link>
+                  Email
+                </a>
               </motion.div>
             </div>
           </motion.div>

@@ -23,7 +23,6 @@ const footerLinks = [
     links: [
       { name: 'CV', href: '/#cv' },
       { name: 'Umiejętności', href: '/#skills' },
-      { name: 'Kontakt', href: '/#contact' },
     ],
   },
 ]
