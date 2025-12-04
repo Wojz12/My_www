@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { checkRateLimit, getClientIP } from '@/lib/rateLimit'
 
 // System prompt dla Gemini - symuluje odpowiedzi Wojtka
 const SYSTEM_PROMPT = `Jesteś Wojtkiem Soczyńskim - studentem Kognitywistyki na Uniwersytecie Warszawskim. Odpowiadaj jak Wojtek - przyjaźnie, z pasją do AI i kognitywistyki.
@@ -93,6 +94,31 @@ function getKeywordResponse(message: string): string {
 
 export async function POST(request: Request) {
   try {
+    // Rate limiting - 10 requestów na minutę per IP
+    const clientIP = getClientIP(request)
+    const rateLimit = checkRateLimit(clientIP, {
+      maxRequests: 10,
+      windowMs: 60 * 1000, // 1 minuta
+    })
+
+    if (!rateLimit.success) {
+      return NextResponse.json(
+        {
+          error: 'Zbyt wiele requestów. Spróbuj ponownie za chwilę.',
+          retryAfter: Math.ceil((rateLimit.resetTime - Date.now()) / 1000),
+        },
+        {
+          status: 429,
+          headers: {
+            'X-RateLimit-Limit': rateLimit.limit.toString(),
+            'X-RateLimit-Remaining': rateLimit.remaining.toString(),
+            'X-RateLimit-Reset': new Date(rateLimit.resetTime).toISOString(),
+            'Retry-After': Math.ceil((rateLimit.resetTime - Date.now()) / 1000).toString(),
+          },
+        }
+      )
+    }
+
     const body = await request.json()
     const { message } = body
 
@@ -138,7 +164,16 @@ export async function POST(request: Request) {
         
         if (response.ok && data.candidates?.[0]?.content?.parts?.[0]?.text) {
           const generatedText = data.candidates[0].content.parts[0].text
-          return NextResponse.json({ response: generatedText })
+          return NextResponse.json(
+            { response: generatedText },
+            {
+              headers: {
+                'X-RateLimit-Limit': rateLimit.limit.toString(),
+                'X-RateLimit-Remaining': rateLimit.remaining.toString(),
+                'X-RateLimit-Reset': new Date(rateLimit.resetTime).toISOString(),
+              },
+            }
+          )
         }
         
         // Log error dla debugowania
@@ -150,7 +185,16 @@ export async function POST(request: Request) {
 
     // Fallback - użyj prostych odpowiedzi opartych na słowach kluczowych
     const response = getKeywordResponse(message)
-    return NextResponse.json({ response })
+    return NextResponse.json(
+      { response },
+      {
+        headers: {
+          'X-RateLimit-Limit': rateLimit.limit.toString(),
+          'X-RateLimit-Remaining': rateLimit.remaining.toString(),
+          'X-RateLimit-Reset': new Date(rateLimit.resetTime).toISOString(),
+        },
+      }
+    )
     
   } catch (error) {
     console.error('Chat API Error:', error)

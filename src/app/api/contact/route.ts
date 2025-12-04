@@ -1,7 +1,33 @@
 import { NextResponse } from 'next/server'
+import { checkRateLimit, getClientIP } from '@/lib/rateLimit'
 
 export async function POST(request: Request) {
   try {
+    // Rate limiting - 5 requestów na 15 minut per IP (bardziej restrykcyjne dla formularza)
+    const clientIP = getClientIP(request)
+    const rateLimit = checkRateLimit(clientIP, {
+      maxRequests: 5,
+      windowMs: 15 * 60 * 1000, // 15 minut
+    })
+
+    if (!rateLimit.success) {
+      return NextResponse.json(
+        {
+          error: 'Zbyt wiele prób wysłania wiadomości. Spróbuj ponownie później.',
+          retryAfter: Math.ceil((rateLimit.resetTime - Date.now()) / 1000),
+        },
+        {
+          status: 429,
+          headers: {
+            'X-RateLimit-Limit': rateLimit.limit.toString(),
+            'X-RateLimit-Remaining': rateLimit.remaining.toString(),
+            'X-RateLimit-Reset': new Date(rateLimit.resetTime).toISOString(),
+            'Retry-After': Math.ceil((rateLimit.resetTime - Date.now()) / 1000).toString(),
+          },
+        }
+      )
+    }
+
     const body = await request.json()
     const { name, email, subject, message } = body
 
@@ -47,7 +73,14 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       { message: 'Wiadomość wysłana pomyślnie!' },
-      { status: 200 }
+      {
+        status: 200,
+        headers: {
+          'X-RateLimit-Limit': rateLimit.limit.toString(),
+          'X-RateLimit-Remaining': rateLimit.remaining.toString(),
+          'X-RateLimit-Reset': new Date(rateLimit.resetTime).toISOString(),
+        },
+      }
     )
   } catch (error) {
     console.error('Błąd wysyłania wiadomości:', error)
