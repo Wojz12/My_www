@@ -1,6 +1,6 @@
 ---
 title: "21 lekcji na XXI wiek - Harari o przyszłości AI"
-description: "Przemyślenia po lekturze książki Yuvala Noaha Harariego o wyzwaniach współczesnego świata i roli sztucznej inteligencji."
+description: "Osobiste przemyślenia po lekturze książki Yuvala Noaha Harariego, która odmieniła moją perspektywę na świat."
 date: "2024-11-15"
 tags: ["książki", "AI", "przyszłość", "filozofia"]
 image: "/images/blog/21-lekcji.jpg"
@@ -9,62 +9,29 @@ author: "Wojciech Soczyński"
 
 # 21 lekcji na XXI wiek - Yuval Noah Harari
 
-## Wprowadzenie
+## Jak trafiłem na tę książkę?
 
-Po "Sapiens" i "Homo Deus", Harari w "21 lekcjach" skupia się na teraźniejszości i najbliższej przyszłości. Jako osoba pracująca z AI, szczególnie zainteresowały mnie rozdziały o sztucznej inteligencji i automatyzacji.
+To książka, którą polecił i dał mi mój tata. Przeczytałem ją na początku mojej edukacji w liceum i na zawsze odmieniła ona moją perspektywę na świat.
 
-## Kluczowe tematy
+## Co mnie zafascynowało?
 
-### 1. Rewolucja technologiczna
+Harari w genialny sposób pokazał w niej jak algorytmy kontrolują nasz współczesny świat i ten trend raczej nie zostanie prędko odwrócony. Opowiada o aktualnych problemach ludzkości - od AI przez zmiany klimatyczne po nierówności społeczne.
 
-Harari ostrzega przed "klasą bezużytecznych" - ludźmi, których praca zostanie zautomatyzowana. Ale czy to naprawdę nieuniknione?
+Jako osoba pracująca z LLMs i systemami AI, widzę na co dzień te mechanizmy, o których pisał Harari. To, co w 2018 roku było wizją przyszłości, dziś jest naszą rzeczywistością.
 
-### 2. AI i rynek pracy
+## Moje przemyślenia
 
-> "Ludzie mają dwa typy umiejętności - fizyczne i poznawcze. Maszyny przejmują oba."
+Książka jest co prawda z 2018 roku, ale dalej aktualna pozycja. Wiele z przewidywań Harariego się sprawdziło, a problemy które opisywał - jak wpływ AI na rynek pracy czy prywatność danych - są dziś jeszcze bardziej palące.
 
-To zdanie daje do myślenia. W mojej pracy nad systemami RAG widzę, jak LLMs potrafią wykonywać zadania, które jeszcze niedawno wymagały ludzkiej ekspertyzy.
+Szczególnie zapadły mi w pamięć fragmenty o:
+- Roli AI w kształtowaniu społeczeństwa
+- Wyzwaniach edukacji w erze automatyzacji
+- Potrzebie globalnej współpracy wobec globalnych problemów
 
-### 3. Edukacja w erze AI
+## Podsumowanie
 
-Harari podkreśla znaczenie:
-- **Krytycznego myślenia**
-- **Elastyczności** 
-- **Umiejętności uczenia się**
-
-To dokładnie to, czego uczę się na kognitywistyce!
-
-## Moje refleksje
-
-### Co mnie zaskoczyło
-
-Harari nie jest ani techno-optymistą, ani pesymistą. Pokazuje złożoność sytuacji:
-
-```
-Problemy globalne → wymagają globalnych rozwiązań
-Polityka → pozostaje lokalna
-AI → rozwija się szybciej niż regulacje
-```
-
-### Co mogę zastosować
-
-1. **Ciągłe uczenie się** - świat zmienia się zbyt szybko na statyczną wiedzę
-2. **Interdyscyplinarność** - łączenie technologii z humanistyką
-3. **Etyka AI** - myślenie o konsekwencjach tworzonych systemów
-
-## Wnioski dla mojej pracy
-
-Pracując nad LLMs, muszę pamiętać o:
-
-- Odpowiedzialnym projektowaniu systemów AI
-- Transparentności algorytmów
-- Wpływie na społeczeństwo
-
-## Ocena
-
-⭐⭐⭐⭐⭐ **5/5** - Lektura obowiązkowa dla każdego pracującego z AI.
+To jedna z tych książek, które zmieniają sposób myślenia. Harari nie daje łatwych odpowiedzi, ale zmusza do refleksji nad kierunkiem, w którym zmierza ludzkość. Szczególnie polecam osobom zainteresowanym przyszłością technologii i jej wpływem na społeczeństwo.
 
 ---
 
-*Jakie są Twoje przemyślenia na temat przyszłości AI? Napisz!*
-
+*Lektura obowiązkowa dla każdego, kto chce zrozumieć wyzwania współczesnego świata.*
