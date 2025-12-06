@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Github, Database, Brain, MessageCircle } from 'lucide-react'
+import { Github, Database, Brain, MessageCircle, Folder } from 'lucide-react'
 
 const projects = [
   {
