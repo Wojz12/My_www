@@ -134,9 +134,10 @@ export async function POST(request: Request) {
 
     if (geminiApiKey) {
       try {
-        // Użyj Google Gemini API (gemini-pro jako fallback)
+        // Użyj gemini-1.5-flash (dostępny w darmowym tierze)
+        const model = 'gemini-1.5-flash'
         const response = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`,
+          `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${geminiApiKey}`,
           {
             method: 'POST',
             headers: {
@@ -166,6 +167,25 @@ export async function POST(request: Request) {
           const generatedText = data.candidates[0].content.parts[0].text
           return NextResponse.json(
             { response: generatedText },
+            {
+              headers: {
+                'X-RateLimit-Limit': rateLimit.limit.toString(),
+                'X-RateLimit-Remaining': rateLimit.remaining.toString(),
+                'X-RateLimit-Reset': new Date(rateLimit.resetTime).toISOString(),
+              },
+            }
+          )
+        }
+        
+        // Obsługa błędów API
+        if (data.error?.code === 429) {
+          console.error('Gemini API quota exceeded:', data.error.message)
+          // Fallback do odpowiedzi keyword-based z informacją o limicie
+          const fallbackResponse = getKeywordResponse(message)
+          return NextResponse.json(
+            { 
+              response: `${fallbackResponse}\n\n(Uwaga: Limit API został przekroczony. Używam trybu demo.)` 
+            },
             {
               headers: {
                 'X-RateLimit-Limit': rateLimit.limit.toString(),
