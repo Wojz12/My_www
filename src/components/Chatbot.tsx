@@ -111,7 +111,7 @@ export default function Chatbot() {
       return 'Wygrałem konkurs "Praca jak ze snu" z Just Join IT. W nagrodę brałem udział w filmie o FinalSpark - startupie tworzącym komputer na ludzkich neuronach. Byłem w Szwajcarii.'
     }
     
-    return 'Hej! Chatbot działa w trybie demo. Dodaj GEMINI_API_KEY do .env.local żeby włączyć pełne odpowiedzi. W międzyczasie zapytaj o moje projekty AI.'
+    return 'Cześć! Jestem Wojtek. Zapytaj mnie o projekty AI, studia kognitywistyki lub ulubione książki.'
   }
 
   return (

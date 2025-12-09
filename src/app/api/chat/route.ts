@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { checkRateLimit, getClientIP } from '@/lib/rateLimit'
+import { GoogleGenerativeAI } from '@google/generative-ai'
 
 // System prompt dla Gemini - symuluje odpowiedzi Wojtka
 const SYSTEM_PROMPT = `Jesteś Wojtkiem Soczyńskim - studentem Kognitywistyki na Uniwersytecie Warszawskim. Odpowiadaj jak Wojtek - przyjaźnie, z pasją do AI i kognitywistyki.
@@ -131,40 +132,33 @@ export async function POST(request: Request) {
 
     // Sprawdź czy jest ustawiony klucz API Gemini
     const geminiApiKey = process.env.GEMINI_API_KEY
+    
+    // Diagnostic log (server-side only, never logs the actual key)
+    console.log('GEMINI_API_KEY loaded:', !!geminiApiKey)
 
     if (geminiApiKey) {
       try {
-        // Użyj gemini-1.5-flash (dostępny w darmowym tierze)
-        const model = 'gemini-1.5-flash'
-        const response = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${geminiApiKey}`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              contents: [
-                {
-                  parts: [
-                    {
-                      text: `${SYSTEM_PROMPT}\n\nUżytkownik napisał: "${message}"\n\nOdpowiedz jako Wojtek (krótko, max 2-3 zdania):`
-                    }
-                  ]
-                }
-              ],
-              generationConfig: {
-                temperature: 0.9,
-                maxOutputTokens: 300,
-              },
-            }),
-          }
-        )
-
-        const data = await response.json()
+        // Inicjalizuj klienta Gemini z SDK
+        const genAI = new GoogleGenerativeAI(geminiApiKey)
         
-        if (response.ok && data.candidates?.[0]?.content?.parts?.[0]?.text) {
-          const generatedText = data.candidates[0].content.parts[0].text
+        // Użyj gemini-1.5-flash (dostępny w darmowym tierze)
+        const model = genAI.getGenerativeModel({ 
+          model: 'gemini-1.5-flash',
+          generationConfig: {
+            temperature: 0.9,
+            maxOutputTokens: 300,
+          },
+        })
+
+        // Przygotuj prompt
+        const prompt = `${SYSTEM_PROMPT}\n\nUżytkownik napisał: "${message}"\n\nOdpowiedz jako Wojtek (krótko, max 2-3 zdania):`
+        
+        // Wygeneruj odpowiedź
+        const result = await model.generateContent(prompt)
+        const response = await result.response
+        const generatedText = response.text()
+
+        if (generatedText) {
           return NextResponse.json(
             { response: generatedText },
             {
@@ -176,11 +170,15 @@ export async function POST(request: Request) {
             }
           )
         }
-        
+      } catch (apiError: any) {
         // Obsługa błędów API
-        if (data.error?.code === 429) {
-          console.error('Gemini API quota exceeded:', data.error.message)
-          // Fallback do odpowiedzi keyword-based z informacją o limicie
+        const errorCode = apiError?.status || apiError?.code || 500
+        const errorMessage = apiError?.message || 'Unknown API error'
+        
+        console.error(`Gemini API error (${errorCode}):`, errorMessage)
+        
+        // Dla błędów quota/rate limit, użyj fallback
+        if (errorCode === 429 || errorCode === 403) {
           const fallbackResponse = getKeywordResponse(message)
           return NextResponse.json(
             { 
@@ -196,10 +194,8 @@ export async function POST(request: Request) {
           )
         }
         
-        // Log error dla debugowania
-        console.error('Gemini API response:', JSON.stringify(data, null, 2))
-      } catch (apiError) {
-        console.error('Gemini API Error:', apiError)
+        // Dla innych błędów API, loguj szczegóły
+        console.error('Gemini API Error details:', apiError)
       }
     }
 
