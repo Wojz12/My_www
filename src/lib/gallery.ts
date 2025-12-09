@@ -29,7 +29,7 @@ export function getGalleryImages(): GalleryData {
   if (fs.existsSync(metadataPath)) {
     try {
       const data = JSON.parse(fs.readFileSync(metadataPath, 'utf8'))
-      const categories = [...new Set(data.images.map((img: GalleryImage) => img.category).filter(Boolean))] as string[]
+      const categories = Array.from(new Set(data.images.map((img: GalleryImage) => img.category).filter(Boolean))) as string[]
       return {
         images: data.images,
         categories,
