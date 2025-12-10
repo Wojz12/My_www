@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { checkRateLimit, getClientIP } from '@/lib/rateLimit'
 
-// System prompt dla Gemini - symuluje odpowiedzi Wojtka
+// System prompt dla OpenAI - symuluje odpowiedzi Wojtka
 const SYSTEM_PROMPT = `Jesteś Wojtkiem Soczyńskim - studentem Kognitywistyki na Uniwersytecie Warszawskim. Odpowiadaj jak Wojtek - przyjaźnie, z pasją do AI i kognitywistyki.
 
 O TOBIE (Wojtku):
@@ -49,7 +49,7 @@ STYL ODPOWIEDZI:
 
 // Fallback responses when API is not connected
 const fallbackResponses: Record<string, string> = {
-  default: 'Hej! Chatbot działa w trybie demo - dodaj GEMINI_API_KEY do .env.local żeby włączyć pełne odpowiedzi. W międzyczasie zapytaj o moje projekty AI.',
+  default: 'Hej! Chatbot działa w trybie demo - dodaj OPENAI_API_KEY do .env.local żeby włączyć pełne odpowiedzi. W międzyczasie zapytaj o moje projekty AI.',
   greeting: 'Cześć! Jestem Wojtek. Zapytaj mnie o projekty AI, studia kognitywistyki lub ulubione książki.',
   projects: 'Mój główny projekt to system RAG do Question Answering. Używam BM25 + CrossEncoder + TinyLlama. Sprawdź na GitHub: github.com/Wojz12/RAG_LLM_project',
   contact: 'Napisz do mnie! Email: soczynskiwojtek@gmail.com | Tel: +48 577 950 977 | GitHub: Wojz12',
@@ -129,43 +129,44 @@ export async function POST(request: Request) {
       )
     }
 
-    // Sprawdź czy jest ustawiony klucz API Gemini
-    const geminiApiKey = process.env.GEMINI_API_KEY
+    // Sprawdź czy jest ustawiony klucz API OpenAI
+    const openaiApiKey = process.env.OPENAI_API_KEY
     
     // Diagnostic log (server-side only, never logs the actual key)
-    console.log('GEMINI_API_KEY loaded:', !!geminiApiKey)
+    console.log('OPENAI_API_KEY loaded:', !!openaiApiKey)
 
-    if (geminiApiKey) {
+    if (openaiApiKey) {
       try {
-        // Przygotuj prompt z system promptem
-        const fullPrompt = `${SYSTEM_PROMPT}\n\nUżytkownik napisał: "${message}"\n\nOdpowiedz jako Wojtek (krótko, max 2-3 zdania):`
-        
-        // Użyj v1 API endpoint (nie v1beta) - bezpośrednie wywołanie REST API
-        const apiUrl = `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`
+        // Użyj OpenAI API z modelem gpt-4o-mini (tani i wydajny)
+        const apiUrl = 'https://api.openai.com/v1/chat/completions'
         
         const apiResponse = await fetch(apiUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${openaiApiKey}`,
           },
           body: JSON.stringify({
-            contents: [
+            model: 'gpt-4o-mini',
+            messages: [
+              {
+                role: 'system',
+                content: SYSTEM_PROMPT
+              },
               {
                 role: 'user',
-                parts: [{ text: fullPrompt }]
+                content: message
               }
             ],
-            generationConfig: {
-              temperature: 0.9,
-              maxOutputTokens: 300,
-            },
+            temperature: 0.9,
+            max_tokens: 300,
           }),
         })
 
         const data = await apiResponse.json()
 
-        if (apiResponse.ok && data.candidates?.[0]?.content?.parts?.[0]?.text) {
-          const generatedText = data.candidates[0].content.parts[0].text
+        if (apiResponse.ok && data.choices?.[0]?.message?.content) {
+          const generatedText = data.choices[0].message.content
           
           return NextResponse.json(
             { response: generatedText },
@@ -184,11 +185,11 @@ export async function POST(request: Request) {
           const errorCode = data.error?.code || apiResponse.status
           const errorMessage = data.error?.message || 'Unknown API error'
           
-          console.error(`Gemini API error (${errorCode}):`, errorMessage)
-          console.error('Gemini API response:', JSON.stringify(data, null, 2))
+          console.error(`OpenAI API error (${errorCode}):`, errorMessage)
+          console.error('OpenAI API response:', JSON.stringify(data, null, 2))
           
           // Dla błędów quota/rate limit, użyj fallback
-          if (errorCode === 429 || errorCode === 403) {
+          if (errorCode === 429 || errorCode === 'insufficient_quota' || apiResponse.status === 429 || apiResponse.status === 403) {
             const fallbackResponse = getKeywordResponse(message)
             return NextResponse.json(
               { 
@@ -206,12 +207,12 @@ export async function POST(request: Request) {
         }
       } catch (apiError: any) {
         // Obsługa błędów sieciowych lub innych wyjątków
-        console.error('Gemini API Error:', apiError)
+        console.error('OpenAI API Error:', apiError)
         
         const errorCode = apiError?.status || apiError?.code || 500
         const errorMessage = apiError?.message || 'Unknown API error'
         
-        console.error(`Gemini API error (${errorCode}):`, errorMessage)
+        console.error(`OpenAI API error (${errorCode}):`, errorMessage)
         
         // Dla błędów quota/rate limit, użyj fallback
         if (errorCode === 429 || errorCode === 403) {
