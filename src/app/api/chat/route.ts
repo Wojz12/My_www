@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server'
 import { checkRateLimit, getClientIP } from '@/lib/rateLimit'
-import { GoogleGenerativeAI } from '@google/generative-ai'
 
 // System prompt dla Gemini - symuluje odpowiedzi Wojtka
 const SYSTEM_PROMPT = `Jesteś Wojtkiem Soczyńskim - studentem Kognitywistyki na Uniwersytecie Warszawskim. Odpowiadaj jak Wojtek - przyjaźnie, z pasją do AI i kognitywistyki.
@@ -138,27 +137,36 @@ export async function POST(request: Request) {
 
     if (geminiApiKey) {
       try {
-        // Inicjalizuj klienta Gemini z SDK
-        const genAI = new GoogleGenerativeAI(geminiApiKey)
+        // Przygotuj prompt z system promptem
+        const fullPrompt = `${SYSTEM_PROMPT}\n\nUżytkownik napisał: "${message}"\n\nOdpowiedz jako Wojtek (krótko, max 2-3 zdania):`
         
-        // Użyj gemini-1.5-flash (dostępny w darmowym tierze)
-        const model = genAI.getGenerativeModel({ 
-          model: 'gemini-1.5-flash',
-          generationConfig: {
-            temperature: 0.9,
-            maxOutputTokens: 300,
+        // Użyj v1 API endpoint (nie v1beta) - bezpośrednie wywołanie REST API
+        const apiUrl = `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`
+        
+        const apiResponse = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
           },
+          body: JSON.stringify({
+            contents: [
+              {
+                role: 'user',
+                parts: [{ text: fullPrompt }]
+              }
+            ],
+            generationConfig: {
+              temperature: 0.9,
+              maxOutputTokens: 300,
+            },
+          }),
         })
 
-        // Przygotuj prompt
-        const prompt = `${SYSTEM_PROMPT}\n\nUżytkownik napisał: "${message}"\n\nOdpowiedz jako Wojtek (krótko, max 2-3 zdania):`
-        
-        // Wygeneruj odpowiedź
-        const result = await model.generateContent(prompt)
-        const response = await result.response
-        const generatedText = response.text()
+        const data = await apiResponse.json()
 
-        if (generatedText) {
+        if (apiResponse.ok && data.candidates?.[0]?.content?.parts?.[0]?.text) {
+          const generatedText = data.candidates[0].content.parts[0].text
+          
           return NextResponse.json(
             { response: generatedText },
             {
@@ -170,8 +178,36 @@ export async function POST(request: Request) {
             }
           )
         }
+        
+        // Obsługa błędów z odpowiedzi API
+        if (!apiResponse.ok) {
+          const errorCode = data.error?.code || apiResponse.status
+          const errorMessage = data.error?.message || 'Unknown API error'
+          
+          console.error(`Gemini API error (${errorCode}):`, errorMessage)
+          console.error('Gemini API response:', JSON.stringify(data, null, 2))
+          
+          // Dla błędów quota/rate limit, użyj fallback
+          if (errorCode === 429 || errorCode === 403) {
+            const fallbackResponse = getKeywordResponse(message)
+            return NextResponse.json(
+              { 
+                response: `${fallbackResponse}\n\n(Uwaga: Limit API został przekroczony. Używam trybu demo.)` 
+              },
+              {
+                headers: {
+                  'X-RateLimit-Limit': rateLimit.limit.toString(),
+                  'X-RateLimit-Remaining': rateLimit.remaining.toString(),
+                  'X-RateLimit-Reset': new Date(rateLimit.resetTime).toISOString(),
+                },
+              }
+            )
+          }
+        }
       } catch (apiError: any) {
-        // Obsługa błędów API
+        // Obsługa błędów sieciowych lub innych wyjątków
+        console.error('Gemini API Error:', apiError)
+        
         const errorCode = apiError?.status || apiError?.code || 500
         const errorMessage = apiError?.message || 'Unknown API error'
         
@@ -193,9 +229,6 @@ export async function POST(request: Request) {
             }
           )
         }
-        
-        // Dla innych błędów API, loguj szczegóły
-        console.error('Gemini API Error details:', apiError)
       }
     }
 
