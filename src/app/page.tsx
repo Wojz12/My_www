@@ -4,6 +4,7 @@ import CV from '@/components/sections/CV'
 import Experience from '@/components/sections/Experience'
 import Skills from '@/components/sections/Skills'
 import Projects from '@/components/sections/Projects'
+import AdditionalInfo from '@/components/sections/AdditionalInfo'
 import Contact from '@/components/sections/Contact'
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <Experience />
       <Skills />
       <Projects />
+      <AdditionalInfo />
       <Contact />
     </>
   )
