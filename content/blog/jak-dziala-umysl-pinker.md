@@ -1,6 +1,6 @@
 ---
 title: "Jak działa umysł - Pinker o psychologii ewolucyjnej"
-description: "Osobiste przemyślenia po lekturze klasycznej książki Stevena Pinkera łączącej psychologię ewolucyjną z naukami kognitywnymi."
+description: "Przemyślenia po lekturze klasycznej książki Stevena Pinkera łączącej psychologię ewolucyjną z naukami kognitywnymi."
 date: "2024-10-20"
 tags: ["książki", "kognitywistyka", "psychologia", "ewolucja"]
 image: "/images/blog/jak-dziala-umysl.jpg"

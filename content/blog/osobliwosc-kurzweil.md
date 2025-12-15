@@ -1,6 +1,6 @@
 ---
 title: "Osobliwość coraz bliżej - Wizja przyszłości Kurzweila"
-description: "Osobiste przemyślenia po lekturze kultowej książki Ray'a Kurzweila o nadchodzącej technologicznej osobliwości."
+description: "Przemyślenia po lekturze kultowej książki Ray'a Kurzweila o nadchodzącej technologicznej osobliwości."
 date: "2024-12-04"
 tags: ["książki", "AI", "futurologia", "singularity"]
 image: "/images/blog/osobliwosc.png"

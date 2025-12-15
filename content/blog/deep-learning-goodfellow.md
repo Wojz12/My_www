@@ -1,6 +1,6 @@
 ---
 title: "Deep Learning - Biblia uczenia głębokiego"
-description: "Osobiste przemyślenia po lekturze legendarnej książki Goodfellowa, Bengio i Courville'a o sieciach neuronowych."
+description: "Przemyślenia po lekturze legendarnej książki Goodfellowa, Bengio i Courville'a o sieciach neuronowych."
 date: "2024-09-15"
 tags: ["książki", "deep learning", "AI", "sieci neuronowe"]
 image: "/images/blog/deep-learning.jpg"

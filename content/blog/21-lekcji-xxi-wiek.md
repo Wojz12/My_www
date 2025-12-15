@@ -1,6 +1,6 @@
 ---
 title: "21 lekcji na XXI wiek - Harari o przyszłości AI"
-description: "Osobiste przemyślenia po lekturze książki Yuvala Noaha Harariego, która odmieniła moją perspektywę na świat."
+description: "Przemyślenia po lekturze książki Yuvala Noaha Harariego, która odmieniła moją perspektywę na świat."
 date: "2024-11-15"
 tags: ["książki", "AI", "przyszłość", "filozofia"]
 image: "/images/blog/21-lekcji.jpg"

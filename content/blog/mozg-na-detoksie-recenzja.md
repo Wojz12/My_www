@@ -1,6 +1,6 @@
 ---
 title: "Mózg na detoksie - Jak odzyskać jasność umysłu"
-description: "Osobiste przemyślenia po lekturze książki Davida Perlmuttera o wpływie diety i stylu życia na nasz mózg."
+description: "Przemyślenia po lekturze książki Davida Perlmuttera o wpływie diety i stylu życia na nasz mózg."
 date: "2024-12-01"
 tags: ["książki", "neurobiologia", "zdrowie", "kognitywistyka"]
 image: "/images/blog/mozg-na-detoksie.jpg"
