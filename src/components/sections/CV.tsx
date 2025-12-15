@@ -65,12 +65,6 @@ export default function CV() {
                 Zobacz online
               </a>
             </div>
-
-            {/* Info note */}
-            <p className="mt-8 text-sm text-gray-500">
-              📁 Umieść plik <code className="px-2 py-1 bg-primary-900/30 rounded text-primary-300">cv.pdf</code> w folderze 
-              <code className="px-2 py-1 bg-primary-900/30 rounded text-primary-300 ml-1">public/cv/</code>
-            </p>
           </div>
 
           {/* CV Preview Placeholder */}
