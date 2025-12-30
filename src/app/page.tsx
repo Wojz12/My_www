@@ -6,6 +6,7 @@ import Skills from '@/components/sections/Skills'
 import Projects from '@/components/sections/Projects'
 import AdditionalInfo from '@/components/sections/AdditionalInfo'
 import Contact from '@/components/sections/Contact'
+import AiTools from '@/components/sections/AiTools'
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Experience />
       <Skills />
       <Projects />
+      <AiTools />
       <AdditionalInfo />
       <Contact />
     </>
