@@ -5,50 +5,48 @@ import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Award } from 'lucide-react'
 
-const skillCategories = [
-  {
-    title: 'Programowanie & AI',
-    icon: '🐍',
-    skills: ['Python', 'LLMs (Large Language Models)', 'Prompt Engineering', 'RAG Systems', 'Git'],
-  },
-  {
-    title: 'Narzędzia AI',
-    icon: '🤖',
-    skills: ['ChatGPT', 'Cursor AI', 'Hugging Face', 'LangChain'],
-  },
-  {
-    title: 'Inne narzędzia',
-    icon: '🛠️',
-    skills: ['MS Office', 'Technical Documentation', 'Data Analysis'],
-  },
-  {
-    title: 'Soft Skills',
-    icon: '💡',
-    skills: ['Problem Solving', 'Technical Writing', 'Teaching & Mentoring', 'Communication'],
-  },
-]
+// Map icons to keys
+const categoryIcons = {
+  'Programowanie & AI': '🐍',
+  'Programming & AI': '🐍',
+  'Narzędzia AI': '🤖',
+  'AI Tools': '🤖',
+  'Inne narzędzia': '🛠️',
+  'Other Tools': '🛠️',
+  'Soft Skills': '💡',
+}
 
-const certificates = [
-  {
-    name: 'Building LLM Applications With Prompt Engineering',
-    issuer: 'NVIDIA',
-    icon: '🟢',
-  },
-  {
-    name: 'Building RAG Agents with LLMs',
-    issuer: 'NVIDIA',
-    icon: '🟢',
-  },
-  {
-    name: 'Cambridge English Advanced (CAE)',
-    issuer: 'Cambridge',
-    icon: '🔵',
-  },
-]
+const certificateIcons = {
+  'Building LLM Applications With Prompt Engineering': '🟢',
+  'Building RAG Agents with LLMs': '🟢',
+  'Cambridge English Advanced (CAE)': '🔵',
+}
 
-export default function Skills() {
+interface SkillsProps {
+  dictionary: {
+    title: string
+    subtitle: string
+    categories: {
+      title: string
+      skills: string[]
+    }[]
+    certificatesTitle: string
+    certificates: {
+      name: string
+      issuer: string
+    }[]
+    learningTitle: string
+  }
+}
+
+export default function Skills({ dictionary }: SkillsProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  // @ts-ignore
+  const getCategoryIcon = (title: string) => categoryIcons[title] || '🔧'
+  // @ts-ignore
+  const getCertificateIcon = (name: string) => certificateIcons[name] || '📜'
 
   return (
     <section id="skills" className="relative py-20" ref={ref}>
@@ -59,14 +57,14 @@ export default function Skills() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="section-title">Umiejętności</h2>
+          <h2 className="section-title">{dictionary.title}</h2>
           <p className="section-subtitle mx-auto">
-            Technologie i narzędzia, które wykorzystuję w codziennej pracy.
+            {dictionary.subtitle}
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          {skillCategories.map((category, categoryIndex) => (
+          {dictionary.categories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
               initial={{ opacity: 0, y: 30 }}
@@ -75,7 +73,7 @@ export default function Skills() {
               className="glass-card p-6 rounded-2xl"
             >
               <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl">{category.icon}</span>
+                <span className="text-3xl">{getCategoryIcon(category.title)}</span>
                 <h3 className="text-xl font-bold text-white">{category.title}</h3>
               </div>
 
@@ -105,11 +103,11 @@ export default function Skills() {
         >
           <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
             <Award className="w-6 h-6 text-primary-400" />
-            Certyfikaty
+            {dictionary.certificatesTitle}
           </h3>
-          
+
           <div className="grid sm:grid-cols-3 gap-4">
-            {certificates.map((cert, index) => (
+            {dictionary.certificates.map((cert, index) => (
               <motion.div
                 key={cert.name}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -117,7 +115,7 @@ export default function Skills() {
                 transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
                 className="p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/10"
               >
-                <span className="text-2xl mb-2 block">{cert.icon}</span>
+                <span className="text-2xl mb-2 block">{getCertificateIcon(cert.name)}</span>
                 <h4 className="text-white font-medium text-sm mb-1">{cert.name}</h4>
                 <p className="text-gray-500 text-xs">{cert.issuer}</p>
               </motion.div>
@@ -132,7 +130,7 @@ export default function Skills() {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="mt-8 text-center"
         >
-          <h4 className="text-lg font-medium text-gray-400 mb-6">Obecnie uczę się</h4>
+          <h4 className="text-lg font-medium text-gray-400 mb-6">{dictionary.learningTitle}</h4>
           <div className="flex flex-wrap justify-center gap-3">
             {[
               'LangChain', 'Vector Databases', 'Transformers', 'Fine-tuning',

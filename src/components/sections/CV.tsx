@@ -5,7 +5,29 @@ import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { FileText, Download, Eye } from 'lucide-react'
 
-export default function CV() {
+interface CVProps {
+  dictionary: {
+    title: string
+    subtitle: string
+    downloadTitle: string
+    downloadDesc: string
+    downloadBtn: string
+    viewBtn: string
+    previewTitle: string
+    educationTitle: string
+    education: {
+      title: string
+      desc: string
+    }[]
+    languagesTitle: string
+    languages: {
+      name: string
+      level: string
+    }[]
+  }
+}
+
+export default function CV({ dictionary }: CVProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
@@ -18,9 +40,9 @@ export default function CV() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="section-title">CV</h2>
+          <h2 className="section-title">{dictionary.title}</h2>
           <p className="section-subtitle mx-auto">
-            Pobierz moje CV lub zobacz je online, aby poznać moje pełne doświadczenie zawodowe.
+            {dictionary.subtitle}
           </p>
         </motion.div>
 
@@ -38,11 +60,10 @@ export default function CV() {
             </div>
 
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              Moje CV
+              {dictionary.downloadTitle}
             </h3>
             <p className="text-gray-400 mb-8 max-w-lg mx-auto">
-              Dokument zawiera szczegółowe informacje o moim wykształceniu, 
-              doświadczeniu zawodowym, umiejętnościach technicznych i projektach.
+              {dictionary.downloadDesc}
             </p>
 
             {/* Action buttons */}
@@ -53,7 +74,7 @@ export default function CV() {
                 className="btn-primary inline-flex items-center justify-center gap-2"
               >
                 <Download className="w-5 h-5" />
-                Pobierz PDF
+                {dictionary.downloadBtn}
               </a>
               <a
                 href="/cv/cv.pdf"
@@ -62,7 +83,7 @@ export default function CV() {
                 className="btn-secondary inline-flex items-center justify-center gap-2"
               >
                 <Eye className="w-5 h-5" />
-                Zobacz online
+                {dictionary.viewBtn}
               </a>
             </div>
           </div>
@@ -75,45 +96,37 @@ export default function CV() {
             className="mt-8 glass-card p-8 rounded-2xl"
           >
             <h4 className="text-xl font-semibold text-white mb-6 text-center">
-              Szybki podgląd
+              {dictionary.previewTitle}
             </h4>
-            
+
             <div className="grid md:grid-cols-2 gap-6">
               {/* Education */}
               <div className="space-y-4">
                 <h5 className="text-primary-400 font-medium flex items-center gap-2">
-                  🎓 Wykształcenie
+                  {dictionary.educationTitle}
                 </h5>
                 <div className="space-y-3">
-                  <div className="pl-4 border-l-2 border-primary-500/30">
-                    <p className="text-white font-medium">Kognitywistyka</p>
-                    <p className="text-sm text-gray-400">Uniwersytet Warszawski • do 2026</p>
-                  </div>
-                  <div className="pl-4 border-l-2 border-primary-500/30">
-                    <p className="text-white font-medium">Erasmus Exchange</p>
-                    <p className="text-sm text-gray-400">University of the Basque Country • 2025</p>
-                  </div>
-                  <div className="pl-4 border-l-2 border-primary-500/30">
-                    <p className="text-white font-medium">Certyfikaty NVIDIA</p>
-                    <p className="text-sm text-gray-400">LLM Applications, RAG Agents</p>
-                  </div>
+                  {dictionary.education.map((edu, i) => (
+                    <div key={i} className="pl-4 border-l-2 border-primary-500/30">
+                      <p className="text-white font-medium">{edu.title}</p>
+                      <p className="text-sm text-gray-400">{edu.desc}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 
               {/* Languages */}
               <div className="space-y-4">
                 <h5 className="text-primary-400 font-medium flex items-center gap-2">
-                  🌍 Języki
+                  {dictionary.languagesTitle}
                 </h5>
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Polski</span>
-                    <span className="text-sm text-primary-400">Ojczysty</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Angielski</span>
-                    <span className="text-sm text-primary-400">CAE (C1)</span>
-                  </div>
+                  {dictionary.languages.map((lang, i) => (
+                    <div key={i} className="flex justify-between items-center">
+                      <span className="text-gray-300">{lang.name}</span>
+                      <span className="text-sm text-primary-400">{lang.level}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

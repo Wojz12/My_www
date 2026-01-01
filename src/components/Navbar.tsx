@@ -4,21 +4,36 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Sparkles } from 'lucide-react'
+import LanguageSwitcher from './LanguageSwitcher'
 
-const navItems = [
-  { name: 'Home', href: '/' },
-  { name: 'O mnie', href: '/#about' },
-  { name: 'CV', href: '/#cv' },
-  { name: 'Doświadczenie', href: '/#experience' },
-  { name: 'Umiejętności', href: '/#skills' },
-  { name: 'Projekty', href: '/#projects' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'Kontakt', href: '/#contact' },
-]
+interface NavbarProps {
+  lang: string
+  dictionary: {
+    home: string
+    about: string
+    cv: string
+    experience: string
+    skills: string
+    projects: string
+    blog: string
+    contact: string
+  }
+}
 
-export default function Navbar() {
+export default function Navbar({ lang, dictionary }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+
+  const navItems = [
+    { name: dictionary.home, href: `/${lang}` },
+    { name: dictionary.about, href: `/${lang}/#about` },
+    { name: dictionary.cv, href: `/${lang}/#cv` },
+    { name: dictionary.experience, href: `/${lang}/#experience` },
+    { name: dictionary.skills, href: `/${lang}/#skills` },
+    { name: dictionary.projects, href: `/${lang}/#projects` },
+    { name: dictionary.blog, href: `/${lang}/blog` },
+    { name: dictionary.contact, href: `/${lang}/#contact` },
+  ]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,16 +48,15 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'py-3 glass border-b border-white/10'
-          : 'py-5 bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+        ? 'py-3 glass border-b border-white/10'
+        : 'py-5 bg-transparent'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
+          <Link href={`/${lang}`} className="flex items-center gap-2 group">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center shadow-glow-sm group-hover:shadow-glow transition-all duration-300">
               <Sparkles className="w-5 h-5 text-white" />
             </div>
@@ -55,7 +69,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => (
               <Link
-                key={item.name}
+                key={item.href}
                 href={item.href}
                 className="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white
                          relative group transition-colors duration-300"
@@ -64,15 +78,18 @@ export default function Navbar() {
                 <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-primary-400 group-hover:w-full transition-all duration-300" />
               </Link>
             ))}
+            <div className="ml-4">
+              <LanguageSwitcher />
+            </div>
           </div>
 
           {/* CTA Button */}
           <div className="hidden lg:block">
             <Link
-              href="/#contact"
+              href={`/${lang}/#contact`}
               className="btn-primary text-sm"
             >
-              Kontakt
+              {dictionary.contact}
             </Link>
           </div>
 
@@ -103,7 +120,7 @@ export default function Navbar() {
             <div className="px-4 py-6 space-y-2">
               {navItems.map((item, index) => (
                 <motion.div
-                  key={item.name}
+                  key={item.href}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 }}
@@ -124,13 +141,16 @@ export default function Navbar() {
                 className="pt-4"
               >
                 <Link
-                  href="/#contact"
+                  href={`/${lang}/#contact`}
                   onClick={() => setIsOpen(false)}
                   className="btn-primary block text-center"
                 >
-                  Kontakt
+                  {dictionary.contact}
                 </Link>
               </motion.div>
+              <div className="pt-2 flex justify-center">
+                <LanguageSwitcher />
+              </div>
             </div>
           </motion.div>
         )}

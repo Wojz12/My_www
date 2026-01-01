@@ -5,12 +5,24 @@ import { ArrowDown, Github, Linkedin, Mail, Phone } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function Hero() {
+interface HeroProps {
+  lang: string
+  dictionary: {
+    badge: string
+    greeting: string
+    description: string
+    viewProjects: string
+    contact: string
+    scroll: string
+  }
+}
+
+export default function Hero({ lang, dictionary }: HeroProps) {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary-950/50 via-transparent to-transparent" />
-      
+
       <div className="section-container relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
@@ -27,7 +39,7 @@ export default function Hero() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-6"
             >
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              <span className="text-sm text-gray-300">Student Kognitywistyki | AI Enthusiast</span>
+              <span className="text-sm text-gray-300">{dictionary.badge}</span>
             </motion.div>
 
             <motion.h1
@@ -36,7 +48,7 @@ export default function Hero() {
               transition={{ delay: 0.3 }}
               className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6"
             >
-              Cześć, jestem{' '}
+              {dictionary.greeting}{' '}
               <span className="gradient-text">Wojciech Soczyński</span>
             </motion.h1>
 
@@ -46,9 +58,7 @@ export default function Hero() {
               transition={{ delay: 0.4 }}
               className="text-lg sm:text-xl text-gray-400 mb-8 max-w-xl mx-auto lg:mx-0"
             >
-              Student kognitywistyki pasjonujący się sztuczną inteligencją, 
-              Large Language Models i analizą danych. Aktualnie na wymianie Erasmus 
-              na University of the Basque Country w Hiszpanii. 🇪🇸
+              {dictionary.description}
             </motion.p>
 
             <motion.div
@@ -57,11 +67,11 @@ export default function Hero() {
               transition={{ delay: 0.5 }}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
             >
-              <Link href="/#projects" className="btn-primary flex items-center justify-center gap-2">
-                Zobacz projekty
+              <Link href={`/${lang}/#projects`} className="btn-primary flex items-center justify-center gap-2">
+                {dictionary.viewProjects}
               </Link>
-              <Link href="/#contact" className="btn-secondary flex items-center justify-center gap-2">
-                Skontaktuj się
+              <Link href={`/${lang}/#contact`} className="btn-secondary flex items-center justify-center gap-2">
+                {dictionary.contact}
               </Link>
             </motion.div>
 
@@ -102,7 +112,7 @@ export default function Hero() {
             <div className="relative">
               {/* Glow effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary-500/30 to-primary-700/30 rounded-full blur-3xl scale-110" />
-              
+
               {/* Image container */}
               <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden
                             border-4 border-primary-500/30 shadow-2xl animate-float">
@@ -124,7 +134,7 @@ export default function Hero() {
               >
                 <span className="text-sm font-medium">🧠 LLMs</span>
               </motion.div>
-              
+
               <motion.div
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, delay: 1 }}
@@ -132,7 +142,7 @@ export default function Hero() {
               >
                 <span className="text-sm font-medium">🐍 Python</span>
               </motion.div>
-              
+
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
@@ -156,7 +166,7 @@ export default function Hero() {
             transition={{ duration: 2, repeat: Infinity }}
             className="flex flex-col items-center gap-2 text-gray-400"
           >
-            <span className="text-sm">Przewiń w dół</span>
+            <span className="text-sm">{dictionary.scroll}</span>
             <ArrowDown className="w-5 h-5" />
           </motion.div>
         </motion.div>

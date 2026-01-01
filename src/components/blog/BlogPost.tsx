@@ -6,14 +6,21 @@ import Link from 'next/link'
 import { ArrowLeft, Calendar, Tag, User, Clock } from 'lucide-react'
 import type { BlogPost as BlogPostType } from '@/lib/blog'
 import ReactMarkdown from 'react-markdown'
+import { Locale } from '@/i18n-config'
 
 interface BlogPostProps {
   post: BlogPostType
+  dictionary: {
+    backToBlog: string
+    minRead: string
+    thanks: string
+  }
+  lang: Locale
 }
 
-export default function BlogPost({ post }: BlogPostProps) {
+export default function BlogPost({ post, dictionary, lang }: BlogPostProps) {
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('pl-PL', {
+    return new Date(dateString).toLocaleDateString(lang === 'pl' ? 'pl-PL' : 'en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
@@ -33,11 +40,11 @@ export default function BlogPost({ post }: BlogPostProps) {
           transition={{ duration: 0.5 }}
         >
           <Link
-            href="/blog"
+            href={`/${lang}/blog`}
             className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-8"
           >
             <ArrowLeft className="w-4 h-4" />
-            Wróć do bloga
+            {dictionary.backToBlog}
           </Link>
         </motion.div>
 
@@ -83,7 +90,7 @@ export default function BlogPost({ post }: BlogPostProps) {
             </div>
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4" />
-              {readingTime} min czytania
+              {readingTime} {dictionary.minRead}
             </div>
           </div>
         </motion.header>
@@ -128,8 +135,8 @@ export default function BlogPost({ post }: BlogPostProps) {
                   <p className="mb-4 text-gray-300 leading-relaxed">{children}</p>
                 ),
                 a: ({ href, children }) => (
-                  <a 
-                    href={href} 
+                  <a
+                    href={href}
                     className="text-primary-400 hover:text-primary-300 underline underline-offset-2"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -192,15 +199,15 @@ export default function BlogPost({ post }: BlogPostProps) {
         >
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <Link
-              href="/blog"
+              href={`/${lang}/blog`}
               className="btn-secondary inline-flex items-center gap-2"
             >
               <ArrowLeft className="w-4 h-4" />
-              Wróć do bloga
+              {dictionary.backToBlog}
             </Link>
-            
+
             <div className="text-gray-400 text-sm">
-              Dziękuję za przeczytanie! 🙏
+              {dictionary.thanks}
             </div>
           </div>
         </motion.div>

@@ -5,26 +5,15 @@ import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react'
 
-const contactInfo = [
-  {
-    icon: Mail,
-    label: 'Email',
-    value: 'soczynskiwojtek@gmail.com',
-    href: 'mailto:soczynskiwojtek@gmail.com',
-  },
-  {
-    icon: Phone,
-    label: 'Telefon',
-    value: '+48 577 950 977',
-    href: 'tel:+48577950977',
-  },
-  {
-    icon: MapPin,
-    label: 'Lokalizacja',
-    value: 'Warszawa, Polska',
-    href: '#',
-  },
-]
+// Keep non-translatable data separated or mixed in depending on structure
+// Here we have values that are mostly static, but labels are translated.
+const contactIcons = {
+  Email: Mail,
+  Telefon: Phone,
+  Phone: Phone,
+  Lokalizacja: MapPin,
+  Location: MapPin,
+}
 
 const socialLinks = [
   {
@@ -39,9 +28,42 @@ const socialLinks = [
   },
 ]
 
-export default function Contact() {
+interface ContactProps {
+  dictionary: {
+    title: string
+    subtitle: string
+    findMe: string
+    emailLabel: string
+    phoneLabel: string
+    locationLabel: string
+    locationValue: string
+  }
+}
+
+export default function Contact({ dictionary }: ContactProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  const contactInfo = [
+    {
+      icon: Mail,
+      label: dictionary.emailLabel,
+      value: 'soczynskiwojtek@gmail.com',
+      href: 'mailto:soczynskiwojtek@gmail.com',
+    },
+    {
+      icon: Phone,
+      label: dictionary.phoneLabel,
+      value: '+48 577 950 977',
+      href: 'tel:+48577950977',
+    },
+    {
+      icon: MapPin,
+      label: dictionary.locationLabel,
+      value: dictionary.locationValue,
+      href: '#',
+    },
+  ]
 
   return (
     <section id="contact" className="relative py-20" ref={ref}>
@@ -52,9 +74,9 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="section-title">Kontakt</h2>
+          <h2 className="section-title">{dictionary.title}</h2>
           <p className="section-subtitle mx-auto">
-            Chcesz porozmawiać? Skontaktuj się ze mną!
+            {dictionary.subtitle}
           </p>
         </motion.div>
 
@@ -96,7 +118,7 @@ export default function Contact() {
               transition={{ duration: 0.4, delay: 0.6 }}
               className="pt-6 border-t border-white/10"
             >
-              <p className="text-gray-400 mb-4 text-center">Znajdziesz mnie również na:</p>
+              <p className="text-gray-400 mb-4 text-center">{dictionary.findMe}</p>
               <div className="flex justify-center gap-4">
                 {socialLinks.map((social) => (
                   <a

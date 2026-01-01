@@ -1,0 +1,364 @@
+{
+    "nav": {
+        "home": "Home",
+        "about": "O mnie",
+        "cv": "CV",
+        "experience": "Doświadczenie",
+        "skills": "Umiejętności",
+        "projects": "Projekty",
+        "blog": "Blog",
+        "contact": "Kontakt"
+    },
+    "hero": {
+        "badge": "Student Kognitywistyki | AI Enthusiast",
+        "greeting": "Cześć, jestem",
+        "description": "Student kognitywistyki pasjonujący się sztuczną inteligencją, Large Language Models i analizą danych. Aktualnie na wymianie Erasmus na University of the Basque Country w Hiszpanii. 🇪🇸",
+        "viewProjects": "Zobacz projekty",
+        "contact": "Skontaktuj się",
+        "scroll": "Przewiń w dół"
+    },
+    "about": {
+        "title": "O mnie",
+        "subtitle": "Poznaj mnie bliżej - moje zainteresowania, inspiracje i to, co mnie napędza.",
+        "whoAmI": "Kim jestem?",
+        "description1": "Jestem studentem <span class=\"text-primary-400 font-medium\">Kognitywistyki</span> na Uniwersytecie Warszawskim, pasjonującym się sztuczną inteligencją, Large Language Models i rozumowaniem opartym na danych.",
+        "description2": "Mam doświadczenie w <span class=\"text-primary-400 font-medium\">Pythonie</span>, analizie danych i dokumentacji technicznej. Specjalizuję się w tworzeniu workflow AI i integrowaniu modeli językowych w praktyczne systemy.",
+        "description3": "Aktualnie realizuję wymianę <span class=\"text-primary-400 font-medium\">Erasmus</span> na University of the Basque Country w Hiszpanii, poszerzając swoje horyzonty w naukach kognitywnych i obliczeniowych.",
+        "interests": [
+            {
+                "title": "Kognitywistyka",
+                "description": "Fascynują mnie algorytmy uczenia maszynowego, futurologia, modelowanie i nauki kognitywne."
+            },
+            {
+                "title": "AI & LLMs",
+                "description": "Tworzę systemy oparte o Large Language Models i Retrieval-Augmented Generation."
+            },
+            {
+                "title": "Erasmus",
+                "description": "Rozwijam się na wymianie w University of the Basque Country w Hiszpanii."
+            },
+            {
+                "title": "Osiągnięcia",
+                "description": "Zwycięzca konkursu \"Praca jak ze snu\" z Just Join IT."
+            }
+        ]
+    },
+    "cv": {
+        "title": "CV",
+        "subtitle": "Pobierz moje CV lub zobacz je online, aby poznać moje pełne doświadczenie zawodowe.",
+        "downloadTitle": "Moje CV",
+        "downloadDesc": "Dokument zawiera szczegółowe informacje o moim wykształceniu, doświadczeniu zawodowym, umiejętnościach technicznych i projektach.",
+        "downloadBtn": "Pobierz PDF",
+        "viewBtn": "Zobacz online",
+        "previewTitle": "Szybki podgląd",
+        "educationTitle": "🎓 Wykształcenie",
+        "education": [
+            {
+                "title": "Kognitywistyka",
+                "desc": "Uniwersytet Warszawski • do 2026"
+            },
+            {
+                "title": "Erasmus Exchange",
+                "desc": "University of the Basque Country • 2025"
+            },
+            {
+                "title": "Certyfikaty NVIDIA",
+                "desc": "LLM Applications, RAG Agents"
+            }
+        ],
+        "languagesTitle": "🌍 Języki",
+        "languages": [
+            {
+                "name": "Polski",
+                "level": "Ojczysty"
+            },
+            {
+                "name": "Angielski",
+                "level": "CAE (C1)"
+            }
+        ]
+    },
+    "experience": {
+        "title": "Doświadczenie",
+        "subtitle": "Moja ścieżka zawodowa i edukacyjna.",
+        "workTitle": "Doświadczenie zawodowe",
+        "educationTitle": "Edukacja",
+        "languagesTitle": "🌍 Języki",
+        "present": "Obecnie",
+        "currently": "Aktualnie",
+        "experiences": [
+            {
+                "title": "AI Intern",
+                "company": "OMNIVISER",
+                "location": "Warszawa",
+                "period": "08/2024 - 11/2024",
+                "description": "Współtworzenie Hexdag - open-source frameworka do orkiestracji agentów AI. Tworzenie modułów Python do zarządzania zadaniami, integracji narzędzi i bezpiecznego parsowania LLM.",
+                "highlights": [
+                    "Rozwój frameworka Hexdag dla AI agents",
+                    "Moduły Python do task & flow management",
+                    "Dokumentacja techniczna komponentów",
+                    "Code reviews i pull requests"
+                ]
+            },
+            {
+                "title": "Office Assistant & Technical Support",
+                "company": "Reago Training",
+                "location": "Warszawa",
+                "period": "01/2023 - 11/2025",
+                "description": "Szkolenie personelu medycznego z obsługi symulatorów high-fidelity. Tłumaczenie instrukcji technicznych urządzeń medycznych (EN→PL).",
+                "highlights": [
+                    "Szkolenia z symulatorów medycznych",
+                    "Tłumaczenia techniczne EN→PL",
+                    "Weryfikacja dostaw sprzętu medycznego",
+                    "Wsparcie na konferencjach i warsztatach"
+                ]
+            },
+            {
+                "title": "Korepetytor Matematyki",
+                "company": "Korepetycje prywatne",
+                "location": "Warszawa",
+                "period": "01/2022 - 11/2025",
+                "description": "Prowadzenie indywidualnych lekcji matematyki. Tworzenie spersonalizowanych planów nauki i adaptacja metod nauczania do potrzeb uczniów.",
+                "highlights": [
+                    "Indywidualne plany lekcji",
+                    "Analiza postępów uczniów",
+                    "Adaptacja metod nauczania"
+                ]
+            }
+        ],
+        "educationList": [
+            {
+                "degree": "Kognitywistyka",
+                "school": "Uniwersytet Warszawski",
+                "period": "do 06/2026"
+            },
+            {
+                "degree": "Erasmus Exchange Program",
+                "school": "University of the Basque Country (UPV/EHU)",
+                "location": "Hiszpania",
+                "period": "09/2025"
+            },
+            {
+                "degree": "Profil Matematyczno-Społeczny",
+                "school": "VIII LO im. Władysława IV",
+                "period": "do 05/2023"
+            }
+        ],
+        "languages": [
+            {
+                "name": "Polski",
+                "level": "Ojczysty"
+            },
+            {
+                "name": "Angielski",
+                "level": "CAE (C1)"
+            }
+        ]
+    },
+    "skills": {
+        "title": "Umiejętności",
+        "subtitle": "Technologie i narzędzia, które wykorzystuję w codziennej pracy.",
+        "categories": [
+            {
+                "title": "Programowanie & AI",
+                "skills": [
+                    "Python",
+                    "LLMs (Large Language Models)",
+                    "Prompt Engineering",
+                    "RAG Systems",
+                    "Git"
+                ]
+            },
+            {
+                "title": "Narzędzia AI",
+                "skills": [
+                    "ChatGPT",
+                    "Cursor AI",
+                    "Hugging Face",
+                    "LangChain"
+                ]
+            },
+            {
+                "title": "Inne narzędzia",
+                "skills": [
+                    "MS Office",
+                    "Technical Documentation",
+                    "Data Analysis"
+                ]
+            },
+            {
+                "title": "Soft Skills",
+                "skills": [
+                    "Problem Solving",
+                    "Technical Writing",
+                    "Teaching & Mentoring",
+                    "Communication"
+                ]
+            }
+        ],
+        "certificatesTitle": "Certyfikaty",
+        "certificates": [
+            {
+                "name": "Building LLM Applications With Prompt Engineering",
+                "issuer": "NVIDIA"
+            },
+            {
+                "name": "Building RAG Agents with LLMs",
+                "issuer": "NVIDIA"
+            },
+            {
+                "name": "Cambridge English Advanced (CAE)",
+                "issuer": "Cambridge"
+            }
+        ],
+        "learningTitle": "Obecnie uczę się"
+    },
+    "blog": {
+        "title": "Blog",
+        "subtitle": "Recenzje książek o AI, kognitywistyce i futurologii.",
+        "searchPlaceholder": "Szukaj artykułów...",
+        "allTags": "Wszystkie",
+        "readMore": "Czytaj więcej",
+        "noPosts": "Brak artykułów.",
+        "noResults": "Nie znaleziono artykułów pasujących do wyszukiwania.",
+        "backToBlog": "Wróć do bloga",
+        "minRead": "min czytania",
+        "thanks": "Dziękuję za przeczytanie! 🙏",
+        "postNotFound": "Post nie znaleziony"
+    },
+    "projects": {
+        "title": "Projekty",
+        "subtitle": "Projekty, które pokazują moje umiejętności w AI i programowaniu.",
+        "otherProjectsTitle": "Inne projekty",
+        "architectureTitle": "Architektura systemu:",
+        "projectList": [
+            {
+                "title": "Hexdag Contributions",
+                "description": "Wkład w rozwój open-source frameworka do orkiestracji agentów AI w firmie OMNIVISER.",
+                "longDescription": "Mój wkład w projekt Hexdag obejmuje:\n• Tworzenie modułów Python do zarządzania zadaniami i przepływem pracy (flow management)\n• Implementacja integracji z zewnętrznymi narzędziami i API\n• Bezpieczne parsowanie i ekstrakcja danych z odpowiedzi LLM\n• Tworzenie dokumentacji technicznej i przykładów użycia\n• Code reviews i współpraca przy pull requestach"
+            },
+            {
+                "title": "Open-Domain QA with RAG (TriviaQA)",
+                "description": "System Retrieval-Augmented Generation do odpowiadania na pytania w otwartej domenie. Architektura: BM25 Retrieval → CrossEncoder Reranking → TinyLlama Generation.",
+                "longDescription": "Projekt implementujący pełny pipeline RAG dla Question Answering:\n• BM25 sparse retrieval do wyszukiwania dokumentów\n• CrossEncoder (MS-MARCO) do reranking top-10 → top-3\n• TinyLlama-1.1B-Chat do generowania odpowiedzi"
+            },
+            {
+                "title": "Helpdesk Chatbot Assistant",
+                "description": "Konsolowy asystent AI wykorzystujący Google Gemini API do interaktywnego wypełniania formularzy helpdesk.",
+                "longDescription": "Aplikacja konsolowa wykorzystująca generatywne AI:\n• Interaktywny chat do zbierania danych formularza\n• Walidacja pól (imię, nazwisko, email, powód kontaktu, pilność 1-10)\n• Zapis do JSON po zakończeniu rozmowy\n• Pełna konteneryzacja Docker"
+            }
+        ]
+    },
+    "aiTools": {
+        "title": "Jak używam AI",
+        "subtitle": "Mój stack technologiczny i podejście do tworzenia oprogramowania w erze sztucznej inteligencji.",
+        "tools": [
+            {
+                "title": "Vibe Engineering",
+                "description": "Filozofia pracy z AI, która stawia na intuicję i flow. Wykorzystywanie LLM jako kreatywnego partnera, a nie tylko narzędzia do generowania kodu."
+            },
+            {
+                "title": "Cursor AI",
+                "description": "Mój główny edytor kodu. AI-native IDE, które rewolucjonizuje sposób pisania oprogramowania, pozwalając na edycję całych plików i refaktoryzację w języku naturalnym."
+            },
+            {
+                "title": "Replit",
+                "description": "Szybkie prototypowanie i wdrażanie aplikacji w chmurze. Idealne środowisko do testowania pomysłów i dzielenia się kodem bez konfiguracji środowiska."
+            },
+            {
+                "title": "Lovable",
+                "description": "Narzędzie do tworzenia interfejsów użytkownika wspierane przez AI. Pozwala przekształcać pomysły w piękny, funkcjonalny kod React/Tailwind w mgnieniu oka."
+            },
+            {
+                "title": "Supabase",
+                "description": "Backend-as-a-Service, który idealnie integruje się z nowoczesnym stackiem AI. Baza danych Postgres, uwierzytelnianie i wektoryzacja danych w jednym miejscu."
+            },
+            {
+                "title": "Google Antigravity",
+                "description": "Eksperymentalne i zaawansowane systemy AI od Google. Wykorzystuję najnowsze osiągnięcia w dziedzinie modeli językowych i agentów autonomicznych."
+            }
+        ]
+    },
+    "contact": {
+        "title": "Kontakt",
+        "subtitle": "Chcesz porozmawiać? Skontaktuj się ze mną!",
+        "findMe": "Znajdziesz mnie również na:",
+        "emailLabel": "Email",
+        "phoneLabel": "Telefon",
+        "locationLabel": "Lokalizacja",
+        "locationValue": "Warszawa, Polska"
+    },
+    "additionalInfo": {
+        "achievementTitle": "Zwycięzca konkursu \"Praca jak ze snu\"",
+        "achievementDesc": "We współpracy z Just Join IT. W ramach wygranej brałem udział w nagrywaniu filmu dokumentalnego o startupie <span class=\"text-primary-400\">FinalSpark</span> - tworzącym pierwszy komputer wykorzystujący ludzkie neurony do obliczeń!",
+        "facebookLink": "🗺️ Zobacz więcej na Facebooku →",
+        "photoAlt": "Wycieczka do Szwajcarii - FinalSpark",
+        "photoCaption": "📍 Szwajcaria - wizyta w FinalSpark",
+        "booksTitle": "📖 Książki, które mnie inspirują",
+        "books": [
+            {
+                "title": "Mózg na detoksie",
+                "author": "David Perlmutter",
+                "emoji": "🧠"
+            },
+            {
+                "title": "21 lekcji na XXI wiek",
+                "author": "Yuval Noah Harari",
+                "emoji": "📚"
+            },
+            {
+                "title": "Jak działa umysł",
+                "author": "Steven Pinker",
+                "emoji": "💭"
+            },
+            {
+                "title": "Deep Learning: Głęboka Rewolucja",
+                "author": "Ian Goodfellow",
+                "emoji": "🤖"
+            },
+            {
+                "title": "The Last Economy",
+                "author": "Emad Mostaque",
+                "emoji": "💹"
+            },
+            {
+                "title": "Osobliwość coraz bliżej",
+                "author": "Ray Kurzweil",
+                "emoji": "🚀"
+            }
+        ]
+    },
+    "chatbot": {
+        "title": "Asystent AI",
+        "online": "Online",
+        "inputPlaceholder": "Napisz wiadomość...",
+        "send": "Wyślij",
+        "initialMessage": "Cześć! Jestem Wojtek. Zapytaj mnie o projekty AI, studia kognitywistyki, ulubione książki lub moje doświadczenie z LLMs",
+        "error": "Przepraszam, wystąpił błąd. Spróbuj ponownie.",
+        "fallback": {
+            "default": "Hej! Chatbot działa w trybie demo. W międzyczasie zapytaj o moje projekty AI.",
+            "greeting": "Cześć! Jestem Wojtek. Zapytaj mnie o projekty AI, studia kognitywistyki lub ulubione książki.",
+            "projects": "Mój główny projekt to system RAG do Question Answering. Używam BM25 + CrossEncoder + TinyLlama. Sprawdź na GitHub: github.com/Wojz12/RAG_LLM_project",
+            "contact": "Napisz do mnie! Email: soczynskiwojtek@gmail.com | Tel: +48 577 950 977",
+            "cv": "Pracuję jako AI Intern w OMNIVISER - rozwijam framework Hexdag do orkiestracji agentów AI. CV znajdziesz w sekcji CV.",
+            "skills": "Specjalizuję się w: Python, LLMs, Prompt Engineering, RAG Systems, Git. Używam ChatGPT, Cursor AI, Hugging Face.",
+            "books": "Polecam: \"Mózg na detoksie\" (Perlmutter), \"21 lekcji\" (Harari), \"Jak działa umysł\" (Pinker), \"Deep Learning\" (Goodfellow) i \"The Last Economy\" (Mostaque).",
+            "education": "Studiuję Kognitywistykę na UW. Aktualnie jestem na Erasmusie na University of the Basque Country w Hiszpanii.",
+            "contest": "Wygrałem konkurs \"Praca jak ze snu\" z Just Join IT. W nagrodę brałem udział w filmie o FinalSpark - startupie tworzącym komputer na ludzkich neuronach. Byłem w Szwajcarii."
+        }
+    },
+    "footer": {
+        "sections": {
+            "navigation": "Nawigacja",
+            "more": "Więcej"
+        },
+        "description": "Student kognitywistyki pasjonujący się AI, LLMs i analizą danych. Zawsze otwarty na nowe projekty i możliwości współpracy.",
+        "rights": "Wszelkie prawa zastrzeżone.",
+        "madeWith": "Zrobione z",
+        "inWarsaw": "w Warszawie"
+    },
+    "metadata": {
+        "title": "Wojciech Soczyński | AI & Cognitive Science",
+        "description": "Portfolio studenta kognitywistyki pasjonującego się AI, LLMs i analizą danych."
+    }
+}

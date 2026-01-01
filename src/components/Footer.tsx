@@ -8,45 +8,67 @@ const socialLinks = [
   { name: 'Phone', href: 'tel:+48577950977', icon: Phone },
 ]
 
-const footerLinks = [
-  {
-    title: 'Nawigacja',
-    links: [
-      { name: 'Home', href: '/' },
-      { name: 'O mnie', href: '/#about' },
-      { name: 'Projekty', href: '/#projects' },
-      { name: 'Blog', href: '/blog' },
-    ],
-  },
-  {
-    title: 'Więcej',
-    links: [
-      { name: 'CV', href: '/#cv' },
-      { name: 'Umiejętności', href: '/#skills' },
-      { name: 'Kontakt', href: '/#contact' },
-    ],
-  },
-]
+interface FooterProps {
+  nav: {
+    home: string
+    about: string
+    projects: string
+    blog: string
+    cv: string
+    skills: string
+    contact: string
+  }
+  footer: {
+    sections: {
+      navigation: string
+      more: string
+    }
+    description: string
+    rights: string
+    madeWith: string
+    inWarsaw: string
+  }
+  lang: string
+}
 
-export default function Footer() {
+export default function Footer({ nav, footer, lang }: FooterProps) {
+  const footerLinks = [
+    {
+      title: footer.sections.navigation,
+      links: [
+        { name: nav.home, href: `/${lang}/` },
+        { name: nav.about, href: `/${lang}/#about` },
+        { name: nav.projects, href: `/${lang}/#projects` },
+        { name: nav.blog, href: `/${lang}/blog` }, // Assuming blog is also localized or just a path
+      ],
+    },
+    {
+      title: footer.sections.more,
+      links: [
+        { name: nav.cv, href: `/${lang}/#cv` },
+        { name: nav.skills, href: `/${lang}/#skills` },
+        { name: nav.contact, href: `/${lang}/#contact` },
+      ],
+    },
+  ]
+
   return (
     <footer className="relative mt-20 border-t border-white/10">
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-primary-950/50 to-transparent pointer-events-none" />
-      
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2 mb-4">
+            <Link href={`/${lang}/`} className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center shadow-glow-sm">
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
               <span className="text-xl font-bold gradient-text">Wojciech Soczyński</span>
             </Link>
             <p className="text-gray-400 max-w-md mb-6">
-              Student kognitywistyki pasjonujący się AI, LLMs i analizą danych. 
-              Zawsze otwarty na nowe projekty i możliwości współpracy.
+              {footer.description}
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social) => (
@@ -89,10 +111,10 @@ export default function Footer() {
         <div className="mt-16 pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-gray-500 text-sm">
-              © {new Date().getFullYear()} Wojciech Soczyński. Wszelkie prawa zastrzeżone.
+              © {new Date().getFullYear()} Wojciech Soczyński. {footer.rights}
             </p>
             <p className="text-gray-500 text-sm flex items-center gap-1">
-              Zrobione z <Heart className="w-4 h-4 text-red-500 fill-red-500" /> w Warszawie
+              {footer.madeWith} <Heart className="w-4 h-4 text-red-500 fill-red-500" /> {footer.inWarsaw}
             </p>
           </div>
         </div>

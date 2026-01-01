@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle, X, Send, Bot, User, Sparkles, Loader2 } from 'lucide-react'
+import { Locale } from '@/i18n-config'
 
 interface Message {
   id: string
@@ -11,21 +12,48 @@ interface Message {
   timestamp: Date
 }
 
-const initialMessages: Message[] = [
-  {
-    id: '1',
-    role: 'assistant',
-    content: 'Cześć! Jestem Wojtek. Zapytaj mnie o projekty AI, studia kognitywistyki, ulubione książki lub moje doświadczenie z LLMs',
-    timestamp: new Date(),
-  },
-]
+interface ChatbotProps {
+  lang: Locale
+  dictionary: {
+    title: string
+    online: string
+    inputPlaceholder: string
+    send: string
+    initialMessage: string
+    error: string
+    fallback: {
+      default: string
+      greeting: string
+      projects: string
+      contact: string
+      cv: string
+      skills: string
+      books: string
+      education: string
+      contest: string
+      [key: string]: string
+    }
+  }
+}
 
-export default function Chatbot() {
+export default function Chatbot({ lang, dictionary }: ChatbotProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [messages, setMessages] = useState<Message[]>(initialMessages)
+  const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  // Initialize messages with dictionary content
+  useEffect(() => {
+    setMessages([
+      {
+        id: '1',
+        role: 'assistant',
+        content: dictionary.initialMessage,
+        timestamp: new Date(),
+      },
+    ])
+  }, [dictionary.initialMessage])
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -55,7 +83,7 @@ export default function Chatbot() {
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: input.trim() }),
+        body: JSON.stringify({ message: input.trim(), lang }),
       })
 
       const data = await response.json()
@@ -63,7 +91,7 @@ export default function Chatbot() {
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: data.response || 'Przepraszam, wystąpił błąd. Spróbuj ponownie.',
+        content: data.response || dictionary.error,
         timestamp: new Date(),
       }
 
@@ -85,33 +113,34 @@ export default function Chatbot() {
   // Fallback responses when API is not connected
   const getFallbackResponse = (query: string): string => {
     const lowercaseQuery = query.toLowerCase()
-    
-    if (lowercaseQuery.includes('projekt') || lowercaseQuery.includes('rag')) {
-      return 'Stworzyłem system RAG do Question Answering. Używam BM25 + CrossEncoder + TinyLlama. Sprawdź na GitHub: github.com/Wojz12/RAG_LLM_project'
+    const phrases = dictionary.fallback
+
+    if (lowercaseQuery.includes('projekt') || lowercaseQuery.includes('rag') || lowercaseQuery.includes('project')) {
+      return phrases.projects
     }
-    if (lowercaseQuery.includes('kontakt') || lowercaseQuery.includes('email')) {
-      return 'Napisz do mnie! Email: soczynskiwojtek@gmail.com | Tel: +48 577 950 977'
+    if (lowercaseQuery.includes('kontakt') || lowercaseQuery.includes('email') || lowercaseQuery.includes('contact')) {
+      return phrases.contact
     }
-    if (lowercaseQuery.includes('cv') || lowercaseQuery.includes('resume') || lowercaseQuery.includes('praca')) {
-      return 'Pracuję jako AI Intern w OMNIVISER - rozwijam framework Hexdag do orkiestracji agentów AI. CV znajdziesz w sekcji CV.'
+    if (lowercaseQuery.includes('cv') || lowercaseQuery.includes('resume') || lowercaseQuery.includes('praca') || lowercaseQuery.includes('job') || lowercaseQuery.includes('work')) {
+      return phrases.cv
     }
-    if (lowercaseQuery.includes('umiejętności') || lowercaseQuery.includes('skills') || lowercaseQuery.includes('technologi')) {
-      return 'Specjalizuję się w: Python, LLMs, Prompt Engineering, RAG Systems, Git. Używam ChatGPT, Cursor AI, Hugging Face.'
+    if (lowercaseQuery.includes('umiejętności') || lowercaseQuery.includes('skills') || lowercaseQuery.includes('technologi') || lowercaseQuery.includes('stacks')) {
+      return phrases.skills
     }
-    if (lowercaseQuery.includes('książ') || lowercaseQuery.includes('book') || lowercaseQuery.includes('czyta')) {
-      return 'Polecam: "Mózg na detoksie" (Perlmutter), "21 lekcji" (Harari), "Jak działa umysł" (Pinker), "Deep Learning" (Goodfellow) i "The Last Economy" (Mostaque).'
+    if (lowercaseQuery.includes('książ') || lowercaseQuery.includes('book') || lowercaseQuery.includes('czyta') || lowercaseQuery.includes('read')) {
+      return phrases.books
     }
-    if (lowercaseQuery.includes('studi') || lowercaseQuery.includes('uniwer') || lowercaseQuery.includes('kognityw')) {
-      return 'Studiuję Kognitywistykę na UW. Aktualnie jestem na Erasmusie na University of the Basque Country w Hiszpanii.'
+    if (lowercaseQuery.includes('studi') || lowercaseQuery.includes('uniwer') || lowercaseQuery.includes('kognityw') || lowercaseQuery.includes('study') || lowercaseQuery.includes('cognitive')) {
+      return phrases.education
     }
-    if (lowercaseQuery.includes('cześć') || lowercaseQuery.includes('hej') || lowercaseQuery.includes('hello')) {
-      return 'Cześć! Jestem Wojtek. Zapytaj mnie o projekty AI, studia kognitywistyki lub ulubione książki.'
+    if (lowercaseQuery.includes('cześć') || lowercaseQuery.includes('hej') || lowercaseQuery.includes('hello') || lowercaseQuery.includes('hi')) {
+      return phrases.greeting
     }
-    if (lowercaseQuery.includes('konkurs') || lowercaseQuery.includes('nagroda') || lowercaseQuery.includes('finalspark') || lowercaseQuery.includes('szwajcari')) {
-      return 'Wygrałem konkurs "Praca jak ze snu" z Just Join IT. W nagrodę brałem udział w filmie o FinalSpark - startupie tworzącym komputer na ludzkich neuronach. Byłem w Szwajcarii.'
+    if (lowercaseQuery.includes('konkurs') || lowercaseQuery.includes('nagroda') || lowercaseQuery.includes('finalspark') || lowercaseQuery.includes('szwajcari') || lowercaseQuery.includes('contest') || lowercaseQuery.includes('prize') || lowercaseQuery.includes('switzerland')) {
+      return phrases.contest
     }
-    
-    return 'Cześć! Jestem Wojtek. Zapytaj mnie o projekty AI, studia kognitywistyki lub ulubione książki.'
+
+    return phrases.default
   }
 
   return (
@@ -153,10 +182,10 @@ export default function Chatbot() {
                   <Sparkles className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white">Asystent AI</h3>
+                  <h3 className="font-semibold text-white">{dictionary.title}</h3>
                   <p className="text-xs text-green-400 flex items-center gap-1">
                     <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                    Online
+                    {dictionary.online}
                   </p>
                 </div>
               </div>
@@ -175,17 +204,15 @@ export default function Chatbot() {
                   key={message.id}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className={`flex gap-3 ${
-                    message.role === 'user' ? 'flex-row-reverse' : ''
-                  }`}
+                  className={`flex gap-3 ${message.role === 'user' ? 'flex-row-reverse' : ''
+                    }`}
                 >
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0
-                              ${
-                                message.role === 'user'
-                                  ? 'bg-primary-500'
-                                  : 'bg-gradient-to-br from-primary-500 to-primary-700'
-                              }`}
+                              ${message.role === 'user'
+                        ? 'bg-primary-500'
+                        : 'bg-gradient-to-br from-primary-500 to-primary-700'
+                      }`}
                   >
                     {message.role === 'user' ? (
                       <User className="w-4 h-4 text-white" />
@@ -194,17 +221,16 @@ export default function Chatbot() {
                     )}
                   </div>
                   <div
-                    className={`max-w-[75%] p-3 rounded-2xl ${
-                      message.role === 'user'
+                    className={`max-w-[75%] p-3 rounded-2xl ${message.role === 'user'
                         ? 'bg-primary-500/30 rounded-tr-none'
                         : 'bg-white/5 rounded-tl-none'
-                    }`}
+                      }`}
                   >
                     <p className="text-sm text-gray-200 leading-relaxed">
                       {message.content}
                     </p>
                     <p className="text-xs text-gray-500 mt-1">
-                      {message.timestamp.toLocaleTimeString('pl-PL', {
+                      {message.timestamp.toLocaleTimeString(lang === 'pl' ? 'pl-PL' : 'en-US', {
                         hour: '2-digit',
                         minute: '2-digit',
                       })}
@@ -212,7 +238,7 @@ export default function Chatbot() {
                   </div>
                 </motion.div>
               ))}
-              
+
               {isLoading && (
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -227,7 +253,7 @@ export default function Chatbot() {
                   </div>
                 </motion.div>
               )}
-              
+
               <div ref={messagesEndRef} />
             </div>
 
@@ -241,7 +267,7 @@ export default function Chatbot() {
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Napisz wiadomość..."
+                  placeholder={dictionary.inputPlaceholder}
                   className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3
                            text-white placeholder:text-gray-500 focus:outline-none
                            focus:border-primary-500/50 focus:ring-2 focus:ring-primary-500/20

@@ -6,25 +6,36 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, Tag, ArrowRight, Search } from 'lucide-react'
 import type { PostMeta } from '@/lib/blog'
+import { Locale } from '@/i18n-config'
 
 interface BlogListProps {
   posts: PostMeta[]
   tags: string[]
+  dictionary: {
+    title: string
+    subtitle: string
+    searchPlaceholder: string
+    allTags: string
+    readMore: string
+    noPosts: string
+    noResults: string
+  }
+  lang: Locale
 }
 
-export default function BlogList({ posts, tags }: BlogListProps) {
+export default function BlogList({ posts, tags, dictionary, lang }: BlogListProps) {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
 
   const filteredPosts = posts.filter((post) => {
     const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         post.description.toLowerCase().includes(searchQuery.toLowerCase())
+      post.description.toLowerCase().includes(searchQuery.toLowerCase())
     const matchesTag = selectedTag ? post.tags.includes(selectedTag) : true
     return matchesSearch && matchesTag
   })
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('pl-PL', {
+    return new Date(dateString).toLocaleDateString(lang === 'pl' ? 'pl-PL' : 'en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
@@ -40,9 +51,9 @@ export default function BlogList({ posts, tags }: BlogListProps) {
         transition={{ duration: 0.6 }}
         className="text-center mb-12"
       >
-        <h1 className="section-title">Blog</h1>
+        <h1 className="section-title">{dictionary.title}</h1>
         <p className="section-subtitle mx-auto">
-          Recenzje książek o AI, kognitywistyce i futurologii.
+          {dictionary.subtitle}
         </p>
       </motion.div>
 
@@ -58,7 +69,7 @@ export default function BlogList({ posts, tags }: BlogListProps) {
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
           <input
             type="text"
-            placeholder="Szukaj artykułów..."
+            placeholder={dictionary.searchPlaceholder}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-12 pr-4 py-3"
@@ -70,23 +81,21 @@ export default function BlogList({ posts, tags }: BlogListProps) {
           <div className="flex flex-wrap justify-center gap-2">
             <button
               onClick={() => setSelectedTag(null)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                selectedTag === null
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedTag === null
                   ? 'bg-primary-500 text-white'
                   : 'glass-card text-gray-300 hover:text-white'
-              }`}
+                }`}
             >
-              Wszystkie
+              {dictionary.allTags}
             </button>
             {tags.map((tag) => (
               <button
                 key={tag}
                 onClick={() => setSelectedTag(tag === selectedTag ? null : tag)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                  selectedTag === tag
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedTag === tag
                     ? 'bg-primary-500 text-white'
                     : 'glass-card text-gray-300 hover:text-white'
-                }`}
+                  }`}
               >
                 {tag}
               </button>
@@ -106,7 +115,7 @@ export default function BlogList({ posts, tags }: BlogListProps) {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group"
             >
-              <Link href={`/blog/${post.slug}`}>
+              <Link href={`/${lang}/blog/${post.slug}`}>
                 <div className="glass-card rounded-2xl overflow-hidden card-hover h-full flex flex-col">
                   {/* Image */}
                   <div className="relative h-56 overflow-hidden bg-gradient-to-br from-primary-500/20 to-primary-700/20">
@@ -156,7 +165,7 @@ export default function BlogList({ posts, tags }: BlogListProps) {
 
                     {/* Read more */}
                     <div className="flex items-center gap-2 text-primary-400 text-sm font-medium group-hover:gap-3 transition-all">
-                      Czytaj więcej
+                      {dictionary.readMore}
                       <ArrowRight className="w-4 h-4" />
                     </div>
                   </div>
@@ -173,8 +182,8 @@ export default function BlogList({ posts, tags }: BlogListProps) {
         >
           <p className="text-gray-400 text-lg">
             {posts.length === 0
-              ? 'Brak artykułów. Dodaj pliki .md lub .mdx do folderu content/blog/'
-              : 'Nie znaleziono artykułów pasujących do wyszukiwania.'}
+              ? dictionary.noPosts
+              : dictionary.noResults}
           </p>
         </motion.div>
       )}

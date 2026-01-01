@@ -5,40 +5,23 @@ import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import Image from 'next/image'
 
-const books = [
-  {
-    title: 'Mózg na detoksie',
-    author: 'David Perlmutter',
-    emoji: '🧠',
-  },
-  {
-    title: '21 lekcji na XXI wiek',
-    author: 'Yuval Noah Harari',
-    emoji: '📚',
-  },
-  {
-    title: 'Jak działa umysł',
-    author: 'Steven Pinker',
-    emoji: '💭',
-  },
-  {
-    title: 'Deep Learning: Głęboka Rewolucja',
-    author: 'Ian Goodfellow',
-    emoji: '🤖',
-  },
-  {
-    title: 'The Last Economy',
-    author: 'Emad Mostaque',
-    emoji: '💹',
-  },
-  {
-    title: 'Osobliwość coraz bliżej',
-    author: 'Ray Kurzweil',
-    emoji: '🚀',
-  },
-]
+interface AdditionalInfoProps {
+  dictionary: {
+    achievementTitle: string
+    achievementDesc: string
+    facebookLink: string
+    photoAlt: string
+    photoCaption: string
+    booksTitle: string
+    books: {
+      title: string
+      author: string
+      emoji: string
+    }[]
+  }
+}
 
-export default function AdditionalInfo() {
+export default function AdditionalInfo({ dictionary }: AdditionalInfoProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
@@ -62,24 +45,23 @@ export default function AdditionalInfo() {
                 <span className="text-4xl">🏆</span>
                 <div>
                   <h4 className="text-lg font-bold text-white mb-2">
-                    Zwycięzca konkursu "Praca jak ze snu"
+                    {dictionary.achievementTitle}
                   </h4>
-                  <p className="text-gray-400 text-sm mb-3">
-                    We współpracy z Just Join IT. W ramach wygranej brałem udział w nagrywaniu 
-                    filmu dokumentalnego o startupie <span className="text-primary-400">FinalSpark</span> - 
-                    tworzącym pierwszy komputer wykorzystujący ludzkie neurony do obliczeń!
-                  </p>
-                  <a 
-                    href="https://www.facebook.com/photo/?fbid=1169531118294064&set=a.193826049197914" 
-                    target="_blank" 
+                  <p
+                    className="text-gray-400 text-sm mb-3"
+                    dangerouslySetInnerHTML={{ __html: dictionary.achievementDesc }}
+                  />
+                  <a
+                    href="https://www.facebook.com/photo/?fbid=1169531118294064&set=a.193826049197914"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary-400 hover:text-primary-300 text-sm font-medium"
                   >
-                    🗺️ Zobacz więcej na Facebooku →
+                    {dictionary.facebookLink}
                   </a>
                 </div>
               </div>
-              
+
               {/* Switzerland photo */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -89,12 +71,12 @@ export default function AdditionalInfo() {
               >
                 <Image
                   src="/images/szwajcaria.jpg"
-                  alt="Wycieczka do Szwajcarii - FinalSpark"
+                  alt={dictionary.photoAlt}
                   width={600}
                   height={400}
                   className="w-full h-auto object-cover rounded-xl hover:scale-105 transition-transform duration-500"
                 />
-                <p className="text-xs text-gray-500 mt-2 text-center">📍 Szwajcaria - wizyta w FinalSpark</p>
+                <p className="text-xs text-gray-500 mt-2 text-center">{dictionary.photoCaption}</p>
               </motion.div>
             </motion.div>
           </motion.div>
@@ -107,10 +89,10 @@ export default function AdditionalInfo() {
             className="glass-card p-6 rounded-2xl"
           >
             <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-              📖 Książki, które mnie inspirują
+              {dictionary.booksTitle}
             </h4>
             <div className="space-y-3">
-              {books.map((book, index) => (
+              {dictionary.books.map((book, index) => (
                 <motion.div
                   key={book.title}
                   initial={{ opacity: 0, x: -20 }}

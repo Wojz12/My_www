@@ -21,26 +21,28 @@ export default function NotFound() {
         >
           404
         </motion.h1>
-        
+
         <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-4">
-          Strona nie znaleziona
+          Strona nie znaleziona / Page Not Found
         </h2>
-        
+
         <p className="text-gray-400 mb-8 max-w-md mx-auto">
           Przepraszamy, ale strona której szukasz nie istnieje lub została przeniesiona.
+          <br className="my-2 block" />
+          Sorry, but the page you are looking for does not exist or has been moved.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link href="/" className="btn-primary inline-flex items-center justify-center gap-2">
             <Home className="w-5 h-5" />
-            Strona główna
+            Strona główna / Home
           </Link>
           <button
             onClick={() => window.history.back()}
             className="btn-secondary inline-flex items-center justify-center gap-2"
           >
             <ArrowLeft className="w-5 h-5" />
-            Wróć
+            Wróć / Go Back
           </button>
         </div>
       </motion.div>

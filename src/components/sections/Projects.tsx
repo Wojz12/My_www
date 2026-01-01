@@ -5,47 +5,43 @@ import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Github, Database, Brain, MessageCircle, Folder } from 'lucide-react'
 
-const projects = [
+// Icon mapping based on project title references or fixed order
+// Since titles are translated, we might need a more robust way, but for now matching by key words or index is okay if structure aligns.
+// Better approach: The dictionary just has text. We keep the logic/icons here.
+// Let's assume the order in dictionary matches. But dictionary is object with list.
+// We can try to map by "similar" English title if we had keys, but we have lists.
+// A safe bet is to assume the order in JSON matches the order of icons defined here.
+const projectIcons = [Brain, Database, MessageCircle]
+
+interface ProjectsProps {
+  dictionary: {
+    title: string
+    subtitle: string
+    otherProjectsTitle: string
+    architectureTitle: string
+    projectList: {
+      title: string
+      description: string
+      longDescription: string
+    }[]
+  }
+}
+
+// metadata for projects that isn't translatable (links, technologies, visual flags)
+const projectsMeta = [
   {
-    title: 'Hexdag Contributions',
-    description: 'Wkład w rozwój open-source frameworka do orkiestracji agentów AI w firmie OMNIVISER.',
-    longDescription: `
-      Mój wkład w projekt Hexdag obejmuje:
-      • Tworzenie modułów Python do zarządzania zadaniami i przepływem pracy (flow management)
-      • Implementacja integracji z zewnętrznymi narzędziami i API
-      • Bezpieczne parsowanie i ekstrakcja danych z odpowiedzi LLM
-      • Tworzenie dokumentacji technicznej i przykładów użycia
-      • Code reviews i współpraca przy pull requestach
-    `,
     icon: Brain,
     technologies: ['Python', 'LLMs', 'Open Source', 'Git', 'API Integration'],
     githubUrl: 'https://github.com',
     featured: true,
   },
   {
-    title: 'Open-Domain QA with RAG (TriviaQA)',
-    description: 'System Retrieval-Augmented Generation do odpowiadania na pytania w otwartej domenie. Architektura: BM25 Retrieval → CrossEncoder Reranking → TinyLlama Generation.',
-    longDescription: `
-      Projekt implementujący pełny pipeline RAG dla Question Answering:
-      • BM25 sparse retrieval do wyszukiwania dokumentów
-      • CrossEncoder (MS-MARCO) do reranking top-10 → top-3
-      • TinyLlama-1.1B-Chat do generowania odpowiedzi
-    `,
     icon: Database,
     technologies: ['Python', 'Transformers', 'BM25', 'CrossEncoder', 'TinyLlama', 'HuggingFace'],
     githubUrl: 'https://github.com/Wojz12/RAG_LLM_project',
     featured: true,
   },
   {
-    title: 'Helpdesk Chatbot Assistant',
-    description: 'Konsolowy asystent AI wykorzystujący Google Gemini API do interaktywnego wypełniania formularzy helpdesk.',
-    longDescription: `
-      Aplikacja konsolowa wykorzystująca generatywne AI:
-      • Interaktywny chat do zbierania danych formularza
-      • Walidacja pól (imię, nazwisko, email, powód kontaktu, pilność 1-10)
-      • Zapis do JSON po zakończeniu rozmowy
-      • Pełna konteneryzacja Docker
-    `,
     icon: MessageCircle,
     technologies: ['Python', 'Google Gemini API', 'Docker', 'JSON'],
     githubUrl: 'https://github.com/Wojz12/AssigmentProject2025ApiLLM',
@@ -53,12 +49,18 @@ const projects = [
   },
 ]
 
-export default function Projects() {
+export default function Projects({ dictionary }: ProjectsProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
-  const featuredProjects = projects.filter((p) => p.featured)
-  const otherProjects = projects.filter((p) => !p.featured)
+  // Combine dictionary data with metadata
+  const allProjects = dictionary.projectList.map((proj, index) => ({
+    ...proj,
+    ...projectsMeta[index]
+  }))
+
+  const featuredProjects = allProjects.filter((p) => p.featured)
+  const otherProjects = allProjects.filter((p) => !p.featured)
 
   return (
     <section id="projects" className="relative py-20" ref={ref}>
@@ -69,9 +71,9 @@ export default function Projects() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="section-title">Projekty</h2>
+          <h2 className="section-title">{dictionary.title}</h2>
           <p className="section-subtitle mx-auto">
-            Projekty, które pokazują moje umiejętności w AI i programowaniu.
+            {dictionary.subtitle}
           </p>
         </motion.div>
 
@@ -130,17 +132,17 @@ export default function Projects() {
                   </div>
                 </div>
 
-                {/* Architecture diagram for RAG project */}
-                {project.title.includes('RAG') && (
+                {/* Architecture diagram for RAG project - simple check if title contains RAG or we look at index 1 */}
+                {index === 1 && (
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={isInView ? { opacity: 1 } : {}}
                     transition={{ delay: 0.5 }}
                     className="mt-6 p-4 bg-black/30 rounded-xl overflow-x-auto"
                   >
-                    <p className="text-xs text-gray-500 mb-2">Architektura systemu:</p>
+                    <p className="text-xs text-gray-500 mb-2">{dictionary.architectureTitle}</p>
                     <pre className="text-xs text-primary-300 font-mono">
-{`┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+                      {`┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Query     │ ──► │    BM25     │ ──► │  Reranker   │ ──► │  TinyLlama  │
 │             │     │  Retriever  │     │ CrossEncoder│     │  Generator  │
 └─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
@@ -161,7 +163,7 @@ export default function Projects() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <h3 className="text-xl font-semibold text-white mb-6 text-center">Inne projekty</h3>
+            <h3 className="text-xl font-semibold text-white mb-6 text-center">{dictionary.otherProjectsTitle}</h3>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {otherProjects.map((project, index) => (
                 <motion.div

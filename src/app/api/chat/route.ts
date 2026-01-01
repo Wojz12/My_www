@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { checkRateLimit, getClientIP } from '@/lib/rateLimit'
 
 // System prompt dla OpenAI - symuluje odpowiedzi Wojtka
-const SYSTEM_PROMPT = `Jesteś Wojtkiem Soczyńskim - studentem Kognitywistyki na Uniwersytecie Warszawskim. Odpowiadaj jak Wojtek - przyjaźnie, z pasją do AI i kognitywistyki.
+const SYSTEM_PROMPT_PL = `Jesteś Wojtkiem Soczyńskim - studentem Kognitywistyki na Uniwersytecie Warszawskim. Odpowiadaj jak Wojtek - przyjaźnie, z pasją do AI i kognitywistyki.
 
 O TOBIE (Wojtku):
 - Studiujesz Kognitywistykę na UW, aktualnie jesteś na wymianie Erasmus na University of the Basque Country w Hiszpanii
@@ -47,6 +47,50 @@ STYL ODPOWIEDZI:
 - Możesz opowiadać o swoich projektach i doświadczeniach
 - Jeśli pytają o coś czego nie wiesz, powiedz że chętnie porozmawiasz o tym na mailu`
 
+const SYSTEM_PROMPT_EN = `You are Wojciech Soczyński - a Cognitive Science student at the University of Warsaw. Reply as Wojtek - mainly about AI and cognitive science.
+
+ABOUT YOU (Wojtek):
+- You study Cognitive Science at UW, currently on Erasmus exchange at the University of the Basque Country in Spain
+- You are passionate about AI, Large Language Models, and RAG systems
+- You work as an AI Intern at OMNIVISER, developing the Hexdag framework for AI agent orchestration
+- Previously worked at Reago Training (technical support, EN→PL translations) and as a math tutor
+- NVIDIA Certificates: "Building LLM Applications With Prompt Engineering" and "Building RAG Agents with LLMs"
+- Cambridge English Advanced (CAE) - C1
+
+YOUR RAG PROJECT:
+- Created an Open-Domain QA system with RAG on TriviaQA dataset
+- Architecture: BM25 Retrieval → CrossEncoder Reranking → TinyLlama Generation
+- GitHub: github.com/Wojz12/RAG_LLM_project
+
+YOUR SKILLS:
+- Python, LLMs, Prompt Engineering, RAG Systems, Git
+- Tools: ChatGPT, Cursor AI, Hugging Face, LangChain
+- Soft skills: Problem Solving, Technical Writing, Teaching
+
+YOUR FAVORITE BOOKS:
+- "Brain Wash" - David Perlmutter
+- "21 Lessons for the 21st Century" - Yuval Noah Harari
+- "How the Mind Works" - Steven Pinker
+- "Deep Learning" - Ian Goodfellow
+- "The Last Economy" - Emad Mostaque
+
+ACHIEVEMENTS:
+- Won "Dream Job" contest by Just Join IT
+- Participated in a documentary about FinalSpark - a startup creating a computer based on human neurons
+- Visited Switzerland
+
+CONTACT:
+- Email: soczynskiwojtek@gmail.com
+- GitHub: github.com/Wojz12
+- LinkedIn: linkedin.com/in/wojciechsoczyński
+
+RESPONSE STYLE:
+- Reply in English, professional and concise
+- Be helpful and specific
+- Do not use emojis
+- Discuss your projects and experiences
+- If asked about something you don't know, suggest discussing it via email`
+
 // Fallback responses when API is not connected
 const fallbackResponses: Record<string, string> = {
   default: 'Hej! Chatbot działa w trybie demo - dodaj OPENAI_API_KEY do .env.local żeby włączyć pełne odpowiedzi. W międzyczasie zapytaj o moje projekty AI.',
@@ -60,7 +104,7 @@ const fallbackResponses: Record<string, string> = {
 
 function getKeywordResponse(message: string): string {
   const lowerMessage = message.toLowerCase()
-  
+
   if (lowerMessage.includes('cześć') || lowerMessage.includes('hej') || lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
     return fallbackResponses.greeting
   }
@@ -88,7 +132,7 @@ function getKeywordResponse(message: string): string {
   if (lowerMessage.includes('konkurs') || lowerMessage.includes('nagroda') || lowerMessage.includes('finalspark') || lowerMessage.includes('szwajcari')) {
     return 'Wygrałem konkurs "Praca jak ze snu" z Just Join IT. W nagrodę brałem udział w filmie o FinalSpark - startupie tworzącym komputer na ludzkich neuronach. Byłem w Szwajcarii.'
   }
-  
+
   return fallbackResponses.default
 }
 
@@ -120,7 +164,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json()
-    const { message } = body
+    const { message, lang = 'pl' } = body
 
     if (!message) {
       return NextResponse.json(
@@ -131,7 +175,7 @@ export async function POST(request: Request) {
 
     // Sprawdź czy jest ustawiony klucz API OpenAI
     const openaiApiKey = process.env.OPENAI_API_KEY
-    
+
     // Diagnostic log (server-side only, never logs the actual key)
     console.log('OPENAI_API_KEY loaded:', !!openaiApiKey)
 
@@ -139,7 +183,8 @@ export async function POST(request: Request) {
       try {
         // Użyj OpenAI API z modelem gpt-4o-mini (tani i wydajny)
         const apiUrl = 'https://api.openai.com/v1/chat/completions'
-        
+        const systemPrompt = lang === 'pl' ? SYSTEM_PROMPT_PL : SYSTEM_PROMPT_EN
+
         const apiResponse = await fetch(apiUrl, {
           method: 'POST',
           headers: {
@@ -151,7 +196,7 @@ export async function POST(request: Request) {
             messages: [
               {
                 role: 'system',
-                content: SYSTEM_PROMPT
+                content: systemPrompt
               },
               {
                 role: 'user',
@@ -167,7 +212,7 @@ export async function POST(request: Request) {
 
         if (apiResponse.ok && data.choices?.[0]?.message?.content) {
           const generatedText = data.choices[0].message.content
-          
+
           return NextResponse.json(
             { response: generatedText },
             {
@@ -179,21 +224,21 @@ export async function POST(request: Request) {
             }
           )
         }
-        
+
         // Obsługa błędów z odpowiedzi API
         if (!apiResponse.ok) {
           const errorCode = data.error?.code || apiResponse.status
           const errorMessage = data.error?.message || 'Unknown API error'
-          
+
           console.error(`OpenAI API error (${errorCode}):`, errorMessage)
           console.error('OpenAI API response:', JSON.stringify(data, null, 2))
-          
+
           // Dla błędów quota/rate limit, użyj fallback
           if (errorCode === 429 || errorCode === 'insufficient_quota' || apiResponse.status === 429 || apiResponse.status === 403) {
             const fallbackResponse = getKeywordResponse(message)
             return NextResponse.json(
-              { 
-                response: `${fallbackResponse}\n\n(Uwaga: Limit API został przekroczony. Używam trybu demo.)` 
+              {
+                response: `${fallbackResponse}\n\n(Uwaga: Limit API został przekroczony. Używam trybu demo.)`
               },
               {
                 headers: {
@@ -208,18 +253,18 @@ export async function POST(request: Request) {
       } catch (apiError: any) {
         // Obsługa błędów sieciowych lub innych wyjątków
         console.error('OpenAI API Error:', apiError)
-        
+
         const errorCode = apiError?.status || apiError?.code || 500
         const errorMessage = apiError?.message || 'Unknown API error'
-        
+
         console.error(`OpenAI API error (${errorCode}):`, errorMessage)
-        
+
         // Dla błędów quota/rate limit, użyj fallback
         if (errorCode === 429 || errorCode === 403) {
           const fallbackResponse = getKeywordResponse(message)
           return NextResponse.json(
-            { 
-              response: `${fallbackResponse}\n\n(Uwaga: Limit API został przekroczony. Używam trybu demo.)` 
+            {
+              response: `${fallbackResponse}\n\n(Uwaga: Limit API został przekroczony. Używam trybu demo.)`
             },
             {
               headers: {
@@ -245,7 +290,7 @@ export async function POST(request: Request) {
         },
       }
     )
-    
+
   } catch (error) {
     console.error('Chat API Error:', error)
     return NextResponse.json(
