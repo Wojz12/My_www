@@ -4,16 +4,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react'
-
-// Keep non-translatable data separated or mixed in depending on structure
-// Here we have values that are mostly static, but labels are translated.
-const contactIcons = {
-  Email: Mail,
-  Telefon: Phone,
-  Phone: Phone,
-  Lokalizacja: MapPin,
-  Location: MapPin,
-}
+import ContactForm from '@/components/ContactForm'
 
 const socialLinks = [
   {
@@ -37,6 +28,22 @@ interface ContactProps {
     phoneLabel: string
     locationLabel: string
     locationValue: string
+    formTitle?: string
+    form?: {
+      nameLabel: string
+      namePlaceholder: string
+      emailLabel: string
+      emailPlaceholder: string
+      messageLabel: string
+      messagePlaceholder: string
+      sendButton: string
+      sending: string
+      successMessage: string
+      errorMessage: string
+      validationRequired: string
+      validationEmail: string
+      validationMessageLength: string
+    }
   }
 }
 
@@ -80,62 +87,75 @@ export default function Contact({ dictionary }: ContactProps) {
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-2xl mx-auto"
-        >
-          <div className="glass-card p-8 rounded-2xl">
-            {/* Contact Info */}
-            <div className="space-y-6 mb-8">
-              {contactInfo.map((item, index) => (
-                <motion.a
-                  key={item.label}
-                  href={item.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                  className="flex items-center gap-4 group p-4 rounded-xl hover:bg-white/5 transition-colors"
-                >
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary-500/20 to-primary-700/20 flex items-center justify-center group-hover:shadow-glow-sm transition-all duration-300">
-                    <item.icon className="w-6 h-6 text-primary-400" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-400">{item.label}</p>
-                    <p className="text-lg text-white font-medium group-hover:text-primary-400 transition-colors">
-                      {item.value}
-                    </p>
-                  </div>
-                </motion.a>
-              ))}
-            </div>
-
-            {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: 0.6 }}
-              className="pt-6 border-t border-white/10"
-            >
-              <p className="text-gray-400 mb-4 text-center">{dictionary.findMe}</p>
-              <div className="flex justify-center gap-4">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 glass-card rounded-xl text-gray-300 hover:text-white hover:border-primary-500/50 transition-all duration-300 hover:-translate-y-1"
+        <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {/* Contact Info & Social */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <div className="glass-card p-8 rounded-2xl h-full">
+              {/* Contact Info */}
+              <div className="space-y-6 mb-8">
+                {contactInfo.map((item, index) => (
+                  <motion.a
+                    key={item.label}
+                    href={item.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                    className="flex items-center gap-4 group p-4 rounded-xl hover:bg-white/5 transition-colors"
                   >
-                    <social.icon className="w-5 h-5" />
-                    {social.name}
-                  </a>
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary-500/20 to-primary-700/20 flex items-center justify-center group-hover:shadow-glow-sm transition-all duration-300">
+                      <item.icon className="w-6 h-6 text-primary-400" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-400">{item.label}</p>
+                      <p className="text-lg text-white font-medium group-hover:text-primary-400 transition-colors">
+                        {item.value}
+                      </p>
+                    </div>
+                  </motion.a>
                 ))}
               </div>
+
+              {/* Social Links */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.6 }}
+                className="pt-6 border-t border-white/10"
+              >
+                <p className="text-gray-400 mb-4 text-center">{dictionary.findMe}</p>
+                <div className="flex justify-center gap-4">
+                  {socialLinks.map((social) => (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-6 py-3 glass-card rounded-xl text-gray-300 hover:text-white hover:border-primary-500/50 transition-all duration-300 hover:-translate-y-1"
+                    >
+                      <social.icon className="w-5 h-5" />
+                      {social.name}
+                    </a>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Contact Form */}
+          {dictionary.form && (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <ContactForm dictionary={dictionary.form} />
             </motion.div>
-          </div>
-        </motion.div>
+          )}
+        </div>
       </div>
     </section>
   )

@@ -158,12 +158,34 @@ Chatbot używa Google Gemini API. Aby go włączyć:
 2. Dodaj do `.env.local`: `GEMINI_API_KEY=AIza...`
 3. System prompt jest w `src/app/api/chat/route.ts` - możesz go dostosować
 
+### Formularz kontaktowy
+
+Formularz kontaktowy wysyła dane do webhooka n8n. Aby go skonfigurować:
+
+1. Utwórz webhook w n8n i skopiuj URL
+2. Dodaj zmienne środowiskowe:
+   - `N8N_WEBHOOK_URL` - URL webhooka n8n
+   - `N8N_WEBHOOK_TOKEN` - token autoryzacyjny (opcjonalny)
+
+**Testowanie lokalne (curl):**
+
+```bash
+curl -X POST http://localhost:3000/api/contact \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Test","email":"test@test.com","message":"Hello world testing","company":""}'
+```
+
+Formularz zawiera pole honeypot (`company`) do ochrony przed spamem.
+
 ## 🚀 Deployment
 
 ### Vercel (Zalecane)
 
 1. Połącz repozytorium GitHub z Vercel
-2. Dodaj zmienną środowiskową `GEMINI_API_KEY` w ustawieniach projektu
+2. Dodaj zmienne środowiskowe w Settings → Environment Variables:
+   - `GEMINI_API_KEY` - klucz API Gemini (chatbot)
+   - `N8N_WEBHOOK_URL` - URL webhooka n8n (formularz kontaktowy)
+   - `N8N_WEBHOOK_TOKEN` - token webhooka (opcjonalny)
 3. Deploy automatyczny przy każdym pushu
 
 ### Inne platformy

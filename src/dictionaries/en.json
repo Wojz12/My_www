@@ -286,7 +286,23 @@
         "emailLabel": "Email",
         "phoneLabel": "Phone",
         "locationLabel": "Location",
-        "locationValue": "Warsaw, Poland"
+        "locationValue": "Warsaw, Poland",
+        "formTitle": "Send me a message",
+        "form": {
+            "nameLabel": "Name",
+            "namePlaceholder": "Your name",
+            "emailLabel": "Email",
+            "emailPlaceholder": "your@email.com",
+            "messageLabel": "Message",
+            "messagePlaceholder": "Your message (min. 10 characters)",
+            "sendButton": "Send message",
+            "sending": "Sending...",
+            "successMessage": "Message sent! I'll get back to you as soon as possible.",
+            "errorMessage": "An error occurred. Please try again later.",
+            "validationRequired": "This field is required",
+            "validationEmail": "Please enter a valid email address",
+            "validationMessageLength": "Message must be at least 10 characters"
+        }
     },
     "additionalInfo": {
         "achievementTitle": "Winner of \"Dream Job\" Contest",

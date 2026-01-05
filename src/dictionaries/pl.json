@@ -286,7 +286,23 @@
         "emailLabel": "Email",
         "phoneLabel": "Telefon",
         "locationLabel": "Lokalizacja",
-        "locationValue": "Warszawa, Polska"
+        "locationValue": "Warszawa, Polska",
+        "formTitle": "Napisz do mnie",
+        "form": {
+            "nameLabel": "Imię",
+            "namePlaceholder": "Twoje imię",
+            "emailLabel": "Email",
+            "emailPlaceholder": "twoj@email.com",
+            "messageLabel": "Wiadomość",
+            "messagePlaceholder": "Twoja wiadomość (min. 10 znaków)",
+            "sendButton": "Wyślij wiadomość",
+            "sending": "Wysyłanie...",
+            "successMessage": "Wiadomość wysłana! Odpowiem najszybciej jak to możliwe.",
+            "errorMessage": "Wystąpił błąd. Spróbuj ponownie później.",
+            "validationRequired": "To pole jest wymagane",
+            "validationEmail": "Podaj poprawny adres email",
+            "validationMessageLength": "Wiadomość musi mieć min. 10 znaków"
+        }
     },
     "additionalInfo": {
         "achievementTitle": "Zwycięzca konkursu \"Praca jak ze snu\"",
