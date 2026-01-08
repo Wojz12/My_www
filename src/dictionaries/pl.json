@@ -7,6 +7,7 @@
         "skills": "Umiejętności",
         "projects": "Projekty",
         "blog": "Blog",
+        "aiProgres": "AI Progres",
         "contact": "Kontakt"
     },
     "hero": {
@@ -372,6 +373,40 @@
         "rights": "Wszelkie prawa zastrzeżone.",
         "madeWith": "Zrobione z",
         "inWarsaw": "w Warszawie"
+    },
+    "aiProgres": {
+        "title": "AI Progres",
+        "subtitle": "Postęp w rozwoju sztucznej inteligencji",
+        "heroDescription": "Dashboard pokazujący kluczowe wskaźniki zbliżania się do AGI",
+        "bestModel": {
+            "title": "Najlepszy model na ARC-AGI",
+            "description": "Benchmark mierzący zdolność do rozumowania i generalizacji",
+            "modelName": "OpenAI o3",
+            "score": "88%"
+        },
+        "computePower": {
+            "title": "Moc obliczeniowa",
+            "description": "Wykładniczy wzrost dostępnej mocy obliczeniowej dla AI",
+            "value": "10²⁴ FLOP"
+        },
+        "agiDate": {
+            "title": "Prognozowana data AGI",
+            "description": "Szacunki ekspertów i społeczności",
+            "range": "2028-2032",
+            "source1": "Situational Awareness (Aschenbrenner)",
+            "source2": "AGI Timelines Dashboard"
+        },
+        "howToUnderstand": {
+            "title": "Jak to rozumieć?",
+            "content": "To wskaźniki trendu, nie 'prawda objawiona'. Benchmark ≠ AGI — wysokie wyniki pokazują postęp, ale nie gwarantują ogólnej inteligencji. Prognozy dat to scenariusze oparte na ekstrapolacji trendów, nie pewniki."
+        },
+        "sources": {
+            "title": "Źródła",
+            "updatedAt": "Ostatnia aktualizacja",
+            "arcAgi": "ARC-AGI Leaderboard",
+            "situational": "Situational Awareness",
+            "timelines": "AGI Timelines Dashboard"
+        }
     },
     "metadata": {
         "title": "Wojciech Soczyński | AI & Cognitive Science",

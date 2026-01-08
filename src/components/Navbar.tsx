@@ -16,6 +16,7 @@ interface NavbarProps {
     skills: string
     projects: string
     blog: string
+    aiProgres: string
     contact: string
   }
 }
@@ -32,6 +33,7 @@ export default function Navbar({ lang, dictionary }: NavbarProps) {
     { name: dictionary.skills, href: `/${lang}/#skills` },
     { name: dictionary.projects, href: `/${lang}/#projects` },
     { name: dictionary.blog, href: `/${lang}/blog` },
+    { name: dictionary.aiProgres, href: `/${lang}/ai-progres` },
     { name: dictionary.contact, href: `/${lang}/#contact` },
   ]
 

@@ -7,6 +7,7 @@
         "skills": "Skills",
         "projects": "Projects",
         "blog": "Blog",
+        "aiProgres": "AI Progress",
         "contact": "Contact"
     },
     "hero": {
@@ -372,6 +373,40 @@
         "rights": "All rights reserved.",
         "madeWith": "Made with",
         "inWarsaw": "in Warsaw"
+    },
+    "aiProgres": {
+        "title": "AI Progress",
+        "subtitle": "Progress in artificial intelligence development",
+        "heroDescription": "Dashboard showing key indicators of approaching AGI",
+        "bestModel": {
+            "title": "Best model on ARC-AGI",
+            "description": "Benchmark measuring reasoning and generalization ability",
+            "modelName": "OpenAI o3",
+            "score": "88%"
+        },
+        "computePower": {
+            "title": "Compute Power",
+            "description": "Exponential growth of available compute for AI",
+            "value": "10²⁴ FLOP"
+        },
+        "agiDate": {
+            "title": "Predicted AGI Date",
+            "description": "Expert and community estimates",
+            "range": "2028-2032",
+            "source1": "Situational Awareness (Aschenbrenner)",
+            "source2": "AGI Timelines Dashboard"
+        },
+        "howToUnderstand": {
+            "title": "How to understand this?",
+            "content": "These are trend indicators, not 'absolute truth'. Benchmark ≠ AGI — high scores show progress but don't guarantee general intelligence. Date predictions are scenarios based on trend extrapolation, not certainties."
+        },
+        "sources": {
+            "title": "Sources",
+            "updatedAt": "Last updated",
+            "arcAgi": "ARC-AGI Leaderboard",
+            "situational": "Situational Awareness",
+            "timelines": "AGI Timelines Dashboard"
+        }
     },
     "metadata": {
         "title": "Wojciech Soczyński | AI & Cognitive Science",
