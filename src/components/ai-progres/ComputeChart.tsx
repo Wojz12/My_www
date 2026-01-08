@@ -1,7 +1,7 @@
 'use client'
 
-// Mock data representing exponential compute growth (in log scale for visualization)
-const mockData = [
+// Default data if no props provided
+const defaultData = [
     { year: 2012, value: 10 },
     { year: 2014, value: 15 },
     { year: 2016, value: 22 },
@@ -16,16 +16,21 @@ const mockData = [
     { year: 2025, value: 98 },
 ]
 
-export default function ComputeChart() {
+interface ComputeChartProps {
+    data?: { year: number; value: number }[]
+}
+
+export default function ComputeChart({ data = defaultData }: ComputeChartProps) {
+    const chartData = data.length > 0 ? data : defaultData
     const width = 300
     const height = 80
     const padding = 10
 
-    const maxValue = Math.max(...mockData.map((d) => d.value))
-    const minValue = Math.min(...mockData.map((d) => d.value))
+    const maxValue = Math.max(...chartData.map((d) => d.value))
+    const minValue = Math.min(...chartData.map((d) => d.value))
 
     const getX = (index: number) => {
-        return padding + (index / (mockData.length - 1)) * (width - 2 * padding)
+        return padding + (index / (chartData.length - 1)) * (width - 2 * padding)
     }
 
     const getY = (value: number) => {
@@ -37,7 +42,7 @@ export default function ComputeChart() {
     }
 
     // Create SVG path for the line
-    const pathData = mockData
+    const pathData = chartData
         .map((point, index) => {
             const x = getX(index)
             const y = getY(point.value)
@@ -46,7 +51,11 @@ export default function ComputeChart() {
         .join(' ')
 
     // Create gradient area path
-    const areaPath = `${pathData} L ${getX(mockData.length - 1)} ${height - padding} L ${padding} ${height - padding} Z`
+    const areaPath = `${pathData} L ${getX(chartData.length - 1)} ${height - padding} L ${padding} ${height - padding} Z`
+
+    // Get year range from data
+    const startYear = chartData[0]?.year || 2012
+    const endYear = chartData[chartData.length - 1]?.year || 2025
 
     return (
         <div className="w-full overflow-hidden">
@@ -89,7 +98,7 @@ export default function ComputeChart() {
                 />
 
                 {/* Data points */}
-                {mockData.map((point, index) => (
+                {chartData.map((point, index) => (
                     <circle
                         key={index}
                         cx={getX(index)}
@@ -101,8 +110,8 @@ export default function ComputeChart() {
                 ))}
             </svg>
             <div className="flex justify-between text-xs text-gray-500 mt-1">
-                <span>2012</span>
-                <span>2025</span>
+                <span>{startYear}</span>
+                <span>{endYear}</span>
             </div>
         </div>
     )
