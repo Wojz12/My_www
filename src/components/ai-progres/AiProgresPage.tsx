@@ -3,9 +3,10 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Brain, Cpu, Calendar, HelpCircle, ExternalLink } from 'lucide-react'
+import { Brain, Cpu, Calendar, HelpCircle, ExternalLink, Loader2 } from 'lucide-react'
 import MetricCard from './MetricCard'
 import ComputeChart from './ComputeChart'
+import { useAiMetrics } from './useAiMetrics'
 
 interface AiProgresPageProps {
     dictionary: {
@@ -48,6 +49,25 @@ export default function AiProgresPage({ dictionary }: AiProgresPageProps) {
     const ref = useRef(null)
     const isInView = useInView(ref, { once: true, margin: '-100px' })
 
+    // Fetch live data from API
+    const { data: apiData, loading } = useAiMetrics()
+
+    // Use API data if available, fallback to dictionary
+    const bestModelName = apiData?.bestModel?.name || dictionary.bestModel.modelName
+    const bestModelScore = apiData?.bestModel?.score
+        ? `${apiData.bestModel.score}%`
+        : dictionary.bestModel.score
+    const computeValue = apiData?.computePower?.value
+        ? `${apiData.computePower.value} ${apiData.computePower.unit}`
+        : dictionary.computePower.value
+    const computeData = apiData?.computePower?.data
+    const agiRange = apiData?.agiDate
+        ? `${apiData.agiDate.rangeStart}-${apiData.agiDate.rangeEnd}`
+        : dictionary.agiDate.range
+    const lastUpdated = apiData?.lastUpdated
+        ? new Date(apiData.lastUpdated).toLocaleDateString()
+        : new Date().toLocaleDateString()
+
     return (
         <section className="relative py-20" ref={ref}>
             <div className="section-container">
@@ -65,6 +85,12 @@ export default function AiProgresPage({ dictionary }: AiProgresPageProps) {
                     <p className="text-gray-400 mt-4 max-w-xl mx-auto">
                         {dictionary.heroDescription}
                     </p>
+                    {loading && (
+                        <div className="flex items-center justify-center gap-2 mt-4 text-primary-400">
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                            <span className="text-sm">Loading live data...</span>
+                        </div>
+                    )}
                 </motion.div>
 
                 {/* Metrics Grid */}
@@ -73,8 +99,8 @@ export default function AiProgresPage({ dictionary }: AiProgresPageProps) {
                     <MetricCard
                         icon={Brain}
                         title={dictionary.bestModel.title}
-                        value={dictionary.bestModel.modelName}
-                        subValue={dictionary.bestModel.score}
+                        value={bestModelName}
+                        subValue={bestModelScore}
                         description={dictionary.bestModel.description}
                         delay={0}
                         isInView={isInView}
@@ -92,7 +118,7 @@ export default function AiProgresPage({ dictionary }: AiProgresPageProps) {
                                 <Cpu className="w-6 h-6 text-primary-400" />
                             </div>
                             <span className="text-2xl font-bold text-primary-400">
-                                {dictionary.computePower.value}
+                                {computeValue}
                             </span>
                         </div>
                         <h3 className="text-xl font-semibold text-white mb-2">
@@ -101,14 +127,14 @@ export default function AiProgresPage({ dictionary }: AiProgresPageProps) {
                         <p className="text-gray-400 text-sm mb-4">
                             {dictionary.computePower.description}
                         </p>
-                        <ComputeChart />
+                        <ComputeChart data={computeData} />
                     </motion.div>
 
                     {/* AGI Date Card */}
                     <MetricCard
                         icon={Calendar}
                         title={dictionary.agiDate.title}
-                        value={dictionary.agiDate.range}
+                        value={agiRange}
                         description={dictionary.agiDate.description}
                         delay={0.2}
                         isInView={isInView}
@@ -172,7 +198,8 @@ export default function AiProgresPage({ dictionary }: AiProgresPageProps) {
                         </a>
                     </div>
                     <p className="text-xs text-gray-500 mt-4">
-                        {dictionary.sources.updatedAt}: {new Date().toLocaleDateString()}
+                        {dictionary.sources.updatedAt}: {lastUpdated}
+                        {apiData && <span className="ml-2 text-primary-400">• Live data</span>}
                     </p>
                 </motion.div>
             </div>
