@@ -379,33 +379,82 @@
         "subtitle": "Progress in artificial intelligence development",
         "heroDescription": "Dashboard showing key indicators of approaching AGI",
         "bestModel": {
-            "title": "Best model on ARC-AGI",
-            "description": "Benchmark measuring reasoning and generalization ability",
-            "modelName": "OpenAI o3",
-            "score": "88%"
+            "title": "ARC-AGI 2 Leaderboard",
+            "description": "ARC-AGI 2 is a benchmark measuring AI's ability for abstract reasoning and generalization — solving novel problems without prior training. It tests true cognitive flexibility, not just pattern matching.",
+            "leaderboardTitle": "Top 5 AI Systems",
+            "leaderboard": [
+                {
+                    "rank": 1,
+                    "model": "GPT-5.2 Pro (High)",
+                    "author": "OpenAI",
+                    "score": "54.2%"
+                },
+                {
+                    "rank": 2,
+                    "model": "Gemini 3 Pro (Refine.)",
+                    "author": "Poetiq",
+                    "score": "54.0%"
+                },
+                {
+                    "rank": 3,
+                    "model": "GPT-5.2 (X-High)",
+                    "author": "OpenAI",
+                    "score": "52.9%"
+                },
+                {
+                    "rank": 4,
+                    "model": "Gemini 3 Deep Think",
+                    "author": "Google",
+                    "score": "45.1%"
+                },
+                {
+                    "rank": 5,
+                    "model": "GPT-5.2 (High)",
+                    "author": "OpenAI",
+                    "score": "43.3%"
+                }
+            ]
         },
         "computePower": {
             "title": "Compute Power",
             "description": "Exponential growth of available compute for AI",
-            "value": "10²⁴ FLOP"
+            "value": "10²⁴ FLOP",
+            "longDescription": "The chart shows computing power per dollar (adjusted for inflation). On a logarithmic scale, it shows a smooth line — constant exponential growth since the first programmable computer in 1939, despite wars and crises. When one type of hardware stops being used, the growth rate remains unchanged. The trend spans relays, vacuum tubes, transistors, and integrated circuits — it doesn't rely on any specific paradigm like Moore's Law.",
+            "articleLink": "Read more: Why Most of Us Fail to Grasp Coming Exponential Gains in AI"
         },
         "agiDate": {
             "title": "Predicted AGI Date",
-            "description": "Expert and community estimates",
-            "range": "2028-2032",
-            "source1": "Situational Awareness (Aschenbrenner)",
-            "source2": "AGI Timelines Dashboard"
+            "description": "Predictions from leading AI experts",
+            "range": "2026-2045",
+            "industryLeadersTitle": "Industry Leaders (CEO, Founders)",
+            "industryLeaders": [
+                "Dario Amodei (Anthropic): 2026-2027",
+                "Nikola Jurkovic (Harvard AI / METR): 2027",
+                "Sergey Brin (Google): 2028-2032",
+                "Eric Schmidt (ex-Google): 2028-2031",
+                "Mustafa Suleyman (Microsoft AI): 2028-2032",
+                "James Betker (OpenAI): 2028-2030",
+                "Demis Hassabis (DeepMind): 2030-2035",
+                "Ray Kurzweil (Google): 2029"
+            ],
+            "researchersTitle": "Scientists / Academic Researchers",
+            "researchers": [
+                "Geoffrey Hinton: 2029-2045",
+                "Yann LeCun (Meta): 2030-2035",
+                "Andrew Ng: 2030-2040",
+                "Andrej Karpathy: 2033-2037"
+            ]
         },
         "howToUnderstand": {
-            "title": "How to understand this?",
-            "content": "These are trend indicators, not 'absolute truth'. Benchmark ≠ AGI — high scores show progress but don't guarantee general intelligence. Date predictions are scenarios based on trend extrapolation, not certainties."
+            "title": "How to interpret this?",
+            "content": "These indicators illustrate trends in AI development, but are not 'absolute truth'. High benchmark scores ≠ AGI — they show progress but don't guarantee general intelligence. Date predictions come from leading AI researchers and industry leaders, based on trend extrapolation and current capabilities. Remember: these are scenarios, not certainties."
         },
         "sources": {
             "title": "Sources",
             "updatedAt": "Last updated",
-            "arcAgi": "ARC-AGI Leaderboard",
+            "arcAgi": "ARC-AGI 2 Leaderboard",
             "situational": "Situational Awareness",
-            "timelines": "AGI Timelines Dashboard"
+            "agiClock": "The AGI Clock"
         }
     },
     "metadata": {

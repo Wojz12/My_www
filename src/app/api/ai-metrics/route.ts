@@ -30,11 +30,11 @@ let cachedMetrics = {
         lastUpdated: new Date().toISOString(),
     },
     agiDate: {
-        rangeStart: 2028,
-        rangeEnd: 2032,
+        rangeStart: 2026,
+        rangeEnd: 2035,
         sources: [
-            { name: 'Situational Awareness (Aschenbrenner)', url: 'https://situational-awareness.ai/' },
-            { name: 'AGI Timelines Dashboard', url: 'https://ai-timelines.com/' },
+            { name: 'Sam Altman (OpenAI): 2025-2027', url: 'https://openai.com/' },
+            { name: 'Demis Hassabis (DeepMind): 2030-2035', url: 'https://deepmind.google/' },
         ],
         lastUpdated: new Date().toISOString(),
     },
