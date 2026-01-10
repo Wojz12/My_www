@@ -1,11 +1,7 @@
-'use server'
-
 import { NextRequest, NextResponse } from 'next/server'
-import { promises as fs } from 'fs'
-import path from 'path'
 
 // API Key for n8n webhook authentication
-const API_KEY = process.env.ARC_AGI_UPDATE_KEY || 'your-secret-key-here'
+const API_KEY = process.env.ARC_AGI_UPDATE_KEY || 'default-key-12345'
 
 interface LeaderboardEntry {
     rank: number
@@ -18,13 +14,30 @@ interface UpdatePayload {
     leaderboard: LeaderboardEntry[]
 }
 
+// In-memory storage (resets on serverless cold start)
+// For production, use a database like Supabase, MongoDB, or Vercel KV
+let cachedLeaderboard: LeaderboardEntry[] = [
+    { rank: 1, model: "GPT-5.2 Pro (High)", author: "OpenAI", score: "54.2%" },
+    { rank: 2, model: "Gemini 3 Pro (Refine.)", author: "Poetiq", score: "54.0%" },
+    { rank: 3, model: "GPT-5.2 (X-High)", author: "OpenAI", score: "52.9%" },
+    { rank: 4, model: "Gemini 3 Deep Think", author: "Google", score: "45.1%" },
+    { rank: 5, model: "GPT-5.2 (High)", author: "OpenAI", score: "43.3%" }
+]
+
+let lastUpdated: string = new Date().toISOString()
+
 export async function POST(request: NextRequest) {
     try {
         // Verify API key
         const authHeader = request.headers.get('authorization')
-        if (!authHeader || authHeader !== `Bearer ${API_KEY}`) {
+        const expectedAuth = `Bearer ${API_KEY}`
+
+        console.log('Received auth:', authHeader)
+        console.log('Expected auth:', expectedAuth)
+
+        if (!authHeader || authHeader !== expectedAuth) {
             return NextResponse.json(
-                { success: false, error: 'Unauthorized' },
+                { success: false, error: 'Unauthorized', receivedAuth: authHeader?.substring(0, 20) },
                 { status: 401 }
             )
         }
@@ -47,38 +60,29 @@ export async function POST(request: NextRequest) {
                 typeof entry.score !== 'string'
             ) {
                 return NextResponse.json(
-                    { success: false, error: 'Invalid leaderboard entry format' },
+                    { success: false, error: 'Invalid leaderboard entry format', received: entry },
                     { status: 400 }
                 )
             }
         }
 
-        // Update dictionaries
-        const dictionariesPath = path.join(process.cwd(), 'src', 'dictionaries')
-        const languages = ['en', 'pl']
+        // Update in-memory cache
+        cachedLeaderboard = body.leaderboard.slice(0, 5)
+        lastUpdated = new Date().toISOString()
 
-        for (const lang of languages) {
-            const filePath = path.join(dictionariesPath, `${lang}.json`)
-            const content = await fs.readFile(filePath, 'utf-8')
-            const dictionary = JSON.parse(content)
-
-            // Update leaderboard
-            dictionary.aiProgres.bestModel.leaderboard = body.leaderboard.slice(0, 5)
-
-            // Write back
-            await fs.writeFile(filePath, JSON.stringify(dictionary, null, 4), 'utf-8')
-        }
+        console.log('Leaderboard updated:', cachedLeaderboard)
 
         return NextResponse.json({
             success: true,
-            message: 'Leaderboard updated successfully',
-            updatedAt: new Date().toISOString(),
-            entriesCount: body.leaderboard.length
+            message: 'Leaderboard updated successfully (in-memory cache)',
+            updatedAt: lastUpdated,
+            entriesCount: cachedLeaderboard.length,
+            note: 'For persistent storage, connect to a database like Supabase or Vercel KV'
         })
     } catch (error) {
         console.error('Error updating leaderboard:', error)
         return NextResponse.json(
-            { success: false, error: 'Internal server error' },
+            { success: false, error: 'Internal server error', details: String(error) },
             { status: 500 }
         )
     }
@@ -86,12 +90,21 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
     return NextResponse.json({
-        message: 'ARC-AGI Leaderboard Update API',
-        usage: 'POST with Bearer token and leaderboard array',
-        example: {
-            leaderboard: [
-                { rank: 1, model: 'Model Name', author: 'Author', score: '50.0%' }
-            ]
+        message: 'ARC-AGI Leaderboard API',
+        status: 'active',
+        lastUpdated,
+        leaderboard: cachedLeaderboard,
+        usage: {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer YOUR_API_KEY',
+                'Content-Type': 'application/json'
+            },
+            body: {
+                leaderboard: [
+                    { rank: 1, model: 'Model Name', author: 'Author', score: '50.0%' }
+                ]
+            }
         }
     })
 }
