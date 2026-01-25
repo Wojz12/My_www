@@ -80,21 +80,12 @@ export async function POST(request: Request) {
       )
     }
 
-    // Build payload for n8n webhook
-    const n8nPayload = {
-      name: trimmedName,
-      email: trimmedEmail,
-      message: trimmedMessage,
-      source: 'website',
-      source_url: 'https://wojteksoczynski.vercel.app/pl#contact',
-    }
+    // Send email via Resend API
+    const resendApiKey = process.env.RESEND_API_KEY
+    const recipientEmail = process.env.CONTACT_EMAIL || 'soczynskiwojtek@gmail.com'
 
-    // Send to n8n webhook
-    const webhookUrl = process.env.N8N_WEBHOOK_URL
-    const webhookToken = process.env.N8N_WEBHOOK_TOKEN
-
-    if (!webhookUrl) {
-      console.error('N8N_WEBHOOK_URL is not configured')
+    if (!resendApiKey) {
+      console.error('RESEND_API_KEY is not configured')
       return NextResponse.json(
         { error: 'Server configuration error' },
         { status: 500 }
@@ -102,19 +93,34 @@ export async function POST(request: Request) {
     }
 
     try {
-      const n8nResponse = await fetch(webhookUrl, {
+      const resendResponse = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          ...(webhookToken && { 'x-webhook-token': webhookToken }),
+          'Authorization': `Bearer ${resendApiKey}`,
         },
-        body: JSON.stringify(n8nPayload),
+        body: JSON.stringify({
+          from: 'Portfolio Contact <onboarding@resend.dev>',
+          to: recipientEmail,
+          subject: `Nowa wiadomość od ${trimmedName}`,
+          html: `
+            <h2>Nowa wiadomość z formularza kontaktowego</h2>
+            <p><strong>Imię:</strong> ${trimmedName}</p>
+            <p><strong>Email:</strong> <a href="mailto:${trimmedEmail}">${trimmedEmail}</a></p>
+            <p><strong>Wiadomość:</strong></p>
+            <p style="white-space: pre-wrap; background: #f5f5f5; padding: 15px; border-radius: 8px;">${trimmedMessage}</p>
+            <hr>
+            <p style="color: #666; font-size: 12px;">Wysłano ze strony portfolio</p>
+          `,
+          reply_to: trimmedEmail,
+        }),
       })
 
-      if (!n8nResponse.ok) {
-        console.error('n8n webhook failed:', n8nResponse.status, await n8nResponse.text())
+      if (!resendResponse.ok) {
+        const errorData = await resendResponse.json()
+        console.error('Resend API failed:', resendResponse.status, errorData)
         return NextResponse.json(
-          { error: 'Failed to process message' },
+          { error: 'Failed to send message' },
           { status: 502 }
         )
       }
@@ -137,9 +143,9 @@ export async function POST(request: Request) {
         }
       )
     } catch (fetchError) {
-      console.error('Error calling n8n webhook:', fetchError)
+      console.error('Error sending email via Resend:', fetchError)
       return NextResponse.json(
-        { error: 'Failed to process message' },
+        { error: 'Failed to send message' },
         { status: 502 }
       )
     }
