@@ -13,7 +13,7 @@
     "hero": {
         "badge": "Cognitive Science Student | AI Enthusiast",
         "greeting": "Hi, I'm",
-        "description": "Cognitive science student passionate about AI, Large Language Models, and data analysis. Currently on Erasmus exchange at the University of the Basque Country in Spain. 🇪🇸",
+        "description": "Cognitive science student passionate about AI, Large Language Models, and data analysis. Currently preparing to write my bachelor's thesis. 🎓",
         "viewProjects": "View Projects",
         "contact": "Contact Me",
         "scroll": "Scroll down"
@@ -24,7 +24,7 @@
         "whoAmI": "Who am I?",
         "description1": "I am a <span class=\"text-primary-400 font-medium\">Cognitive Science</span> student at the University of Warsaw, passionate about artificial intelligence, Large Language Models, and data-driven reasoning.",
         "description2": "I have experience in <span class=\"text-primary-400 font-medium\">Python</span>, data analysis, and technical documentation. I specialize in building AI workflows and integrating language models into practical systems.",
-        "description3": "Currently, I am on an <span class=\"text-primary-400 font-medium\">Erasmus</span> exchange at the University of the Basque Country in Spain, broadening my horizons in cognitive and computational sciences.",
+        "description3": "After returning from my <span class=\"text-primary-400 font-medium\">Erasmus</span> exchange in Spain, I am now preparing to write my bachelor's thesis in cognitive science and AI.",
         "interests": [
             {
                 "title": "Cognitive Science",
@@ -35,8 +35,8 @@
                 "description": "Building systems based on Large Language Models and Retrieval-Augmented Generation."
             },
             {
-                "title": "Erasmus",
-                "description": "Developing myself on exchange at the University of the Basque Country in Spain."
+                "title": "Bachelor's Thesis",
+                "description": "Preparing to write my bachelor's thesis in cognitive science and AI."
             },
             {
                 "title": "Achievements",
@@ -360,7 +360,7 @@
             "cv": "I work as an AI Intern at OMNIVISER - developing Hexdag framework for AI agent orchestration. You can find my CV in the CV section.",
             "skills": "I specialize in: Python, LLMs, Prompt Engineering, RAG Systems, Git. I use ChatGPT, Cursor AI, Hugging Face.",
             "books": "I recommend: \"Brain Wash\" (Perlmutter), \"21 Lessons\" (Harari), \"How the Mind Works\" (Pinker), \"Deep Learning\" (Goodfellow), and \"The Last Economy\" (Mostaque).",
-            "education": "I study Cognitive Science at UW. Currently, I am on Erasmus at the University of the Basque Country in Spain.",
+            "education": "I study Cognitive Science at UW. I returned from Erasmus in Spain and am now preparing to write my bachelor's thesis.",
             "contest": "I won the \"Dream Job\" contest by Just Join IT. As a prize, I participated in a film about FinalSpark - a startup creating a computer based on human neurons. I was in Switzerland."
         }
     },

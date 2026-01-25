@@ -13,7 +13,7 @@
     "hero": {
         "badge": "Student Kognitywistyki | AI Enthusiast",
         "greeting": "Cześć, jestem",
-        "description": "Student kognitywistyki pasjonujący się sztuczną inteligencją, Large Language Models i analizą danych. Aktualnie na wymianie Erasmus na University of the Basque Country w Hiszpanii. 🇪🇸",
+        "description": "Student kognitywistyki pasjonujący się sztuczną inteligencją, Large Language Models i analizą danych. Obecnie przygotowuję się do pisania pracy licencjackiej. 🎓",
         "viewProjects": "Zobacz projekty",
         "contact": "Skontaktuj się",
         "scroll": "Przewiń w dół"
@@ -24,7 +24,7 @@
         "whoAmI": "Kim jestem?",
         "description1": "Jestem studentem <span class=\"text-primary-400 font-medium\">Kognitywistyki</span> na Uniwersytecie Warszawskim, pasjonującym się sztuczną inteligencją, Large Language Models i rozumowaniem opartym na danych.",
         "description2": "Mam doświadczenie w <span class=\"text-primary-400 font-medium\">Pythonie</span>, analizie danych i dokumentacji technicznej. Specjalizuję się w tworzeniu workflow AI i integrowaniu modeli językowych w praktyczne systemy.",
-        "description3": "Aktualnie realizuję wymianę <span class=\"text-primary-400 font-medium\">Erasmus</span> na University of the Basque Country w Hiszpanii, poszerzając swoje horyzonty w naukach kognitywnych i obliczeniowych.",
+        "description3": "Po powrocie z wymiany <span class=\"text-primary-400 font-medium\">Erasmus</span> w Hiszpanii, teraz przygotowuję się do pisania pracy licencjackiej z zakresu kognitywistyki i AI.",
         "interests": [
             {
                 "title": "Kognitywistyka",
@@ -35,8 +35,8 @@
                 "description": "Tworzę systemy oparte o Large Language Models i Retrieval-Augmented Generation."
             },
             {
-                "title": "Erasmus",
-                "description": "Rozwijam się na wymianie w University of the Basque Country w Hiszpanii."
+                "title": "Praca licencjacka",
+                "description": "Przygotowuję się do pisania pracy licencjackiej z kognitywistyki i AI."
             },
             {
                 "title": "Osiągnięcia",
@@ -360,7 +360,7 @@
             "cv": "Pracuję jako AI Intern w OMNIVISER - rozwijam framework Hexdag do orkiestracji agentów AI. CV znajdziesz w sekcji CV.",
             "skills": "Specjalizuję się w: Python, LLMs, Prompt Engineering, RAG Systems, Git. Używam ChatGPT, Cursor AI, Hugging Face.",
             "books": "Polecam: \"Mózg na detoksie\" (Perlmutter), \"21 lekcji\" (Harari), \"Jak działa umysł\" (Pinker), \"Deep Learning\" (Goodfellow) i \"The Last Economy\" (Mostaque).",
-            "education": "Studiuję Kognitywistykę na UW. Aktualnie jestem na Erasmusie na University of the Basque Country w Hiszpanii.",
+            "education": "Studiuję Kognitywistykę na UW. Wróciłem z Erasmusa w Hiszpanii i teraz przygotowuję się do pisania pracy licencjackiej.",
             "contest": "Wygrałem konkurs \"Praca jak ze snu\" z Just Join IT. W nagrodę brałem udział w filmie o FinalSpark - startupie tworzącym komputer na ludzkich neuronach. Byłem w Szwajcarii."
         }
     },
