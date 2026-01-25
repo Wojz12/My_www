@@ -144,9 +144,7 @@ export async function POST(request: Request) {
               </p>
               <p style="color: #374151; line-height: 1.6;">
                 W międzyczasie zapraszam do sprawdzenia moich projektów na 
-                <a href="https://github.com/Wojz12" style="color: #6366f1;">GitHubie</a> 
-                lub połączenia się na 
-                <a href="https://linkedin.com/in/wojciechsoczyński" style="color: #6366f1;">LinkedIn</a>.
+                <a href="https://github.com/Wojz12" style="color: #6366f1;">GitHubie</a>.
               </p>
               <p style="color: #374151; line-height: 1.6;">
                 Pozdrawiam,<br>
