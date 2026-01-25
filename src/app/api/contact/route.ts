@@ -125,6 +125,45 @@ export async function POST(request: Request) {
         )
       }
 
+      // Send auto-reply to the sender
+      await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${resendApiKey}`,
+        },
+        body: JSON.stringify({
+          from: 'Wojtek Soczyński <onboarding@resend.dev>',
+          to: trimmedEmail,
+          subject: 'Dziękuję za wiadomość! 👋',
+          html: `
+            <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+              <h2 style="color: #6366f1;">Cześć ${trimmedName}! 👋</h2>
+              <p style="color: #374151; line-height: 1.6;">
+                Dziękuję za Twoją wiadomość! Otrzymałem ją i postaram się odpowiedzieć najszybciej jak to możliwe.
+              </p>
+              <p style="color: #374151; line-height: 1.6;">
+                W międzyczasie zapraszam do sprawdzenia moich projektów na 
+                <a href="https://github.com/Wojz12" style="color: #6366f1;">GitHubie</a> 
+                lub połączenia się na 
+                <a href="https://linkedin.com/in/wojciechsoczyński" style="color: #6366f1;">LinkedIn</a>.
+              </p>
+              <p style="color: #374151; line-height: 1.6;">
+                Pozdrawiam,<br>
+                <strong>Wojtek Soczyński</strong>
+              </p>
+              <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;">
+              <p style="color: #9ca3af; font-size: 12px;">
+                To jest automatyczna odpowiedź. Nie odpowiadaj na tego maila.
+              </p>
+            </div>
+          `,
+        }),
+      }).catch(err => {
+        // Don't fail the whole request if auto-reply fails
+        console.error('Failed to send auto-reply:', err)
+      })
+
       console.log('Contact form submitted successfully:', {
         name: trimmedName,
         email: trimmedEmail,
