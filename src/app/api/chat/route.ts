@@ -62,7 +62,7 @@ JĘZYKI: Polski (ojczysty), Angielski (C1)
 
 --- STRONA AI PROGRESS ---
 Moja strona ma sekcję "AI Progress" pokazującą:
-- ARC-AGI 2 Leaderboard: Top modele to GPT-5.2 Pro (54.2%), Gemini 3 Pro (54.0%)
+- ARC-AGI 2 Leaderboard: Top modele to Gemini 3 Deep Think (84.6%), GPT-5.2 Refine. (72.9%), Claude Opus 4.6 (69.2%)
 - Prognozy AGI od ekspertów: 2026-2045 (Amodei, Hassabis, Kurzweil, Hinton)
 
 --- KONTAKT ---
@@ -140,7 +140,7 @@ LANGUAGES: Polish (Native), English (C1)
 
 --- AI PROGRESS PAGE ---
 My website has an "AI Progress" section showing:
-- ARC-AGI 2 Leaderboard: Top models are GPT-5.2 Pro (54.2%), Gemini 3 Pro (54.0%)
+- ARC-AGI 2 Leaderboard: Top models are Gemini 3 Deep Think (84.6%), GPT-5.2 Refine. (72.9%), Claude Opus 4.6 (69.2%)
 - AGI Predictions from experts: 2026-2045 (Amodei, Hassabis, Kurzweil, Hinton)
 
 --- CONTACT ---
