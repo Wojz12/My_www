@@ -391,27 +391,27 @@
                 },
                 {
                     "rank": 2,
-                    "model": "GPT-5.2 (Refine.)",
-                    "author": "Johan Land",
-                    "score": "72.9%"
+                    "model": "GPT-5.4 Pro (xHigh)",
+                    "author": "OpenAI",
+                    "score": "83.3%"
                 },
                 {
                     "rank": 3,
-                    "model": "Claude Opus 4.6 (120K, High)",
-                    "author": "Anthropic",
-                    "score": "69.2%"
+                    "model": "Gemini 3.1 Pro (Preview)",
+                    "author": "Google",
+                    "score": "77.1%"
                 },
                 {
                     "rank": 4,
-                    "model": "Claude Opus 4.6 (120K, Max)",
-                    "author": "Anthropic",
-                    "score": "68.8%"
+                    "model": "GPT-5.4 (xHigh)",
+                    "author": "OpenAI",
+                    "score": "74.0%"
                 },
                 {
                     "rank": 5,
-                    "model": "Claude Opus 4.6 (120K, Medium)",
-                    "author": "Anthropic",
-                    "score": "66.3%"
+                    "model": "GPT-5.2 (Refine.)",
+                    "author": "Johan Land",
+                    "score": "72.9%"
                 }
             ]
         },
