@@ -1,15 +1,20 @@
 # 🚀 Portfolio - Wojciech Soczyński
 
-Nowoczesna strona portfolio z blogiem, zbudowana w Next.js 14 z App Router i Tailwind CSS.
+> **Live:** [wojteksoczynski.vercel.app](https://wojteksoczynski.vercel.app/pl)
+
+Nowoczesna strona portfolio z blogiem, chatbotem AI i trackerem postępu AI, zbudowana w Next.js 14 z App Router i Tailwind CSS. Dostępna w dwóch wersjach językowych (PL/EN).
 
 ## ✨ Funkcje
 
 - 🎨 **Nowoczesny design** - Glassmorphism, gradienty fioletowe, animacje
 - 📱 **Responsywność** - Pełna obsługa mobile i desktop
+- 🌍 **Internacjonalizacja (i18n)** - Wersja polska i angielska
 - 📝 **System blogowy** - Recenzje książek w formacie Markdown
-- 💬 **Chatbot AI** - Podłączony pod Google Gemini API
+- 💬 **Chatbot AI** - OpenAI GPT (z opcjonalnym Google Gemini)
 - 📄 **Sekcja CV** - Z możliwością pobrania PDF
-- 📧 **Sekcja Kontakt** - Dane kontaktowe i social media
+- 📧 **Formularz kontaktowy** - Resend API z auto-reply i rate limiting
+- 📊 **AI Progres** - Śledzenie postępu AI (ARC-AGI-2 leaderboard)
+- 🖼️ **Galeria** - Zdjęcia i wspomnienia
 - 🔍 **SEO** - Pełna optymalizacja metadanych
 
 ## 🛠️ Technologie
@@ -18,8 +23,9 @@ Nowoczesna strona portfolio z blogiem, zbudowana w Next.js 14 z App Router i Tai
 - [TypeScript](https://www.typescriptlang.org/) - Typowanie
 - [Tailwind CSS](https://tailwindcss.com/) - Style
 - [Framer Motion](https://www.framer.com/motion/) - Animacje
-- [React Markdown](https://github.com/remarkjs/react-markdown) - Renderowanie Markdown
-- [Google Gemini API](https://ai.google.dev/) - Chatbot AI
+- [React Markdown](https://github.com/remarkjs/react-markdown) / [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote) - Renderowanie Markdown/MDX
+- [OpenAI API](https://platform.openai.com/) - Chatbot AI
+- [Resend](https://resend.com/) - Wysyłka e-maili (formularz kontaktowy)
 - [Lucide Icons](https://lucide.dev/) - Ikony
 
 ## 📁 Struktura projektu
@@ -28,16 +34,19 @@ Nowoczesna strona portfolio z blogiem, zbudowana w Next.js 14 z App Router i Tai
 ├── content/
 │   └── blog/              # Posty blogowe (.md) - recenzje książek
 ├── public/
-│   ├── cv/
-│   │   └── cv.pdf         # CV do pobrania
+│   ├── cv/                # CV do pobrania (PDF)
 │   └── images/
 │       ├── profile.jpg    # Zdjęcie profilowe
 │       ├── blog/          # Okładki książek
-│       └── szwajcaria.jpg # Zdjęcia
+│       └── ...            # Zdjęcia galerii
 ├── src/
-│   ├── app/               # App Router
-│   │   ├── api/           # API Routes (chat, contact)
-│   │   └── blog/          # Strony bloga
+│   ├── app/
+│   │   ├── [lang]/        # i18n routing (pl/en)
+│   │   │   ├── blog/      # Strony bloga
+│   │   │   ├── gallery/   # Galeria zdjęć
+│   │   │   ├── ai-progres/# Tracker postępu AI
+│   │   │   └── page.tsx   # Strona główna
+│   │   └── api/           # API Routes (chat, contact)
 │   ├── components/        # Komponenty React
 │   │   ├── sections/      # Sekcje strony głównej
 │   │   ├── blog/          # Komponenty bloga
@@ -67,17 +76,22 @@ npm install
 
 ```bash
 # Skopiuj plik zmiennych środowiskowych
-cp env.example .env.local
+copy env.example .env.local   # Windows
+cp env.example .env.local     # Mac/Linux
 ```
 
 Edytuj `.env.local` i dodaj:
 
 ```env
-# Google Gemini API Key (dla chatbota)
-GEMINI_API_KEY=AIza...
+# OpenAI API Key (chatbot) - wymagane
+OPENAI_API_KEY=sk-...
+
+# Resend API Key (formularz kontaktowy) - wymagane
+RESEND_API_KEY=re_...
 ```
 
-Uzyskaj klucz API: [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
+- Klucz OpenAI: [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+- Klucz Resend: [resend.com](https://resend.com)
 
 ### 3. Uruchomienie
 
@@ -152,30 +166,24 @@ colors: {
 
 ### Chatbot
 
-Chatbot używa Google Gemini API. Aby go włączyć:
+Chatbot używa OpenAI API (domyślnie gpt-4o-mini). Aby go włączyć:
 
-1. Uzyskaj klucz API: [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
-2. Dodaj do `.env.local`: `GEMINI_API_KEY=AIza...`
+1. Uzyskaj klucz API: [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+2. Dodaj do `.env.local`: `OPENAI_API_KEY=sk-...`
 3. System prompt jest w `src/app/api/chat/route.ts` - możesz go dostosować
 
 ### Formularz kontaktowy
 
-Formularz kontaktowy wysyła dane do webhooka n8n. Aby go skonfigurować:
+Formularz kontaktowy wysyła e-maile przez Resend API (z auto-reply do nadawcy):
 
-1. Utwórz webhook w n8n i skopiuj URL
-2. Dodaj zmienne środowiskowe:
-   - `N8N_WEBHOOK_URL` - URL webhooka n8n
-   - `N8N_WEBHOOK_TOKEN` - token autoryzacyjny (opcjonalny)
+1. Uzyskaj klucz API: [resend.com](https://resend.com)
+2. Dodaj do `.env.local`: `RESEND_API_KEY=re_...`
+3. Opcjonalnie ustaw `CONTACT_EMAIL` (domyślnie: soczynskiwojtek@gmail.com)
 
-**Testowanie lokalne (curl):**
-
-```bash
-curl -X POST http://localhost:3000/api/contact \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Test","email":"test@test.com","message":"Hello world testing","company":""}'
-```
-
-Formularz zawiera pole honeypot (`company`) do ochrony przed spamem.
+Formularz zawiera:
+- Rate limiting (5 requestów / 15 min na IP)
+- Pole honeypot (`company`) do ochrony przed spamem
+- Automatyczną odpowiedź do nadawcy
 
 ## 🚀 Deployment
 
@@ -183,9 +191,9 @@ Formularz zawiera pole honeypot (`company`) do ochrony przed spamem.
 
 1. Połącz repozytorium GitHub z Vercel
 2. Dodaj zmienne środowiskowe w Settings → Environment Variables:
-   - `GEMINI_API_KEY` - klucz API Gemini (chatbot)
-   - `N8N_WEBHOOK_URL` - URL webhooka n8n (formularz kontaktowy)
-   - `N8N_WEBHOOK_TOKEN` - token webhooka (opcjonalny)
+   - `OPENAI_API_KEY` - klucz OpenAI (chatbot)
+   - `RESEND_API_KEY` - klucz Resend (formularz kontaktowy)
+   - `CONTACT_EMAIL` - email odbiorcy (opcjonalny)
 3. Deploy automatyczny przy każdym pushu
 
 ### Inne platformy
