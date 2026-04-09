@@ -175,6 +175,10 @@
                 "skills": [
                     "ChatGPT",
                     "Cursor AI",
+                    "Codex CLI",
+                    "Claude",
+                    "Claude Code",
+                    "Replit",
                     "Hugging Face",
                     "LangChain"
                 ]
@@ -261,6 +265,18 @@
             {
                 "title": "Cursor AI",
                 "description": "My main code editor. An AI-native IDE that revolutionizes the way software is written, allowing for full-file editing and refactoring in natural language."
+            },
+            {
+                "title": "Codex CLI",
+                "description": "OpenAI's terminal-based coding agent. Autonomously analyzes code, proposes changes, and executes programming tasks directly from the command line."
+            },
+            {
+                "title": "Claude",
+                "description": "Advanced AI model by Anthropic. I use it for analysis, reasoning, code writing, and complex tasks requiring deep contextual understanding."
+            },
+            {
+                "title": "Claude Code",
+                "description": "Anthropic's terminal-based coding agent. A CLI programming tool that understands the entire project context and helps with refactoring, debugging, and code creation."
             },
             {
                 "title": "Replit",
@@ -358,7 +374,7 @@
             "projects": "My main project is a RAG Question Answering system. I use BM25 + CrossEncoder + TinyLlama. Check GitHub: github.com/Wojz12/RAG_LLM_project",
             "contact": "Write to me! Email: soczynskiwojtek@gmail.com",
             "cv": "I work as an AI Intern at OMNIVISER - developing Hexdag framework for AI agent orchestration. You can find my CV in the CV section.",
-            "skills": "I specialize in: Python, LLMs, Prompt Engineering, RAG Systems, Git. I use ChatGPT, Cursor AI, Hugging Face.",
+            "skills": "I specialize in: Python, LLMs, Prompt Engineering, RAG Systems, Git. I use ChatGPT, Cursor AI, Codex CLI, Claude, Claude Code, Replit, Hugging Face. Currently learning OpenClaw.",
             "books": "I recommend: \"Brain Wash\" (Perlmutter), \"21 Lessons\" (Harari), \"How the Mind Works\" (Pinker), \"Deep Learning\" (Goodfellow), and \"The Last Economy\" (Mostaque).",
             "education": "I study Cognitive Science at UW. I returned from Erasmus in Spain and am now preparing to write my bachelor's thesis.",
             "contest": "I won the \"Dream Job\" contest by Just Join IT. As a prize, I participated in a film about FinalSpark - a startup creating a computer based on human neurons. I was in Switzerland."

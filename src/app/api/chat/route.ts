@@ -44,8 +44,9 @@ JĘZYKI: Polski (ojczysty), Angielski (C1)
 
 --- UMIEJĘTNOŚCI ---
 - Python, LLMs, Prompt Engineering, RAG Systems, Git
-- Narzędzia: ChatGPT, Cursor AI, Hugging Face, LangChain, Google Gemini
+- Narzędzia: ChatGPT, Cursor AI, Codex CLI, Claude, Claude Code, Replit, Hugging Face, LangChain, Google Gemini
 - Vibe Engineering: Filosofia pracy z AI jako kreatywnym partnerem
+- Obecnie uczę się: OpenClaw
 
 --- OSIĄGNIĘCIA ---
 - Zwycięzca konkursu "Praca jak ze snu" z Just Join IT
@@ -122,8 +123,9 @@ LANGUAGES: Polish (Native), English (C1)
 
 --- SKILLS ---
 - Python, LLMs, Prompt Engineering, RAG Systems, Git
-- Tools: ChatGPT, Cursor AI, Hugging Face, LangChain, Google Gemini
+- Tools: ChatGPT, Cursor AI, Codex CLI, Claude, Claude Code, Replit, Hugging Face, LangChain, Google Gemini
 - Vibe Engineering: Philosophy of working with AI as creative partner
+- Currently learning: OpenClaw
 
 --- ACHIEVEMENTS ---
 - Winner of "Dream Job" contest by Just Join IT
@@ -165,7 +167,7 @@ const fallbackResponses: Record<string, string> = {
   projects: 'Mój główny projekt to system RAG do Question Answering. Używam BM25 + CrossEncoder + TinyLlama. Sprawdź na GitHub: github.com/Wojz12/RAG_LLM_project',
   contact: 'Napisz do mnie! Email: soczynskiwojtek@gmail.com | Tel: +48 577 950 977 | GitHub: Wojz12',
   cv: 'Jestem AI Intern w OMNIVISER, gdzie pracuję nad frameworkiem Hexdag. Mam certyfikaty NVIDIA z LLM i RAG.',
-  skills: 'Specjalizuję się w: Python, LLMs, Prompt Engineering, RAG Systems, Git. Używam ChatGPT, Cursor AI, Hugging Face.',
+  skills: 'Specjalizuję się w: Python, LLMs, Prompt Engineering, RAG Systems, Git. Używam ChatGPT, Cursor AI, Codex CLI, Claude, Claude Code, Replit, Hugging Face. Uczę się OpenClaw.',
   experience: 'AI Intern @ OMNIVISER (framework Hexdag), wcześniej Reago Training i korepetycje z matmy. Szczegóły w sekcji Doświadczenie.',
 }
 

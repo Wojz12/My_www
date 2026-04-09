@@ -134,7 +134,7 @@ export default function Skills({ dictionary }: SkillsProps) {
           <div className="flex flex-wrap justify-center gap-3">
             {[
               'LangChain', 'Vector Databases', 'Transformers', 'Fine-tuning',
-              'Agent Systems', 'Semantic Search', 'NLP'
+              'Agent Systems', 'Semantic Search', 'NLP', 'OpenClaw'
             ].map((tech, index) => (
               <motion.span
                 key={tech}

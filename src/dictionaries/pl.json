@@ -175,6 +175,10 @@
                 "skills": [
                     "ChatGPT",
                     "Cursor AI",
+                    "Codex CLI",
+                    "Claude",
+                    "Claude Code",
+                    "Replit",
                     "Hugging Face",
                     "LangChain"
                 ]
@@ -261,6 +265,18 @@
             {
                 "title": "Cursor AI",
                 "description": "Mój główny edytor kodu. AI-native IDE, które rewolucjonizuje sposób pisania oprogramowania, pozwalając na edycję całych plików i refaktoryzację w języku naturalnym."
+            },
+            {
+                "title": "Codex CLI",
+                "description": "Terminalowy agent kodowania od OpenAI. Autonomicznie analizuje kod, proponuje zmiany i wykonuje zadania programistyczne bezpośrednio z linii poleceń."
+            },
+            {
+                "title": "Claude",
+                "description": "Zaawansowany model AI od Anthropic. Wykorzystuję go do analizy, rozumowania, pisania kodu i złożonych zadań wymagających głębokiego zrozumienia kontekstu."
+            },
+            {
+                "title": "Claude Code",
+                "description": "Terminalowy agent kodowania od Anthropic. Narzędzie do programowania w CLI, które rozumie cały kontekst projektu i pomaga w refaktoryzacji, debugowaniu i tworzeniu kodu."
             },
             {
                 "title": "Replit",
@@ -358,7 +374,7 @@
             "projects": "Mój główny projekt to system RAG do Question Answering. Używam BM25 + CrossEncoder + TinyLlama. Sprawdź na GitHub: github.com/Wojz12/RAG_LLM_project",
             "contact": "Napisz do mnie! Email: soczynskiwojtek@gmail.com | Tel: +48 577 950 977",
             "cv": "Pracuję jako AI Intern w OMNIVISER - rozwijam framework Hexdag do orkiestracji agentów AI. CV znajdziesz w sekcji CV.",
-            "skills": "Specjalizuję się w: Python, LLMs, Prompt Engineering, RAG Systems, Git. Używam ChatGPT, Cursor AI, Hugging Face.",
+            "skills": "Specjalizuję się w: Python, LLMs, Prompt Engineering, RAG Systems, Git. Używam ChatGPT, Cursor AI, Codex CLI, Claude, Claude Code, Replit, Hugging Face. Uczę się OpenClaw.",
             "books": "Polecam: \"Mózg na detoksie\" (Perlmutter), \"21 lekcji\" (Harari), \"Jak działa umysł\" (Pinker), \"Deep Learning\" (Goodfellow) i \"The Last Economy\" (Mostaque).",
             "education": "Studiuję Kognitywistykę na UW. Wróciłem z Erasmusa w Hiszpanii i teraz przygotowuję się do pisania pracy licencjackiej.",
             "contest": "Wygrałem konkurs \"Praca jak ze snu\" z Just Join IT. W nagrodę brałem udział w filmie o FinalSpark - startupie tworzącym komputer na ludzkich neuronach. Byłem w Szwajcarii."
