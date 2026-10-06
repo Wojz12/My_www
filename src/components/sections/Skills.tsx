@@ -16,10 +16,10 @@ interface SkillsProps {
       issuer: string
     }[]
     learningTitle: string
+    learning: string[]
   }
 }
 
-const learning = ['LangChain', 'Vector Databases', 'Transformers', 'Fine-tuning', 'Agent Systems', 'Semantic Search', 'NLP']
 
 export default function Skills({ dictionary }: SkillsProps) {
   return (
@@ -57,7 +57,7 @@ export default function Skills({ dictionary }: SkillsProps) {
         <Reveal delay={0.05} className="md:col-span-4">
           <h3 className="eyebrow mb-6">{dictionary.learningTitle}</h3>
           <div className="flex flex-wrap gap-2">
-            {learning.map((tech) => (
+            {dictionary.learning.map((tech) => (
               <span key={tech} className="chip">
                 {tech}
               </span>

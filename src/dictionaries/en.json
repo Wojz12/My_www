@@ -13,7 +13,7 @@
     "hero": {
         "badge": "Cognitive Science, UW | AI Builder",
         "greeting": "Hi, I'm",
-        "description": "Cognitive scientist from the University of Warsaw who builds products with AI. Currently developing Paralog; my bachelor's thesis examined whether language models really reason abstractly (ARC-AGI-2).",
+        "description": "Cognitive scientist from the University of Warsaw who builds products with AI. I co-create Paralog, a logistics system for emergency medical stations, and study E-business at SGH Warsaw School of Economics.",
         "viewProjects": "View Projects",
         "contact": "Contact Me",
         "scroll": "Scroll down"
@@ -22,8 +22,8 @@
         "title": "About Me",
         "subtitle": "Get to know me better - my interests, inspirations, and what drives me.",
         "whoAmI": "Who am I?",
-        "description1": "I studied <span class=\"text-primary-400 font-medium\">Cognitive Science</span> at the University of Warsaw. My bachelor's thesis analysed abstract reasoning in LLM-based systems through the ARC-AGI-2 benchmark.",
-        "description2": "I build with AI every day. I'm developing <span class=\"text-primary-400 font-medium\">Paralog</span> and work in an agentic stack: Claude Code, Codex and MCP, plus Neon and Railway. I have experience in Python, RAG systems and technical documentation.",
+        "description1": "I graduated in <span class=\"text-primary-400 font-medium\">Cognitive Science</span> from the University of Warsaw (BA). My thesis analysed abstract reasoning in LLM-based systems through the ARC-AGI-2 benchmark. I now study <span class=\"text-primary-400 font-medium\">E-business</span> at SGH Warsaw School of Economics.",
+        "description2": "I build with AI every day. I co-create <span class=\"text-primary-400 font-medium\">Paralog</span>, a system that brings all the logistics of an emergency medical station together, from the ambulance to headquarters. I work in an agentic stack: Claude Code, Codex and MCP, plus Neon and Railway.",
         "description3": "I'm back from an <span class=\"text-primary-400 font-medium\">Erasmus</span> exchange at the University of the Basque Country in Spain, where I broadened my knowledge of cognitive and computational sciences.",
         "interests": [
             {
@@ -36,7 +36,7 @@
             },
             {
                 "title": "Paralog",
-                "description": "The project I'm currently building: paralog.pl."
+                "description": "A system for emergency medical stations that I'm co-creating: paralog.pl."
             },
             {
                 "title": "Achievements",
@@ -55,8 +55,12 @@
         "educationTitle": "🎓 Education",
         "education": [
             {
+                "title": "E-business",
+                "desc": "SGH Warsaw School of Economics • in progress"
+            },
+            {
                 "title": "Cognitive Science (BA)",
-                "desc": "University of Warsaw • 2026 • thesis on ARC-AGI-2"
+                "desc": "University of Warsaw • completed 2026 • thesis on ARC-AGI-2"
             },
             {
                 "title": "Erasmus Exchange",
@@ -89,12 +93,17 @@
         "currently": "Currently",
         "experiences": [
             {
-                "title": "Founder & Developer",
-                "company": "Paralog",
+                "title": "Co-founder & Developer",
+                "company": "Paralog · Reago sp. z o.o.",
                 "location": "paralog.pl",
                 "period": "2026 - present",
-                "description": "Building my own product end to end: from idea and architecture to deployment. I work with AI agents (Claude Code, Codex) and MCP servers, on Neon and Railway infrastructure.",
-                "highlights": []
+                "description": "Co-creating Paralog, a system that brings all the logistics of an emergency medical station together, from the ambulance to headquarters. It replaces spreadsheets, paper forms and scattered programs with one platform, and is already running in pilot deployments.",
+                "highlights": [
+                    "Offline-capable PWA for ambulance crews",
+                    "Inventory with expiry tracking, consumption cards and procurement",
+                    "Invoices with OCR and KSeF integration, public procurement (PZP) contract reconciliation",
+                    "Building the product with AI agents (Claude Code, Codex) and MCP"
+                ]
             },
             {
                 "title": "AI Intern",
@@ -137,9 +146,15 @@
         ],
         "educationList": [
             {
-                "degree": "Cognitive Science (Bachelor's)",
+                "degree": "E-business",
+                "school": "SGH Warsaw School of Economics",
+                "period": "2026 - present",
+                "current": true
+            },
+            {
+                "degree": "Cognitive Science (BA, completed)",
                 "school": "University of Warsaw · thesis: abstract reasoning in LLMs (ARC-AGI-2), supervised by Dr Andrzej Mizera",
-                "period": "2023 - 06/2026"
+                "period": "2023 - 2026"
             },
             {
                 "degree": "Erasmus Exchange Program",
@@ -224,7 +239,18 @@
                 "issuer": "Cambridge"
             }
         ],
-        "learningTitle": "Currently Learning"
+        "learningTitle": "Currently Learning",
+        "learning": [
+            "Software development in the AI era",
+            "Software deployment",
+            "Agent Systems",
+            "LangChain",
+            "Vector Databases",
+            "Transformers",
+            "Fine-tuning",
+            "Semantic Search",
+            "NLP"
+        ]
     },
     "blog": {
         "title": "Blog",
@@ -247,8 +273,8 @@
         "projectList": [
             {
                 "title": "Paralog",
-                "description": "The product I'm currently building from scratch: from idea and architecture to production deployment.",
-                "longDescription": "How I work on Paralog:\n• Coding with AI agents: Claude Code and Codex\n• Integrations with tools and data through MCP servers\n• Postgres database on Neon, backend deployed on Railway\n• Iterative product building with fast user feedback"
+                "description": "A system for emergency medical stations: all the logistics in one place, from the ambulance to headquarters. It replaces spreadsheets, paper and scattered programs, and runs in pilot deployments.",
+                "longDescription": "What Paralog does:\n• Mobile app (PWA) for ambulance crews that works offline, with voice entries\n• Inventory with stock levels and expiry dates; consumption cards flow automatically from crews to management\n• Procurement with automatic vendor assignment\n• Invoices with OCR and KSeF integration, public procurement (PZP) contract reconciliation and cost allocation\n• Crew scheduling, equipment tracking with service history, and a full audit trail (who, what, when, why)\n\nI build it with AI agents (Claude Code, Codex) and MCP servers."
             },
             {
                 "title": "Bachelor's thesis: abstract reasoning in LLMs (ARC-AGI-2)",
@@ -385,12 +411,12 @@
         "fallback": {
             "default": "Hey! The chatbot is in demo mode. In the meantime, ask about my AI projects.",
             "greeting": "Hi! I'm Wojtek. Ask me about AI projects, cognitive science studies, or favorite books.",
-            "projects": "I'm currently building Paralog (paralog.pl). Earlier projects include a RAG Question Answering system (BM25 + CrossEncoder + TinyLlama): github.com/Wojz12/RAG_LLM_project",
+            "projects": "I'm co-creating Paralog (paralog.pl), a logistics system for emergency medical stations. Earlier projects include a RAG Question Answering system (BM25 + CrossEncoder + TinyLlama): github.com/Wojz12/RAG_LLM_project",
             "contact": "Write to me! Email: soczynskiwojtek@gmail.com",
-            "cv": "I'm building Paralog. Before that I was an AI Intern at OMNIVISER, working on the Hexdag framework for AI agent orchestration. You can find my CV in the CV section.",
+            "cv": "I'm co-creating Paralog (a system for emergency medical stations) and studying E-business at SGH. Before that I was an AI Intern at OMNIVISER, working on the Hexdag framework. You can find my CV in the CV section.",
             "skills": "Python, LLMs, RAG, MCP. I work daily with Claude Code and Codex, and run infrastructure on Neon and Railway.",
             "books": "I recommend: \"Brain Wash\" (Perlmutter), \"21 Lessons\" (Harari), \"How the Mind Works\" (Pinker), \"Deep Learning\" (Goodfellow), and \"The Last Economy\" (Mostaque).",
-            "education": "I studied Cognitive Science at the University of Warsaw. My bachelor's thesis was on abstract reasoning in LLMs using the ARC-AGI-2 benchmark. I also did an Erasmus exchange in Spain (UPV/EHU).",
+            "education": "I completed a BA in Cognitive Science at the University of Warsaw (thesis on abstract reasoning in LLMs using ARC-AGI-2), and I'm now studying E-business at SGH. I also did an Erasmus exchange in Spain (UPV/EHU).",
             "contest": "I won the \"Dream Job\" contest by Just Join IT. As a prize, I participated in a film about FinalSpark - a startup creating a computer based on human neurons. I was in Switzerland."
         }
     },
@@ -399,7 +425,7 @@
             "navigation": "Navigation",
             "more": "More"
         },
-        "description": "Cognitive scientist who builds products with AI. Currently developing Paralog. Always open to new projects and collaboration.",
+        "description": "Cognitive scientist who builds products with AI. Co-creating Paralog, a system for emergency medical stations. Always open to new projects and collaboration.",
         "rights": "All rights reserved.",
         "madeWith": "Made with",
         "inWarsaw": "in Warsaw"
@@ -489,6 +515,6 @@
     },
     "metadata": {
         "title": "Wojciech Soczyński | AI & Cognitive Science",
-        "description": "Portfolio of Wojciech Soczyński: cognitive science, AI, and building products with LLMs. Currently developing Paralog."
+        "description": "Portfolio of Wojciech Soczyński: cognitive science, AI, and building products with LLMs. Co-creating Paralog, a system for emergency medical stations."
     }
 }

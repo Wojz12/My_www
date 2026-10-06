@@ -13,7 +13,7 @@
     "hero": {
         "badge": "Kognitywistyka UW | AI Builder",
         "greeting": "Cześć, jestem",
-        "description": "Kognitywista z Uniwersytetu Warszawskiego, który buduje produkty z AI. Obecnie rozwijam Paralog, a w pracy licencjackiej badałem, czy modele językowe naprawdę rozumują abstrakcyjnie (ARC-AGI-2).",
+        "description": "Kognitywista z Uniwersytetu Warszawskiego, który buduje produkty z AI. Współtworzę Paralog, system do logistyki stacji pogotowia ratunkowego, i studiuję E-biznes w SGH.",
         "viewProjects": "Zobacz projekty",
         "contact": "Skontaktuj się",
         "scroll": "Przewiń w dół"
@@ -22,8 +22,8 @@
         "title": "O mnie",
         "subtitle": "Poznaj mnie bliżej - moje zainteresowania, inspiracje i to, co mnie napędza.",
         "whoAmI": "Kim jestem?",
-        "description1": "Studiowałem <span class=\"text-primary-400 font-medium\">Kognitywistykę</span> na Uniwersytecie Warszawskim. W pracy licencjackiej analizowałem abstrakcyjne rozumowanie w systemach opartych na LLM na przykładzie benchmarku ARC-AGI-2.",
-        "description2": "Na co dzień buduję z AI. Rozwijam <span class=\"text-primary-400 font-medium\">Paralog</span> i pracuję w agentowym stacku: Claude Code, Codex i MCP, a do tego Neon i Railway. Mam doświadczenie w Pythonie, systemach RAG i dokumentacji technicznej.",
+        "description1": "Ukończyłem <span class=\"text-primary-400 font-medium\">Kognitywistykę</span> na Uniwersytecie Warszawskim (licencjat). W pracy dyplomowej analizowałem abstrakcyjne rozumowanie w systemach opartych na LLM na przykładzie benchmarku ARC-AGI-2. Teraz studiuję <span class=\"text-primary-400 font-medium\">E-biznes</span> w Szkole Głównej Handlowej.",
+        "description2": "Na co dzień buduję z AI. Współtworzę <span class=\"text-primary-400 font-medium\">Paralog</span>, system, który łączy całą logistykę stacji pogotowia ratunkowego, od karetki po centralę. Pracuję w agentowym stacku: Claude Code, Codex i MCP, a do tego Neon i Railway.",
         "description3": "Wróciłem z wymiany <span class=\"text-primary-400 font-medium\">Erasmus</span> na University of the Basque Country w Hiszpanii, gdzie poszerzałem wiedzę z nauk kognitywnych i obliczeniowych.",
         "interests": [
             {
@@ -36,7 +36,7 @@
             },
             {
                 "title": "Paralog",
-                "description": "Projekt, który obecnie rozwijam: paralog.pl."
+                "description": "System dla stacji pogotowia, który obecnie współtworzę: paralog.pl."
             },
             {
                 "title": "Osiągnięcia",
@@ -55,8 +55,12 @@
         "educationTitle": "🎓 Wykształcenie",
         "education": [
             {
+                "title": "E-biznes",
+                "desc": "Szkoła Główna Handlowa w Warszawie • w trakcie"
+            },
+            {
                 "title": "Kognitywistyka (licencjat)",
-                "desc": "Uniwersytet Warszawski • 2026 • praca o ARC-AGI-2"
+                "desc": "Uniwersytet Warszawski • ukończone 2026 • praca o ARC-AGI-2"
             },
             {
                 "title": "Erasmus Exchange",
@@ -89,12 +93,17 @@
         "currently": "Aktualnie",
         "experiences": [
             {
-                "title": "Founder & Developer",
-                "company": "Paralog",
+                "title": "Co-founder & Developer",
+                "company": "Paralog · Reago sp. z o.o.",
                 "location": "paralog.pl",
                 "period": "2026 - obecnie",
-                "description": "Rozwijam własny produkt od pomysłu, przez architekturę, po wdrożenie. Pracuję z agentami AI (Claude Code, Codex) i serwerami MCP, na infrastrukturze Neon i Railway.",
-                "highlights": []
+                "description": "Współtworzę Paralog, system, który łączy całą logistykę stacji pogotowia ratunkowego, od karetki po centralę. Zastępuje arkusze, papierowe formularze i rozproszone programy jedną platformą. System działa już w pilotażowych wdrożeniach.",
+                "highlights": [
+                    "Aplikacja PWA dla zespołów karetek, działająca offline",
+                    "Magazyn z terminami ważności, karty zużycia i zamówienia",
+                    "Faktury z OCR i integracją z KSeF, rozliczanie umów PZP",
+                    "Budowa produktu z agentami AI (Claude Code, Codex) i MCP"
+                ]
             },
             {
                 "title": "AI Intern",
@@ -137,9 +146,15 @@
         ],
         "educationList": [
             {
-                "degree": "Kognitywistyka (studia licencjackie)",
+                "degree": "E-biznes",
+                "school": "Szkoła Główna Handlowa w Warszawie",
+                "period": "2026 - obecnie",
+                "current": true
+            },
+            {
+                "degree": "Kognitywistyka (licencjat, ukończone)",
                 "school": "Uniwersytet Warszawski · praca: abstrakcyjne rozumowanie LLM (ARC-AGI-2), promotor dr Andrzej Mizera",
-                "period": "2023 - 06/2026"
+                "period": "2023 - 2026"
             },
             {
                 "degree": "Erasmus Exchange Program",
@@ -224,7 +239,18 @@
                 "issuer": "Cambridge"
             }
         ],
-        "learningTitle": "Obecnie uczę się"
+        "learningTitle": "Obecnie uczę się",
+        "learning": [
+            "Wytwarzanie oprogramowania w erze AI",
+            "Wdrażanie oprogramowania",
+            "Agent Systems",
+            "LangChain",
+            "Vector Databases",
+            "Transformers",
+            "Fine-tuning",
+            "Semantic Search",
+            "NLP"
+        ]
     },
     "blog": {
         "title": "Blog",
@@ -247,8 +273,8 @@
         "projectList": [
             {
                 "title": "Paralog",
-                "description": "Produkt, który obecnie rozwijam od zera: od pomysłu i architektury po wdrożenie produkcyjne.",
-                "longDescription": "Jak pracuję nad Paralogiem:\n• Programowanie z agentami AI: Claude Code i Codex\n• Integracje z narzędziami i danymi przez serwery MCP\n• Baza danych Postgres na Neon, backend wdrażany na Railway\n• Iteracyjne budowanie produktu z szybkim feedbackiem od użytkowników"
+                "description": "System dla stacji pogotowia ratunkowego: cała logistyka w jednym miejscu, od karetki po centralę. Zastępuje arkusze, papier i rozproszone programy. Działa w pilotażowych wdrożeniach.",
+                "longDescription": "Co robi Paralog:\n• Aplikacja mobilna (PWA) dla zespołów karetek, działająca offline, z możliwością wpisów głosowych\n• Magazyn ze stanami i terminami ważności, karty zużycia trafiające automatycznie od zespołów do administracji\n• Zamówienia z automatycznym przypisaniem dostawców\n• Faktury z OCR i integracją z KSeF, rozliczanie umów PZP i alokacja kosztów\n• Grafik zespołów, ewidencja sprzętu z historią serwisów, pełny audyt zmian (kto, co, kiedy, dlaczego)\n\nBuduję go z agentami AI (Claude Code, Codex) i serwerami MCP."
             },
             {
                 "title": "Praca licencjacka: abstrakcyjne rozumowanie w LLM (ARC-AGI-2)",
@@ -385,12 +411,12 @@
         "fallback": {
             "default": "Hej! Chatbot działa w trybie demo. W międzyczasie zapytaj o moje projekty AI.",
             "greeting": "Cześć! Jestem Wojtek. Zapytaj mnie o projekty AI, studia kognitywistyki lub ulubione książki.",
-            "projects": "Obecnie rozwijam Paralog (paralog.pl). Wcześniej zbudowałem m.in. system RAG do Question Answering (BM25 + CrossEncoder + TinyLlama): github.com/Wojz12/RAG_LLM_project",
+            "projects": "Obecnie współtworzę Paralog (paralog.pl), system do logistyki stacji pogotowia ratunkowego. Wcześniej zbudowałem m.in. system RAG do Question Answering (BM25 + CrossEncoder + TinyLlama): github.com/Wojz12/RAG_LLM_project",
             "contact": "Napisz do mnie! Email: soczynskiwojtek@gmail.com | Tel: +48 577 950 977",
-            "cv": "Rozwijam Paralog. Wcześniej byłem AI Intern w OMNIVISER, gdzie pracowałem nad frameworkiem Hexdag do orkiestracji agentów AI. CV znajdziesz w sekcji CV.",
+            "cv": "Współtworzę Paralog (system dla stacji pogotowia) i studiuję E-biznes w SGH. Wcześniej byłem AI Intern w OMNIVISER, gdzie pracowałem nad frameworkiem Hexdag do orkiestracji agentów AI. CV znajdziesz w sekcji CV.",
             "skills": "Python, LLMs, RAG, MCP. Na co dzień pracuję z Claude Code i Codex, a infrastrukturę stawiam na Neon i Railway.",
             "books": "Polecam: \"Mózg na detoksie\" (Perlmutter), \"21 lekcji\" (Harari), \"Jak działa umysł\" (Pinker), \"Deep Learning\" (Goodfellow) i \"The Last Economy\" (Mostaque).",
-            "education": "Studiowałem Kognitywistykę na UW. Praca licencjacka dotyczyła abstrakcyjnego rozumowania LLM na benchmarku ARC-AGI-2. Byłem też na Erasmusie w Hiszpanii (UPV/EHU).",
+            "education": "Ukończyłem licencjat z Kognitywistyki na UW (praca o abstrakcyjnym rozumowaniu LLM na benchmarku ARC-AGI-2), a teraz studiuję E-biznes w SGH. Byłem też na Erasmusie w Hiszpanii (UPV/EHU).",
             "contest": "Wygrałem konkurs \"Praca jak ze snu\" z Just Join IT. W nagrodę brałem udział w filmie o FinalSpark - startupie tworzącym komputer na ludzkich neuronach. Byłem w Szwajcarii."
         }
     },
@@ -399,7 +425,7 @@
             "navigation": "Nawigacja",
             "more": "Więcej"
         },
-        "description": "Kognitywista, który buduje produkty z AI. Obecnie rozwijam Paralog. Zawsze otwarty na nowe projekty i współpracę.",
+        "description": "Kognitywista, który buduje produkty z AI. Współtworzę Paralog, system dla stacji pogotowia. Zawsze otwarty na nowe projekty i współpracę.",
         "rights": "Wszelkie prawa zastrzeżone.",
         "madeWith": "Zrobione z",
         "inWarsaw": "w Warszawie"
@@ -489,6 +515,6 @@
     },
     "metadata": {
         "title": "Wojciech Soczyński | AI & Cognitive Science",
-        "description": "Portfolio Wojciecha Soczyńskiego: kognitywistyka, AI i budowanie produktów z LLM. Obecnie rozwija Paralog."
+        "description": "Portfolio Wojciecha Soczyńskiego: kognitywistyka, AI i budowanie produktów z LLM. Współtworzy Paralog, system dla stacji pogotowia."
     }
 }
