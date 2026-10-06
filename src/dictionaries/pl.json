@@ -11,9 +11,9 @@
         "contact": "Kontakt"
     },
     "hero": {
-        "badge": "Student Kognitywistyki | AI Enthusiast",
+        "badge": "Kognitywistyka UW | AI Builder",
         "greeting": "Cześć, jestem",
-        "description": "Student kognitywistyki pasjonujący się sztuczną inteligencją, Large Language Models i analizą danych. Aktualnie na wymianie Erasmus na University of the Basque Country w Hiszpanii. 🇪🇸",
+        "description": "Kognitywista z Uniwersytetu Warszawskiego, który buduje produkty z AI. Obecnie rozwijam Paralog, a w pracy licencjackiej badałem, czy modele językowe naprawdę rozumują abstrakcyjnie (ARC-AGI-2).",
         "viewProjects": "Zobacz projekty",
         "contact": "Skontaktuj się",
         "scroll": "Przewiń w dół"
@@ -22,21 +22,21 @@
         "title": "O mnie",
         "subtitle": "Poznaj mnie bliżej - moje zainteresowania, inspiracje i to, co mnie napędza.",
         "whoAmI": "Kim jestem?",
-        "description1": "Jestem studentem <span class=\"text-primary-400 font-medium\">Kognitywistyki</span> na Uniwersytecie Warszawskim, pasjonującym się sztuczną inteligencją, Large Language Models i rozumowaniem opartym na danych.",
-        "description2": "Mam doświadczenie w <span class=\"text-primary-400 font-medium\">Pythonie</span>, analizie danych i dokumentacji technicznej. Specjalizuję się w tworzeniu workflow AI i integrowaniu modeli językowych w praktyczne systemy.",
-        "description3": "Aktualnie realizuję wymianę <span class=\"text-primary-400 font-medium\">Erasmus</span> na University of the Basque Country w Hiszpanii, poszerzając swoje horyzonty w naukach kognitywnych i obliczeniowych.",
+        "description1": "Studiowałem <span class=\"text-primary-400 font-medium\">Kognitywistykę</span> na Uniwersytecie Warszawskim. W pracy licencjackiej analizowałem abstrakcyjne rozumowanie w systemach opartych na LLM na przykładzie benchmarku ARC-AGI-2.",
+        "description2": "Na co dzień buduję z AI. Rozwijam <span class=\"text-primary-400 font-medium\">Paralog</span> i pracuję w agentowym stacku: Claude Code, Codex i MCP, a do tego Neon i Railway. Mam doświadczenie w Pythonie, systemach RAG i dokumentacji technicznej.",
+        "description3": "Wróciłem z wymiany <span class=\"text-primary-400 font-medium\">Erasmus</span> na University of the Basque Country w Hiszpanii, gdzie poszerzałem wiedzę z nauk kognitywnych i obliczeniowych.",
         "interests": [
             {
                 "title": "Kognitywistyka",
-                "description": "Fascynują mnie algorytmy uczenia maszynowego, futurologia, modelowanie i nauki kognitywne."
+                "description": "Rozumowanie, inteligencja płynna i to, jak oceniać, czy maszyna naprawdę myśli."
             },
             {
                 "title": "AI & LLMs",
-                "description": "Tworzę systemy oparte o Large Language Models i Retrieval-Augmented Generation."
+                "description": "Agenci, systemy RAG i narzędzia oparte na modelach językowych."
             },
             {
-                "title": "Erasmus",
-                "description": "Rozwijam się na wymianie w University of the Basque Country w Hiszpanii."
+                "title": "Paralog",
+                "description": "Projekt, który obecnie rozwijam: paralog.pl."
             },
             {
                 "title": "Osiągnięcia",
@@ -55,12 +55,12 @@
         "educationTitle": "🎓 Wykształcenie",
         "education": [
             {
-                "title": "Kognitywistyka",
-                "desc": "Uniwersytet Warszawski • do 2026"
+                "title": "Kognitywistyka (licencjat)",
+                "desc": "Uniwersytet Warszawski • 2026 • praca o ARC-AGI-2"
             },
             {
                 "title": "Erasmus Exchange",
-                "desc": "University of the Basque Country • 2025"
+                "desc": "University of the Basque Country • 2025/26"
             },
             {
                 "title": "Certyfikaty NVIDIA",
@@ -88,6 +88,14 @@
         "present": "Obecnie",
         "currently": "Aktualnie",
         "experiences": [
+            {
+                "title": "Founder & Developer",
+                "company": "Paralog",
+                "location": "paralog.pl",
+                "period": "2026 - obecnie",
+                "description": "Rozwijam własny produkt od pomysłu, przez architekturę, po wdrożenie. Pracuję z agentami AI (Claude Code, Codex) i serwerami MCP, na infrastrukturze Neon i Railway.",
+                "highlights": []
+            },
             {
                 "title": "AI Intern",
                 "company": "OMNIVISER",
@@ -129,15 +137,15 @@
         ],
         "educationList": [
             {
-                "degree": "Kognitywistyka",
-                "school": "Uniwersytet Warszawski",
-                "period": "do 06/2026"
+                "degree": "Kognitywistyka (studia licencjackie)",
+                "school": "Uniwersytet Warszawski · praca: abstrakcyjne rozumowanie LLM (ARC-AGI-2), promotor dr Andrzej Mizera",
+                "period": "2023 - 06/2026"
             },
             {
                 "degree": "Erasmus Exchange Program",
                 "school": "University of the Basque Country (UPV/EHU)",
                 "location": "Hiszpania",
-                "period": "09/2025"
+                "period": "2025/26"
             },
             {
                 "degree": "Profil Matematyczno-Społeczny",
@@ -173,15 +181,19 @@
             {
                 "title": "Narzędzia AI",
                 "skills": [
-                    "ChatGPT",
-                    "Cursor AI",
-                    "Hugging Face",
-                    "LangChain"
+                    "Claude Code",
+                    "Codex",
+                    "MCP (Model Context Protocol)",
+                    "ElevenLabs",
+                    "Hugging Face"
                 ]
             },
             {
                 "title": "Inne narzędzia",
                 "skills": [
+                    "Neon (Postgres)",
+                    "Railway",
+                    "Vercel",
                     "MS Office",
                     "Technical Documentation",
                     "Data Analysis"
@@ -234,6 +246,16 @@
         "architectureTitle": "Architektura systemu:",
         "projectList": [
             {
+                "title": "Paralog",
+                "description": "Produkt, który obecnie rozwijam od zera: od pomysłu i architektury po wdrożenie produkcyjne.",
+                "longDescription": "Jak pracuję nad Paralogiem:\n• Programowanie z agentami AI: Claude Code i Codex\n• Integracje z narzędziami i danymi przez serwery MCP\n• Baza danych Postgres na Neon, backend wdrażany na Railway\n• Iteracyjne budowanie produktu z szybkim feedbackiem od użytkowników"
+            },
+            {
+                "title": "Praca licencjacka: abstrakcyjne rozumowanie w LLM (ARC-AGI-2)",
+                "description": "Analiza możliwości i ograniczeń benchmarku ARC-AGI-2 jako narzędzia do oceny rozumowania systemów opartych na dużych modelach językowych. Uniwersytet Warszawski, 2026.",
+                "longDescription": "Główne wątki pracy:\n• Jakich zdolności poznawczych wymaga ARC-AGI-2: inteligencja płynna vs skrystalizowana, rozumowanie relacyjne, kompozycyjność, pamięć robocza\n• Co zmieniło się w systemach LLM: test-time compute, pętle weryfikacji, autokorekta, agentowe rusztowania\n• Co właściwie oznaczałoby „rozwiązanie” ARC-AGI-2, gdy efektywność i koszt obliczeń są częścią oceny\n• Przejście od statycznych zagadek do interaktywnych benchmarków agentowych (ARC-AGI-3)\n\nWniosek: ARC-AGI-2 to wartościowy, ale ograniczony benchmark. Nie mierzy ogólnej inteligencji, ale jest ważnym testem abstrakcyjnego rozwiązywania problemów."
+            },
+            {
                 "title": "Hexdag Contributions",
                 "description": "Wkład w rozwój open-source frameworka do orkiestracji agentów AI w firmie OMNIVISER.",
                 "longDescription": "Mój wkład w projekt Hexdag obejmuje:\n• Tworzenie modułów Python do zarządzania zadaniami i przepływem pracy (flow management)\n• Implementacja integracji z zewnętrznymi narzędziami i API\n• Bezpieczne parsowanie i ekstrakcja danych z odpowiedzi LLM\n• Tworzenie dokumentacji technicznej i przykładów użycia\n• Code reviews i współpraca przy pull requestach"
@@ -252,31 +274,39 @@
     },
     "aiTools": {
         "title": "Jak używam AI",
-        "subtitle": "Mój stack technologiczny i podejście do tworzenia oprogramowania w erze sztucznej inteligencji.",
+        "subtitle": "Mój obecny stack: agenci, którzy piszą kod ze mną, głos zamiast klawiatury i infrastruktura, która nie wymaga ręcznej konfiguracji serwerów.",
         "tools": [
             {
-                "title": "Vibe Engineering",
-                "description": "Filozofia pracy z AI, która stawia na intuicję i flow. Wykorzystywanie LLM jako kreatywnego partnera, a nie tylko narzędzia do generowania kodu."
+                "title": "Claude Code",
+                "description": "Moje główne narzędzie do programowania. Agent w terminalu, który czyta repozytorium, edytuje pliki i uruchamia komendy. Ta strona też powstała z jego pomocą."
             },
             {
-                "title": "Cursor AI",
-                "description": "Mój główny edytor kodu. AI-native IDE, które rewolucjonizuje sposób pisania oprogramowania, pozwalając na edycję całych plików i refaktoryzację w języku naturalnym."
+                "title": "Codex",
+                "description": "Drugi agent kodujący od OpenAI. Używam go do równoległych zadań, przeglądu kodu i porównywania podejść do tego samego problemu."
             },
             {
-                "title": "Replit",
-                "description": "Szybkie prototypowanie i wdrażanie aplikacji w chmurze. Idealne środowisko do testowania pomysłów i dzielenia się kodem bez konfiguracji środowiska."
+                "title": "MCP",
+                "description": "Model Context Protocol, czyli sposób na podłączenie modeli do moich narzędzi i danych: baz, kalendarza, notatek i nagrań."
             },
             {
-                "title": "Lovable",
-                "description": "Narzędzie do tworzenia interfejsów użytkownika wspierane przez AI. Pozwala przekształcać pomysły w piękny, funkcjonalny kod React/Tailwind w mgnieniu oka."
+                "title": "Pocket AI",
+                "description": "Nagrywanie i transkrypcja rozmów oraz notatek głosowych, które trafiają dalej do moich workflow."
             },
             {
-                "title": "Supabase",
-                "description": "Backend-as-a-Service, który idealnie integruje się z nowoczesnym stackiem AI. Baza danych Postgres, uwierzytelnianie i wektoryzacja danych w jednym miejscu."
+                "title": "Wispr Flow",
+                "description": "Dyktowanie zamiast pisania. Prompty i teksty mówię, a Wispr zamienia je w czysty, sformatowany tekst."
             },
             {
-                "title": "Google Antigravity",
-                "description": "Eksperymentalne i zaawansowane systemy AI od Google. Wykorzystuję najnowsze osiągnięcia w dziedzinie modeli językowych i agentów autonomicznych."
+                "title": "ElevenLabs",
+                "description": "Generowanie i projektowanie głosu (text-to-speech) w projektach z interfejsem głosowym."
+            },
+            {
+                "title": "Neon",
+                "description": "Serverless Postgres z branchowaniem bazy. Każda zmiana może mieć własną kopię danych do testów."
+            },
+            {
+                "title": "Railway",
+                "description": "Wdrażanie backendów i usług w chmurze w kilka minut, bez ręcznego stawiania serwerów."
             }
         ]
     },
@@ -355,12 +385,12 @@
         "fallback": {
             "default": "Hej! Chatbot działa w trybie demo. W międzyczasie zapytaj o moje projekty AI.",
             "greeting": "Cześć! Jestem Wojtek. Zapytaj mnie o projekty AI, studia kognitywistyki lub ulubione książki.",
-            "projects": "Mój główny projekt to system RAG do Question Answering. Używam BM25 + CrossEncoder + TinyLlama. Sprawdź na GitHub: github.com/Wojz12/RAG_LLM_project",
+            "projects": "Obecnie rozwijam Paralog (paralog.pl). Wcześniej zbudowałem m.in. system RAG do Question Answering (BM25 + CrossEncoder + TinyLlama): github.com/Wojz12/RAG_LLM_project",
             "contact": "Napisz do mnie! Email: soczynskiwojtek@gmail.com | Tel: +48 577 950 977",
-            "cv": "Pracuję jako AI Intern w OMNIVISER - rozwijam framework Hexdag do orkiestracji agentów AI. CV znajdziesz w sekcji CV.",
-            "skills": "Specjalizuję się w: Python, LLMs, Prompt Engineering, RAG Systems, Git. Używam ChatGPT, Cursor AI, Hugging Face.",
+            "cv": "Rozwijam Paralog. Wcześniej byłem AI Intern w OMNIVISER, gdzie pracowałem nad frameworkiem Hexdag do orkiestracji agentów AI. CV znajdziesz w sekcji CV.",
+            "skills": "Python, LLMs, RAG, MCP. Na co dzień pracuję z Claude Code i Codex, a infrastrukturę stawiam na Neon i Railway.",
             "books": "Polecam: \"Mózg na detoksie\" (Perlmutter), \"21 lekcji\" (Harari), \"Jak działa umysł\" (Pinker), \"Deep Learning\" (Goodfellow) i \"The Last Economy\" (Mostaque).",
-            "education": "Studiuję Kognitywistykę na UW. Aktualnie jestem na Erasmusie na University of the Basque Country w Hiszpanii.",
+            "education": "Studiowałem Kognitywistykę na UW. Praca licencjacka dotyczyła abstrakcyjnego rozumowania LLM na benchmarku ARC-AGI-2. Byłem też na Erasmusie w Hiszpanii (UPV/EHU).",
             "contest": "Wygrałem konkurs \"Praca jak ze snu\" z Just Join IT. W nagrodę brałem udział w filmie o FinalSpark - startupie tworzącym komputer na ludzkich neuronach. Byłem w Szwajcarii."
         }
     },
@@ -369,7 +399,7 @@
             "navigation": "Nawigacja",
             "more": "Więcej"
         },
-        "description": "Student kognitywistyki pasjonujący się AI, LLMs i analizą danych. Zawsze otwarty na nowe projekty i możliwości współpracy.",
+        "description": "Kognitywista, który buduje produkty z AI. Obecnie rozwijam Paralog. Zawsze otwarty na nowe projekty i współpracę.",
         "rights": "Wszelkie prawa zastrzeżone.",
         "madeWith": "Zrobione z",
         "inWarsaw": "w Warszawie"
@@ -459,6 +489,6 @@
     },
     "metadata": {
         "title": "Wojciech Soczyński | AI & Cognitive Science",
-        "description": "Portfolio studenta kognitywistyki pasjonującego się AI, LLMs i analizą danych."
+        "description": "Portfolio Wojciecha Soczyńskiego: kognitywistyka, AI i budowanie produktów z LLM. Obecnie rozwija Paralog."
     }
 }

@@ -23,6 +23,7 @@ interface ExperienceProps {
       degree: string
       school: string
       location?: string
+      current?: boolean
       period: string
     }[]
     languages: {
@@ -85,7 +86,7 @@ export default function Experience({ dictionary }: ExperienceProps) {
               <li key={edu.degree} className="card-oat p-6">
                 <div className="flex items-start justify-between gap-3">
                   <h4 className="font-serif text-lg leading-snug text-ink">{edu.degree}</h4>
-                  {index <= 1 && (
+                  {edu.current && (
                     <span className="mt-1 whitespace-nowrap rounded-full bg-ivory px-2 py-0.5 text-[11px] font-medium text-clay-dark">
                       {dictionary.present}
                     </span>
