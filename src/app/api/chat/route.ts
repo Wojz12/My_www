@@ -71,7 +71,7 @@ JĘZYKI: Polski (ojczysty), Angielski (C1)
 
 --- STRONA AI PROGRESS ---
 Moja strona ma sekcję "AI Progress" pokazującą:
-- ARC-AGI 2 Leaderboard: Top modele to Gemini 3 Deep Think (84.6%), GPT-5.4 Pro (83.3%), Gemini 3.1 Pro (77.1%)
+- ARC-AGI Leaderboard: na ARC-AGI-2 prowadzą GPT-6 Astra (95.0%), GPT-6.1 Sol (94.2%) i Claude Opus 5.5 (93.3%); na ARC-AGI-3 GPT-6 Astra osiąga 99.9%, a GPT-6.1 Sol 96.4%. Oba benchmarki są już nasycone - Wojtek czeka na ARC-AGI-4, ale twórcy benchmarku nie nadążają z tempem postępu
 - Prognozy AGI od ekspertów: 2026-2045 (Amodei, Hassabis, Kurzweil, Hinton)
 
 --- KONTAKT ---
@@ -158,7 +158,7 @@ LANGUAGES: Polish (Native), English (C1)
 
 --- AI PROGRESS PAGE ---
 My website has an "AI Progress" section showing:
-- ARC-AGI 2 Leaderboard: Top models are Gemini 3 Deep Think (84.6%), GPT-5.4 Pro (83.3%), Gemini 3.1 Pro (77.1%)
+- ARC-AGI Leaderboard: on ARC-AGI-2 the leaders are GPT-6 Astra (95.0%), GPT-6.1 Sol (94.2%) and Claude Opus 5.5 (93.3%); on ARC-AGI-3 GPT-6 Astra reaches 99.9% and GPT-6.1 Sol 96.4%. Both benchmarks are now saturated - Wojtek is waiting for ARC-AGI-4, but the benchmark makers can't keep up with the pace of progress
 - AGI Predictions from experts: 2026-2045 (Amodei, Hassabis, Kurzweil, Hinton)
 
 --- CONTACT ---

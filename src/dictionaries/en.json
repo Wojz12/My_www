@@ -436,41 +436,64 @@
         "subtitle": "Progress in artificial intelligence development",
         "heroDescription": "Dashboard showing key indicators of approaching AGI",
         "bestModel": {
-            "title": "ARC-AGI 2 Leaderboard",
-            "description": "ARC-AGI 2 is a benchmark measuring AI's ability for abstract reasoning and generalization — solving novel problems without prior training. It tests true cognitive flexibility, not just pattern matching.",
-            "leaderboardTitle": "Top 5 AI Systems",
+            "title": "ARC-AGI Leaderboard",
+            "description": "ARC-AGI is a series of benchmarks measuring AI's ability for abstract reasoning and generalization — solving novel problems without prior training. ARC-AGI-2 tests static puzzles, while ARC-AGI-3 uses interactive environments where an agent has to discover the rules on its own.",
+            "leaderboardTitle": "ARC-AGI-2 · Top 5 AI Systems",
             "leaderboard": [
                 {
                     "rank": 1,
-                    "model": "Gemini 3 Deep Think (2/26)",
-                    "author": "Google",
-                    "score": "84.6%"
+                    "model": "GPT-6 Astra (Max)",
+                    "author": "OpenAI",
+                    "score": "95.0%"
                 },
                 {
                     "rank": 2,
-                    "model": "GPT-5.4 Pro (xHigh)",
+                    "model": "GPT-6.1 Sol (Max)",
                     "author": "OpenAI",
-                    "score": "83.3%"
+                    "score": "94.2%"
                 },
                 {
                     "rank": 3,
-                    "model": "Gemini 3.1 Pro (Preview)",
-                    "author": "Google",
-                    "score": "77.1%"
+                    "model": "Claude Opus 5.5 (High)",
+                    "author": "Anthropic",
+                    "score": "93.3%"
                 },
                 {
                     "rank": 4,
-                    "model": "GPT-5.4 (xHigh)",
+                    "model": "GPT-5.6 Sol (Max)",
                     "author": "OpenAI",
-                    "score": "74.0%"
+                    "score": "92.5%"
                 },
                 {
                     "rank": 5,
-                    "model": "GPT-5.2 (Refine.)",
-                    "author": "Johan Land",
-                    "score": "72.9%"
+                    "model": "Claude Opus 5 (Max)",
+                    "author": "Anthropic",
+                    "score": "90.4%"
                 }
-            ]
+            ],
+            "arc3Title": "ARC-AGI-3 · Top 3 (Provider Adapter)",
+            "arc3Leaderboard": [
+                {
+                    "rank": 1,
+                    "model": "GPT-6 Astra (High)",
+                    "author": "OpenAI",
+                    "score": "99.9%"
+                },
+                {
+                    "rank": 2,
+                    "model": "GPT-6.1 Sol (XHigh)",
+                    "author": "OpenAI",
+                    "score": "96.4%"
+                },
+                {
+                    "rank": 3,
+                    "model": "Gemini 3.8 Flash (High)",
+                    "author": "Google",
+                    "score": "35.0%"
+                }
+            ],
+            "saturatedLabel": "Benchmark saturated",
+            "saturatedNote": "ARC-AGI-2 and ARC-AGI-3 are now essentially beaten — top models exceed 95%, and GPT-6 Astra reaches 99.9% on ARC-AGI-3. I'm waiting for ARC-AGI-4, but the benchmark makers clearly can't keep up with the pace of model progress."
         },
         "computePower": {
             "title": "Compute Power",
@@ -509,7 +532,7 @@
         "sources": {
             "title": "Sources",
             "updatedAt": "Last updated",
-            "arcAgi": "ARC-AGI 2 Leaderboard",
+            "arcAgi": "ARC-AGI Leaderboard",
             "situational": "Situational Awareness",
             "agiClock": "The AGI Clock"
         }

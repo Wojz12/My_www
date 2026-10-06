@@ -7,6 +7,29 @@ import { Brain, Cpu, Calendar, HelpCircle, ExternalLink } from 'lucide-react'
 import MetricCard from './MetricCard'
 import { EASE } from '@/components/ui'
 
+type LeaderboardEntry = { rank: number; model: string; author: string; score: string }
+
+function Leaderboard({ items }: { items: LeaderboardEntry[] }) {
+    return (
+        <ol className="divide-y divide-line border-y border-line">
+            {items.map((item) => (
+                <li key={item.rank} className="flex items-center justify-between gap-4 py-3">
+                    <div className="flex items-center gap-4">
+                        <span className={`w-5 font-mono text-xs ${item.rank === 1 ? 'text-clay-dark' : 'text-ink-faint'}`}>
+                            {String(item.rank).padStart(2, '0')}
+                        </span>
+                        <div>
+                            <p className="text-sm font-medium text-ink">{item.model}</p>
+                            <p className="text-xs text-ink-muted">{item.author}</p>
+                        </div>
+                    </div>
+                    <span className="font-mono text-sm text-ink">{item.score}</span>
+                </li>
+            ))}
+        </ol>
+    )
+}
+
 interface AiProgresPageProps {
     dictionary: {
         title: string
@@ -16,7 +39,11 @@ interface AiProgresPageProps {
             title: string
             description: string
             leaderboardTitle: string
-            leaderboard: { rank: number; model: string; author: string; score: string }[]
+            leaderboard: LeaderboardEntry[]
+            arc3Title: string
+            arc3Leaderboard: LeaderboardEntry[]
+            saturatedLabel: string
+            saturatedNote: string
         }
         computePower: {
             title: string
@@ -82,23 +109,16 @@ export default function AiProgresPage({ dictionary }: AiProgresPageProps) {
                     <h3 className="mb-3 font-serif text-2xl text-ink">{dictionary.bestModel.title}</h3>
                     <p className="text-sm leading-relaxed text-ink-muted">{dictionary.bestModel.description}</p>
 
+                    <div className="mt-6 rounded-xl border border-clay/40 bg-clay/10 p-4">
+                        <p className="eyebrow mb-2 text-clay-dark">{dictionary.bestModel.saturatedLabel}</p>
+                        <p className="text-sm leading-relaxed text-ink-soft">{dictionary.bestModel.saturatedNote}</p>
+                    </div>
+
                     <p className="eyebrow mb-3 mt-8">{dictionary.bestModel.leaderboardTitle}</p>
-                    <ol className="divide-y divide-line border-y border-line">
-                        {dictionary.bestModel.leaderboard.map((item) => (
-                            <li key={item.rank} className="flex items-center justify-between gap-4 py-3">
-                                <div className="flex items-center gap-4">
-                                    <span className={`w-5 font-mono text-xs ${item.rank === 1 ? 'text-clay-dark' : 'text-ink-faint'}`}>
-                                        {String(item.rank).padStart(2, '0')}
-                                    </span>
-                                    <div>
-                                        <p className="text-sm font-medium text-ink">{item.model}</p>
-                                        <p className="text-xs text-ink-muted">{item.author}</p>
-                                    </div>
-                                </div>
-                                <span className="font-mono text-sm text-ink">{item.score}</span>
-                            </li>
-                        ))}
-                    </ol>
+                    <Leaderboard items={dictionary.bestModel.leaderboard} />
+
+                    <p className="eyebrow mb-3 mt-8">{dictionary.bestModel.arc3Title}</p>
+                    <Leaderboard items={dictionary.bestModel.arc3Leaderboard} />
                 </motion.div>
 
                 {/* Compute Power */}
