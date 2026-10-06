@@ -249,7 +249,8 @@
             "Transformers",
             "Fine-tuning",
             "Semantic Search",
-            "NLP"
+            "NLP",
+            "OpenClaw"
         ]
     },
     "blog": {
@@ -441,33 +442,33 @@
             "leaderboard": [
                 {
                     "rank": 1,
-                    "model": "GPT-5.2 Pro (High)",
-                    "author": "OpenAI",
-                    "score": "54.2%"
+                    "model": "Gemini 3 Deep Think (2/26)",
+                    "author": "Google",
+                    "score": "84.6%"
                 },
                 {
                     "rank": 2,
-                    "model": "Gemini 3 Pro (Refine.)",
-                    "author": "Poetiq",
-                    "score": "54.0%"
+                    "model": "GPT-5.4 Pro (xHigh)",
+                    "author": "OpenAI",
+                    "score": "83.3%"
                 },
                 {
                     "rank": 3,
-                    "model": "GPT-5.2 (X-High)",
-                    "author": "OpenAI",
-                    "score": "52.9%"
+                    "model": "Gemini 3.1 Pro (Preview)",
+                    "author": "Google",
+                    "score": "77.1%"
                 },
                 {
                     "rank": 4,
-                    "model": "Gemini 3 Deep Think",
-                    "author": "Google",
-                    "score": "45.1%"
+                    "model": "GPT-5.4 (xHigh)",
+                    "author": "OpenAI",
+                    "score": "74.0%"
                 },
                 {
                     "rank": 5,
-                    "model": "GPT-5.2 (High)",
-                    "author": "OpenAI",
-                    "score": "43.3%"
+                    "model": "GPT-5.2 (Refine.)",
+                    "author": "Johan Land",
+                    "score": "72.9%"
                 }
             ]
         },

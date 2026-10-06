@@ -80,21 +80,12 @@ export async function POST(request: Request) {
       )
     }
 
-    // Build payload for n8n webhook
-    const n8nPayload = {
-      name: trimmedName,
-      email: trimmedEmail,
-      message: trimmedMessage,
-      source: 'website',
-      source_url: 'https://wojteksoczynski.vercel.app/pl#contact',
-    }
+    // Send email via Resend API
+    const resendApiKey = process.env.RESEND_API_KEY
+    const recipientEmail = process.env.CONTACT_EMAIL || 'soczynskiwojtek@gmail.com'
 
-    // Send to n8n webhook
-    const webhookUrl = process.env.N8N_WEBHOOK_URL
-    const webhookToken = process.env.N8N_WEBHOOK_TOKEN
-
-    if (!webhookUrl) {
-      console.error('N8N_WEBHOOK_URL is not configured')
+    if (!resendApiKey) {
+      console.error('RESEND_API_KEY is not configured')
       return NextResponse.json(
         { error: 'Server configuration error' },
         { status: 500 }
@@ -102,22 +93,74 @@ export async function POST(request: Request) {
     }
 
     try {
-      const n8nResponse = await fetch(webhookUrl, {
+      const resendResponse = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          ...(webhookToken && { 'x-webhook-token': webhookToken }),
+          'Authorization': `Bearer ${resendApiKey}`,
         },
-        body: JSON.stringify(n8nPayload),
+        body: JSON.stringify({
+          from: 'Portfolio Contact <onboarding@resend.dev>',
+          to: recipientEmail,
+          subject: `Nowa wiadomość od ${trimmedName}`,
+          html: `
+            <h2>Nowa wiadomość z formularza kontaktowego</h2>
+            <p><strong>Imię:</strong> ${trimmedName}</p>
+            <p><strong>Email:</strong> <a href="mailto:${trimmedEmail}">${trimmedEmail}</a></p>
+            <p><strong>Wiadomość:</strong></p>
+            <p style="white-space: pre-wrap; background: #f5f5f5; padding: 15px; border-radius: 8px;">${trimmedMessage}</p>
+            <hr>
+            <p style="color: #666; font-size: 12px;">Wysłano ze strony portfolio</p>
+          `,
+          reply_to: trimmedEmail,
+        }),
       })
 
-      if (!n8nResponse.ok) {
-        console.error('n8n webhook failed:', n8nResponse.status, await n8nResponse.text())
+      if (!resendResponse.ok) {
+        const errorData = await resendResponse.json()
+        console.error('Resend API failed:', resendResponse.status, errorData)
         return NextResponse.json(
-          { error: 'Failed to process message' },
+          { error: 'Failed to send message' },
           { status: 502 }
         )
       }
+
+      // Send auto-reply to the sender
+      await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${resendApiKey}`,
+        },
+        body: JSON.stringify({
+          from: 'Wojtek Soczyński <onboarding@resend.dev>',
+          to: trimmedEmail,
+          subject: 'Dziękuję za wiadomość! 👋',
+          html: `
+            <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+              <h2 style="color: #6366f1;">Cześć ${trimmedName}! 👋</h2>
+              <p style="color: #374151; line-height: 1.6;">
+                Dziękuję za Twoją wiadomość! Otrzymałem ją i postaram się odpowiedzieć najszybciej jak to możliwe.
+              </p>
+              <p style="color: #374151; line-height: 1.6;">
+                W międzyczasie zapraszam do sprawdzenia moich projektów na 
+                <a href="https://github.com/Wojz12" style="color: #6366f1;">GitHubie</a>.
+              </p>
+              <p style="color: #374151; line-height: 1.6;">
+                Pozdrawiam,<br>
+                <strong>Wojtek Soczyński</strong>
+              </p>
+              <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;">
+              <p style="color: #9ca3af; font-size: 12px;">
+                To jest automatyczna odpowiedź. Nie odpowiadaj na tego maila.
+              </p>
+            </div>
+          `,
+        }),
+      }).catch(err => {
+        // Don't fail the whole request if auto-reply fails
+        console.error('Failed to send auto-reply:', err)
+      })
 
       console.log('Contact form submitted successfully:', {
         name: trimmedName,
@@ -137,9 +180,9 @@ export async function POST(request: Request) {
         }
       )
     } catch (fetchError) {
-      console.error('Error calling n8n webhook:', fetchError)
+      console.error('Error sending email via Resend:', fetchError)
       return NextResponse.json(
-        { error: 'Failed to process message' },
+        { error: 'Failed to send message' },
         { status: 502 }
       )
     }
