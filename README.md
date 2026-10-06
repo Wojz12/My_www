@@ -166,11 +166,13 @@ colors: {
 
 ### Chatbot
 
-Chatbot używa OpenAI API (domyślnie gpt-4o-mini). Aby go włączyć:
+Chatbot używa OpenAI API (domyślnie gpt-6-luna, można zmienić przez `OPENAI_MODEL`). Aby go włączyć:
 
 1. Uzyskaj klucz API: [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
 2. Dodaj do `.env.local`: `OPENAI_API_KEY=sk-...`
 3. System prompt jest w `src/app/api/chat/route.ts` - możesz go dostosować
+
+Zabezpieczenia: limit 500 znaków na wiadomość, 5 wiadomości/min i 40/dzień per IP, globalny limit dzienny (`CHAT_GLOBAL_DAILY_LIMIT`), blokada wywołań z obcych domen, darmowe Moderation API OpenAI oraz reguły w system prompcie chroniące przed prompt injection i używaniem bota do zadań spoza strony.
 
 ### Formularz kontaktowy
 

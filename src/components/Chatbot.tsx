@@ -228,6 +228,7 @@ export default function Chatbot({ lang, dictionary }: ChatbotProps) {
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
+                  maxLength={500}
                   placeholder={dictionary.inputPlaceholder}
                   className="flex-1 !rounded-none !border-0 !bg-transparent !px-0 !py-2 text-sm focus:!outline-none"
                 />

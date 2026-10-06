@@ -91,15 +91,25 @@ export function checkRateLimit(
  * Pobiera IP z requestu (uwzględnia proxy/load balancer)
  */
 export function getClientIP(request: Request): string {
-  // Sprawdź nagłówki proxy (Vercel, Cloudflare, etc.)
-  const forwarded = request.headers.get('x-forwarded-for')
-  if (forwarded) {
-    return forwarded.split(',')[0].trim()
+  // Nagłówki ustawiane przez proxy (Cloudflare, Railway, Vercel) - klient nie może ich nadpisać
+  const cfIP = request.headers.get('cf-connecting-ip')
+  if (cfIP) {
+    return cfIP.trim()
   }
 
   const realIP = request.headers.get('x-real-ip')
   if (realIP) {
-    return realIP
+    return realIP.trim()
+  }
+
+  // Bierzemy OSTATNI wpis - dopisuje go nasze proxy. Pierwszy może podać klient
+  // i w ten sposób obejść rate limit podając za każdym razem inne IP.
+  const forwarded = request.headers.get('x-forwarded-for')
+  if (forwarded) {
+    const ips = forwarded.split(',').map((ip) => ip.trim()).filter(Boolean)
+    if (ips.length > 0) {
+      return ips[ips.length - 1]
+    }
   }
 
   // Fallback - użyj losowego identyfikatora (nie idealne, ale lepsze niż nic)
