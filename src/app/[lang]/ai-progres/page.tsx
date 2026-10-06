@@ -16,7 +16,7 @@ export default async function AiProgresRoute({ params: { lang } }: Props) {
     const dictionary = await getDictionary(lang)
 
     return (
-        <div className="pt-24">
+        <div>
             <AiProgresPage dictionary={dictionary.aiProgres} />
         </div>
     )

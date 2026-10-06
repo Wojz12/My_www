@@ -66,8 +66,8 @@ export default function ComputeChart({ data = defaultData }: ComputeChartProps) 
             >
                 <defs>
                     <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stopColor="rgb(168, 85, 247)" stopOpacity="0.4" />
-                        <stop offset="100%" stopColor="rgb(168, 85, 247)" stopOpacity="0" />
+                        <stop offset="0%" stopColor="#D97757" stopOpacity="0.4" />
+                        <stop offset="100%" stopColor="#D97757" stopOpacity="0" />
                     </linearGradient>
                 </defs>
 
@@ -79,7 +79,7 @@ export default function ComputeChart({ data = defaultData }: ComputeChartProps) 
                         y1={padding + ratio * (height - 2 * padding)}
                         x2={width - padding}
                         y2={padding + ratio * (height - 2 * padding)}
-                        stroke="rgba(255,255,255,0.1)"
+                        stroke="#DEDBD0"
                         strokeWidth="1"
                     />
                 ))}
@@ -91,7 +91,7 @@ export default function ComputeChart({ data = defaultData }: ComputeChartProps) 
                 <path
                     d={pathData}
                     fill="none"
-                    stroke="rgb(168, 85, 247)"
+                    stroke="#D97757"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -104,12 +104,12 @@ export default function ComputeChart({ data = defaultData }: ComputeChartProps) 
                         cx={getX(index)}
                         cy={getY(point.value)}
                         r="3"
-                        fill="rgb(168, 85, 247)"
+                        fill="#D97757"
                         className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     />
                 ))}
             </svg>
-            <div className="flex justify-between text-xs text-gray-500 mt-1">
+            <div className="flex justify-between text-xs text-ink-faint mt-1">
                 <span>{startYear}</span>
                 <span>{endYear}</span>
             </div>

@@ -1,52 +1,31 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { Home, ArrowLeft } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-center"
-      >
-        <motion.h1
-          initial={{ scale: 0.5 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
-          className="text-[150px] sm:text-[200px] font-bold gradient-text leading-none mb-4"
-        >
-          404
-        </motion.h1>
+    <div className="page flex min-h-[70vh] flex-col justify-center py-20">
+      <p className="eyebrow">404</p>
+      <h1 className="display mt-6 max-w-3xl text-5xl leading-[1.05] md:text-7xl">
+        Strona nie znaleziona <span className="italic text-ink-faint">/ Page Not Found</span>
+      </h1>
 
-        <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-4">
-          Strona nie znaleziona / Page Not Found
-        </h2>
+      <p className="mt-8 max-w-xl leading-relaxed text-ink-muted">
+        Przepraszamy, ale strona której szukasz nie istnieje lub została przeniesiona.
+        <br />
+        Sorry, but the page you are looking for does not exist or has been moved.
+      </p>
 
-        <p className="text-gray-400 mb-8 max-w-md mx-auto">
-          Przepraszamy, ale strona której szukasz nie istnieje lub została przeniesiona.
-          <br className="my-2 block" />
-          Sorry, but the page you are looking for does not exist or has been moved.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/" className="btn-primary inline-flex items-center justify-center gap-2">
-            <Home className="w-5 h-5" />
-            Strona główna / Home
-          </Link>
-          <button
-            onClick={() => window.history.back()}
-            className="btn-secondary inline-flex items-center justify-center gap-2"
-          >
-            <ArrowLeft className="w-5 h-5" />
-            Wróć / Go Back
-          </button>
-        </div>
-      </motion.div>
+      <div className="mt-10 flex flex-wrap gap-3">
+        <Link href="/" className="btn-primary">
+          Strona główna / Home
+        </Link>
+        <button onClick={() => window.history.back()} className="btn-secondary">
+          <ArrowLeft className="h-4 w-4" />
+          Wróć / Go Back
+        </button>
+      </div>
     </div>
   )
 }
-

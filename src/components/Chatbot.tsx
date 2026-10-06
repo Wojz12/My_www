@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { MessageCircle, X, Send, Bot, User, Sparkles, Loader2 } from 'lucide-react'
+import { X, ArrowUp, Loader2 } from 'lucide-react'
 import { Locale } from '@/i18n-config'
 
 interface Message {
@@ -146,142 +146,98 @@ export default function Chatbot({ lang, dictionary }: ChatbotProps) {
   return (
     <>
       {/* Chat Button */}
-      <motion.button
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 1, type: 'spring', stiffness: 200 }}
-        onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full
-                   bg-gradient-to-br from-primary-500 to-primary-700
-                   shadow-glow flex items-center justify-center
-                   hover:scale-110 transition-transform duration-300
-                   ${isOpen ? 'hidden' : ''}`}
-      >
-        <MessageCircle className="w-6 h-6 text-white" />
-        <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-gray-900 animate-pulse" />
-      </motion.button>
+      <AnimatePresence>
+        {!isOpen && (
+          <motion.button
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 12 }}
+            transition={{ duration: 0.3, delay: 0.4 }}
+            onClick={() => setIsOpen(true)}
+            aria-label={dictionary.title}
+            className="fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-full bg-ink py-3 pl-4 pr-5 text-sm font-medium text-ivory shadow-[0_8px_30px_rgba(20,20,19,0.18)] transition-colors hover:bg-ink-soft"
+          >
+            <Spark className="h-4 w-4 text-clay" />
+            {dictionary.title}
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       {/* Chat Window */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ duration: 0.3 }}
-            className="fixed bottom-6 right-6 z-50 w-[380px] h-[600px] max-h-[80vh]
-                      glass-card rounded-2xl overflow-hidden flex flex-col
-                      shadow-2xl border border-primary-500/30"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 16 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-x-3 bottom-3 z-50 flex h-[min(600px,80vh)] flex-col overflow-hidden rounded-2xl border border-line bg-ivory shadow-[0_20px_60px_rgba(20,20,19,0.18)] sm:inset-x-auto sm:right-5 sm:bottom-5 sm:w-[400px]"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-white/10
-                          bg-gradient-to-r from-primary-600/20 to-primary-500/10">
+            <div className="flex items-center justify-between border-b border-line px-5 py-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-primary-700
-                              flex items-center justify-center shadow-glow-sm">
-                  <Sparkles className="w-5 h-5 text-white" />
-                </div>
+                <Spark className="h-5 w-5 text-clay" />
                 <div>
-                  <h3 className="font-semibold text-white">{dictionary.title}</h3>
-                  <p className="text-xs text-green-400 flex items-center gap-1">
-                    <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                  <h3 className="font-serif text-lg leading-none text-ink">{dictionary.title}</h3>
+                  <p className="mt-1 flex items-center gap-1.5 text-xs text-ink-muted">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
                     {dictionary.online}
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-2 rounded-xl hover:bg-white/10 transition-colors"
+                aria-label="Close"
+                className="rounded-full p-2 text-ink-muted transition-colors hover:bg-oat hover:text-ink"
               >
-                <X className="w-5 h-5 text-gray-400" />
+                <X className="h-4 w-4" />
               </button>
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
-              {messages.map((message) => (
-                <motion.div
-                  key={message.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className={`flex gap-3 ${message.role === 'user' ? 'flex-row-reverse' : ''
-                    }`}
-                >
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0
-                              ${message.role === 'user'
-                        ? 'bg-primary-500'
-                        : 'bg-gradient-to-br from-primary-500 to-primary-700'
-                      }`}
-                  >
-                    {message.role === 'user' ? (
-                      <User className="w-4 h-4 text-white" />
-                    ) : (
-                      <Bot className="w-4 h-4 text-white" />
-                    )}
-                  </div>
-                  <div
-                    className={`max-w-[75%] p-3 rounded-2xl ${message.role === 'user'
-                        ? 'bg-primary-500/30 rounded-tr-none'
-                        : 'bg-white/5 rounded-tl-none'
-                      }`}
-                  >
-                    <p className="text-sm text-gray-200 leading-relaxed">
+            <div className="flex-1 space-y-5 overflow-y-auto px-5 py-5">
+              {messages.map((message) =>
+                message.role === 'user' ? (
+                  <div key={message.id} className="flex justify-end">
+                    <div className="max-w-[85%] rounded-2xl bg-oat px-4 py-2.5 text-[0.925rem] leading-relaxed text-ink">
                       {message.content}
-                    </p>
-                    <p className="text-xs text-gray-500 mt-1">
-                      {message.timestamp.toLocaleTimeString(lang === 'pl' ? 'pl-PL' : 'en-US', {
-                        hour: '2-digit',
-                        minute: '2-digit',
-                      })}
-                    </p>
+                    </div>
                   </div>
-                </motion.div>
-              ))}
+                ) : (
+                  <div key={message.id} className="flex gap-3">
+                    <Spark className="mt-1 h-4 w-4 flex-shrink-0 text-clay" />
+                    <p className="font-serif text-[1.02rem] leading-relaxed text-ink">{message.content}</p>
+                  </div>
+                )
+              )}
 
               {isLoading && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="flex gap-3"
-                >
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center">
-                    <Bot className="w-4 h-4 text-white" />
-                  </div>
-                  <div className="bg-white/5 p-3 rounded-2xl rounded-tl-none">
-                    <Loader2 className="w-5 h-5 text-primary-400 animate-spin" />
-                  </div>
-                </motion.div>
+                <div className="flex gap-3">
+                  <Spark className="mt-1 h-4 w-4 flex-shrink-0 animate-spin text-clay [animation-duration:2.5s]" />
+                  <Loader2 className="h-4 w-4 animate-spin text-ink-faint" />
+                </div>
               )}
 
               <div ref={messagesEndRef} />
             </div>
 
             {/* Input */}
-            <form
-              onSubmit={handleSubmit}
-              className="p-4 border-t border-white/10 bg-black/20"
-            >
-              <div className="flex gap-2">
+            <form onSubmit={handleSubmit} className="p-3">
+              <div className="flex items-end gap-2 rounded-2xl border border-line bg-ivory p-1.5 pl-4 shadow-sm focus-within:border-ink-faint">
                 <input
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder={dictionary.inputPlaceholder}
-                  className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3
-                           text-white placeholder:text-gray-500 focus:outline-none
-                           focus:border-primary-500/50 focus:ring-2 focus:ring-primary-500/20
-                           transition-all duration-300"
+                  className="flex-1 !rounded-none !border-0 !bg-transparent !px-0 !py-2 text-sm focus:!outline-none"
                 />
                 <button
                   type="submit"
                   disabled={!input.trim() || isLoading}
-                  className="p-3 rounded-xl bg-gradient-to-r from-primary-500 to-primary-600
-                           text-white disabled:opacity-50 disabled:cursor-not-allowed
-                           hover:from-primary-600 hover:to-primary-700
-                           transition-all duration-300 shadow-lg hover:shadow-glow"
+                  aria-label={dictionary.send}
+                  className="rounded-xl bg-clay p-2.5 text-white transition-colors hover:bg-clay-dark disabled:opacity-40"
                 >
-                  <Send className="w-5 h-5" />
+                  <ArrowUp className="h-4 w-4" />
                 </button>
               </div>
             </form>
@@ -292,3 +248,11 @@ export default function Chatbot({ lang, dictionary }: ChatbotProps) {
   )
 }
 
+// Prosty znak "iskry" – akcent w stylu Claude
+function Spark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
+      <path d="M12 2l1.6 6.1L19.8 6l-4.3 4.6L22 12l-6.5 1.4 4.3 4.6-6.2-2.1L12 22l-1.6-6.1L4.2 18l4.3-4.6L2 12l6.5-1.4L4.2 6l6.2 2.1z" />
+    </svg>
+  )
+}

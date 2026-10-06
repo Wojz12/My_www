@@ -19,7 +19,7 @@ export default async function BlogPage({ params: { lang } }: Props) {
   const dictionary = await getDictionary(lang)
 
   return (
-    <div className="pt-24">
+    <div>
       <BlogList posts={posts} tags={tags} dictionary={dictionary.blog} lang={lang} />
     </div>
   )

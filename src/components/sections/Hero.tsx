@@ -1,9 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowDown, Github, Linkedin, Mail, Phone } from 'lucide-react'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { EASE } from '@/components/ui'
 
 interface HeroProps {
   lang: string
@@ -17,158 +18,88 @@ interface HeroProps {
   }
 }
 
+const socials = [
+  { href: 'https://github.com/Wojz12', label: 'GitHub' },
+  { href: 'https://www.linkedin.com/in/wojciechsoczy%C5%84ski/', label: 'LinkedIn' },
+  { href: 'mailto:soczynskiwojtek@gmail.com', label: 'Email' },
+]
+
+const fadeUp = (delay: number) => ({
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.7, delay, ease: EASE },
+})
+
 export default function Hero({ lang, dictionary }: HeroProps) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary-950/50 via-transparent to-transparent" />
+    <section className="page pt-12 pb-20 md:pt-20 md:pb-28">
+      <div className="grid items-end gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="lg:col-span-7">
+          <motion.p {...fadeUp(0)} className="eyebrow mb-8 flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-clay" />
+            {dictionary.badge}
+          </motion.p>
 
-      <div className="section-container relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center lg:text-left"
+          <motion.h1
+            {...fadeUp(0.05)}
+            className="display text-[2.75rem] leading-[1.04] sm:text-6xl lg:text-7xl xl:text-[5.25rem]"
           >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-6"
-            >
-              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              <span className="text-sm text-gray-300">{dictionary.badge}</span>
-            </motion.div>
+            {dictionary.greeting}{' '}
+            <span className="italic text-ink">Wojciech Soczyński</span>
+          </motion.h1>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6"
-            >
-              {dictionary.greeting}{' '}
-              <span className="gradient-text">Wojciech Soczyński</span>
-            </motion.h1>
+          <motion.p {...fadeUp(0.12)} className="lead mt-8 max-w-xl">
+            {dictionary.description}
+          </motion.p>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-lg sm:text-xl text-gray-400 mb-8 max-w-xl mx-auto lg:mx-0"
-            >
-              {dictionary.description}
-            </motion.p>
+          <motion.div {...fadeUp(0.18)} className="mt-10 flex flex-wrap items-center gap-3">
+            <Link href={`/${lang}/#projects`} className="btn-primary">
+              {dictionary.viewProjects}
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link href={`/${lang}/#contact`} className="btn-secondary">
+              {dictionary.contact}
+            </Link>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
-            >
-              <Link href={`/${lang}/#projects`} className="btn-primary flex items-center justify-center gap-2">
-                {dictionary.viewProjects}
-              </Link>
-              <Link href={`/${lang}/#contact`} className="btn-secondary flex items-center justify-center gap-2">
-                {dictionary.contact}
-              </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="flex gap-4 justify-center lg:justify-start"
-            >
-              {[
-                { icon: Github, href: 'https://github.com/Wojz12', label: 'GitHub' },
-                { icon: Linkedin, href: 'https://www.linkedin.com/in/wojciechsoczy%C5%84ski/', label: 'LinkedIn' },
-                { icon: Mail, href: 'mailto:soczynskiwojtek@gmail.com', label: 'Email' },
-                { icon: Phone, href: 'tel:+48577950977', label: 'Telefon' },
-              ].map((social) => (
+          <motion.ul {...fadeUp(0.24)} className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+            {socials.map((s) => (
+              <li key={s.label}>
                 <a
-                  key={social.label}
-                  href={social.href}
+                  href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-xl glass-card flex items-center justify-center
-                           text-gray-400 hover:text-white hover:border-primary-500/50
-                           transition-all duration-300 hover:-translate-y-1 hover:shadow-glow-sm"
+                  className="group inline-flex items-center gap-1 text-ink-muted transition-colors hover:text-ink"
                 >
-                  <social.icon className="w-5 h-5" />
+                  {s.label}
+                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </a>
-              ))}
-            </motion.div>
-          </motion.div>
-
-          {/* Profile Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative flex justify-center lg:justify-end"
-          >
-            <div className="relative">
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-500/30 to-primary-700/30 rounded-full blur-3xl scale-110" />
-
-              {/* Image container */}
-              <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden
-                            border-4 border-primary-500/30 shadow-2xl animate-float">
-                <Image
-                  src="/images/profile.jpg"
-                  alt="Wojciech Soczyński"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-900/50 to-transparent" />
-              </div>
-
-              {/* Floating badges */}
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="absolute -right-4 top-10 px-4 py-2 glass-card rounded-xl"
-              >
-                <span className="text-sm font-medium">🧠 LLMs</span>
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-                className="absolute -left-4 bottom-20 px-4 py-2 glass-card rounded-xl"
-              >
-                <span className="text-sm font-medium">🐍 Python</span>
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
-                className="absolute right-8 bottom-0 px-4 py-2 glass-card rounded-xl"
-              >
-                <span className="text-sm font-medium">🤖 RAG</span>
-              </motion.div>
-            </div>
-          </motion.div>
+              </li>
+            ))}
+          </motion.ul>
         </div>
 
-        {/* Scroll indicator */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="lg:col-span-5"
         >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="flex flex-col items-center gap-2 text-gray-400"
-          >
-            <span className="text-sm">{dictionary.scroll}</span>
-            <ArrowDown className="w-5 h-5" />
-          </motion.div>
+          <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[1.75rem] bg-oat lg:max-w-none">
+            <Image
+              src="/images/profile.jpg"
+              alt="Wojciech Soczyński"
+              fill
+              sizes="(min-width: 1024px) 40vw, 90vw"
+              className="object-cover"
+              priority
+            />
+          </div>
+          <div className="mx-auto mt-4 flex max-w-sm flex-wrap gap-2 lg:max-w-none">
+            {['LLMs', 'Python', 'RAG'].map((t) => (
+              <span key={t} className="chip">{t}</span>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

@@ -1,9 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
-import { FileText, Download, Eye } from 'lucide-react'
+import { Download, ArrowUpRight } from 'lucide-react'
+import { Reveal, SectionHeader, stripEmoji } from '@/components/ui'
 
 interface CVProps {
   dictionary: {
@@ -27,113 +25,65 @@ interface CVProps {
   }
 }
 
+
 export default function CV({ dictionary }: CVProps) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
-
   return (
-    <section id="cv" className="relative py-20" ref={ref}>
-      <div className="section-container">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="section-title">{dictionary.title}</h2>
-          <p className="section-subtitle mx-auto">
-            {dictionary.subtitle}
-          </p>
-        </motion.div>
+    <section id="cv" className="page section">
+      <SectionHeader index="06" title={dictionary.title} subtitle={dictionary.subtitle} />
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-4xl mx-auto"
-        >
-          <div className="glass-card p-8 md:p-12 rounded-2xl text-center">
-            {/* Icon */}
-            <div className="w-24 h-24 mx-auto mb-8 rounded-2xl bg-gradient-to-br from-primary-500/20 to-primary-700/20
-                          flex items-center justify-center shadow-glow">
-              <FileText className="w-12 h-12 text-primary-400" />
+      <Reveal>
+        <div className="overflow-hidden rounded-[1.75rem] bg-ink text-ivory">
+          <div className="grid gap-10 p-8 sm:p-10 md:grid-cols-12 md:p-14">
+            <div className="md:col-span-7">
+              <h3 className="font-serif text-3xl md:text-4xl">{dictionary.downloadTitle}</h3>
+              <p className="mt-4 max-w-lg leading-relaxed text-ivory/70">{dictionary.downloadDesc}</p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href="/cv/cv.pdf"
+                  download
+                  className="inline-flex items-center gap-2 rounded-full bg-ivory px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:bg-oat"
+                >
+                  <Download className="h-4 w-4" />
+                  {dictionary.downloadBtn}
+                </a>
+                <a
+                  href="/cv/cv.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-ivory/25 px-5 py-2.5 text-sm font-medium text-ivory transition-colors hover:border-ivory/60"
+                >
+                  {dictionary.viewBtn}
+                  <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </div>
             </div>
 
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              {dictionary.downloadTitle}
-            </h3>
-            <p className="text-gray-400 mb-8 max-w-lg mx-auto">
-              {dictionary.downloadDesc}
-            </p>
+            <div className="md:col-span-5">
+              <p className="font-mono text-xs uppercase tracking-[0.14em] text-ivory/50">{dictionary.previewTitle}</p>
 
-            {/* Action buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/cv/cv.pdf"
-                download
-                className="btn-primary inline-flex items-center justify-center gap-2"
-              >
-                <Download className="w-5 h-5" />
-                {dictionary.downloadBtn}
-              </a>
-              <a
-                href="/cv/cv.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary inline-flex items-center justify-center gap-2"
-              >
-                <Eye className="w-5 h-5" />
-                {dictionary.viewBtn}
-              </a>
+              <p className="mt-6 text-sm font-medium text-clay">{stripEmoji(dictionary.educationTitle)}</p>
+              <ul className="mt-3 space-y-3">
+                {dictionary.education.map((edu, i) => (
+                  <li key={i}>
+                    <p className="text-ivory">{edu.title}</p>
+                    <p className="text-sm text-ivory/60">{edu.desc}</p>
+                  </li>
+                ))}
+              </ul>
+
+              <p className="mt-6 text-sm font-medium text-clay">{stripEmoji(dictionary.languagesTitle)}</p>
+              <ul className="mt-3 divide-y divide-ivory/10">
+                {dictionary.languages.map((lang, i) => (
+                  <li key={i} className="flex justify-between gap-4 py-2 text-sm">
+                    <span className="text-ivory">{lang.name}</span>
+                    <span className="text-ivory/60">{lang.level}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-
-          {/* CV Preview Placeholder */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-8 glass-card p-8 rounded-2xl"
-          >
-            <h4 className="text-xl font-semibold text-white mb-6 text-center">
-              {dictionary.previewTitle}
-            </h4>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {/* Education */}
-              <div className="space-y-4">
-                <h5 className="text-primary-400 font-medium flex items-center gap-2">
-                  {dictionary.educationTitle}
-                </h5>
-                <div className="space-y-3">
-                  {dictionary.education.map((edu, i) => (
-                    <div key={i} className="pl-4 border-l-2 border-primary-500/30">
-                      <p className="text-white font-medium">{edu.title}</p>
-                      <p className="text-sm text-gray-400">{edu.desc}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Languages */}
-              <div className="space-y-4">
-                <h5 className="text-primary-400 font-medium flex items-center gap-2">
-                  {dictionary.languagesTitle}
-                </h5>
-                <div className="space-y-3">
-                  {dictionary.languages.map((lang, i) => (
-                    <div key={i} className="flex justify-between items-center">
-                      <span className="text-gray-300">{lang.name}</span>
-                      <span className="text-sm text-primary-400">{lang.level}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      </div>
+        </div>
+      </Reveal>
     </section>
   )
 }
-

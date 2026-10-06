@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Poppins } from 'next/font/google'
+import { Inter, Source_Serif_4, JetBrains_Mono } from 'next/font/google'
 
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
@@ -7,10 +7,25 @@ import Chatbot from '@/components/Chatbot'
 import { i18n, type Locale } from '@/i18n-config'
 import { getDictionary } from '@/get-dictionary'
 
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
-  variable: '--font-poppins',
+const sans = Inter({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-sans',
+  display: 'swap',
+})
+
+const serif = Source_Serif_4({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['400', '500', '600'],
+  style: ['normal', 'italic'],
+  variable: '--font-serif',
+  display: 'swap',
+})
+
+const mono = JetBrains_Mono({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['400', '500'],
+  variable: '--font-mono',
+  display: 'swap',
 })
 
 export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
@@ -43,18 +58,12 @@ export default async function Layout({
   const dictionary = await getDictionary(params.lang)
 
   return (
-    <div className={`${poppins.variable} font-sans antialiased min-h-screen flex flex-col`}>
-      {/* Background decorations */}
-      <div className="fixed inset-0 -z-10 overflow-hidden">
-        <div className="blob blob-1" />
-        <div className="blob blob-2" />
-        <div className="blob blob-3" />
-      </div>
-
+    <div
+      lang={params.lang}
+      className={`${sans.variable} ${serif.variable} ${mono.variable} font-sans antialiased min-h-screen flex flex-col`}
+    >
       <Navbar dictionary={dictionary.nav} lang={params.lang} />
-      <main className="flex-grow">
-        {children}
-      </main>
+      <main className="flex-grow">{children}</main>
       <Footer nav={dictionary.nav} footer={dictionary.footer} lang={params.lang} />
       <Chatbot lang={params.lang} dictionary={dictionary.chatbot} />
     </div>

@@ -24,34 +24,26 @@ export default function MetricCard({
     description,
     delay,
     isInView,
-    isLarge = false,
     extraContent,
 }: MetricCardProps) {
     return (
         <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay }}
-            className={`glass-card p-6 rounded-2xl group hover:border-primary-500/30 transition-all duration-300 ${isLarge ? 'md:col-span-1' : ''
-                }`}
+            transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+            className="card-oat p-7 md:p-8"
         >
-            <div className="flex items-start justify-between mb-4">
-                <div className="w-12 h-12 rounded-xl bg-primary-500/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Icon className="w-6 h-6 text-primary-400" />
-                </div>
+            <div className="mb-8 flex items-start justify-between gap-4">
+                <Icon className="h-5 w-5 text-clay" />
                 {value && (
                     <div className="text-right">
-                        <span className="text-2xl font-bold text-primary-400">{value}</span>
-                        {subValue && (
-                            <span className="block text-sm text-gray-400">{subValue}</span>
-                        )}
+                        <span className="font-serif text-3xl text-ink">{value}</span>
+                        {subValue && <span className="block text-sm text-ink-muted">{subValue}</span>}
                     </div>
                 )}
             </div>
-            <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-primary-400 transition-colors">
-                {title}
-            </h3>
-            <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
+            <h3 className="mb-3 font-serif text-2xl text-ink">{title}</h3>
+            <p className="whitespace-pre-line text-sm leading-relaxed text-ink-muted">{description}</p>
             {extraContent}
         </motion.div>
     )

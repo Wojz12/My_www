@@ -1,48 +1,38 @@
 'use client'
 
 import { usePathname, useRouter } from 'next/navigation'
-import { motion } from 'framer-motion'
 
 export default function LanguageSwitcher() {
     const pathname = usePathname()
     const router = useRouter()
 
-    // Extract current locale from pathname
     // format: /pl/some/path or /pl
     const segments = pathname.split('/')
-    const locale = segments[1] // 'pl' or 'en' (assuming valid locale)
+    const locale = segments[1]
 
     const toggleLanguage = (newLocale: string) => {
         if (newLocale === locale) return
-
-        // Replace the locale in the path
         const newSegments = [...segments]
         newSegments[1] = newLocale
-        const newPath = newSegments.join('/')
-
-        router.push(newPath)
+        router.push(newSegments.join('/'))
     }
 
     return (
-        <div className="flex items-center gap-2 p-1 rounded-lg glass border border-white/10">
-            <button
-                onClick={() => toggleLanguage('pl')}
-                className={`px-3 py-1 text-xs font-medium rounded-md transition-all duration-300 ${locale === 'pl'
-                        ? 'bg-primary-500 text-white shadow-glow-sm'
-                        : 'text-gray-400 hover:text-white hover:bg-white/5'
-                    }`}
-            >
-                PL
-            </button>
-            <button
-                onClick={() => toggleLanguage('en')}
-                className={`px-3 py-1 text-xs font-medium rounded-md transition-all duration-300 ${locale === 'en'
-                        ? 'bg-primary-500 text-white shadow-glow-sm'
-                        : 'text-gray-400 hover:text-white hover:bg-white/5'
-                    }`}
-            >
-                EN
-            </button>
+        <div className="flex items-center gap-1 font-mono text-xs">
+            {['pl', 'en'].map((code, i) => (
+                <span key={code} className="flex items-center gap-1">
+                    {i > 0 && <span className="text-line">/</span>}
+                    <button
+                        onClick={() => toggleLanguage(code)}
+                        aria-current={locale === code}
+                        className={`uppercase tracking-wider transition-colors ${
+                            locale === code ? 'text-ink' : 'text-ink-faint hover:text-ink'
+                        }`}
+                    >
+                        {code}
+                    </button>
+                </span>
+            ))}
         </div>
     )
 }

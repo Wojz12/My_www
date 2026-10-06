@@ -11,7 +11,7 @@ export default function GalleryPage() {
   const { images, categories } = getGalleryImages()
 
   return (
-    <div className="pt-24">
+    <div>
       <GalleryGrid images={images} categories={categories} />
     </div>
   )

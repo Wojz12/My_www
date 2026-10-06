@@ -2,7 +2,7 @@
 
 import { useState, FormEvent } from 'react'
 import { motion } from 'framer-motion'
-import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
+import { ArrowRight, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
 
 interface ContactFormDictionary {
     nameLabel: string
@@ -113,34 +113,24 @@ export default function ContactForm({ dictionary }: ContactFormProps) {
         }
     }
 
+    const fieldClass = (hasError?: string) =>
+        `${hasError ? '!border-red-600' : ''} disabled:opacity-50`
+
     if (status === 'success') {
         return (
             <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="glass-card p-8 rounded-2xl text-center"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="card-oat flex flex-col items-center p-10 text-center"
             >
-                <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: 'spring', delay: 0.2 }}
-                    className="w-16 h-16 mx-auto mb-4 rounded-full bg-green-500/20 flex items-center justify-center"
-                >
-                    <CheckCircle className="w-8 h-8 text-green-400" />
-                </motion.div>
-                <p className="text-lg text-white font-medium">{dictionary.successMessage}</p>
+                <CheckCircle className="mb-4 h-8 w-8 text-clay" />
+                <p className="font-serif text-xl text-ink">{dictionary.successMessage}</p>
             </motion.div>
         )
     }
 
     return (
-        <motion.form
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.4 }}
-            onSubmit={handleSubmit}
-            className="glass-card p-8 rounded-2xl space-y-6"
-        >
+        <form onSubmit={handleSubmit} noValidate className="card-oat space-y-5 p-6 sm:p-8">
             {/* Honeypot field - hidden from users */}
             <input
                 type="text"
@@ -153,99 +143,83 @@ export default function ContactForm({ dictionary }: ContactFormProps) {
                 aria-hidden="true"
             />
 
-            {/* Name field */}
-            <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                    {dictionary.nameLabel}
-                </label>
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={(e) => handleChange('name', e.target.value)}
-                    placeholder={dictionary.namePlaceholder}
-                    disabled={status === 'sending'}
-                    className={`w-full px-4 py-3 rounded-xl bg-white/5 border ${errors.name ? 'border-red-500' : 'border-white/10'
-                        } text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all disabled:opacity-50`}
-                />
-                {errors.name && (
-                    <p className="mt-1 text-sm text-red-400">{errors.name}</p>
-                )}
+            <div className="grid gap-5 sm:grid-cols-2">
+                <div>
+                    <label htmlFor="name" className="mb-2 block text-sm font-medium text-ink">
+                        {dictionary.nameLabel}
+                    </label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={(e) => handleChange('name', e.target.value)}
+                        placeholder={dictionary.namePlaceholder}
+                        disabled={status === 'sending'}
+                        className={fieldClass(errors.name)}
+                    />
+                    {errors.name && <p className="mt-1.5 text-sm text-red-700">{errors.name}</p>}
+                </div>
+
+                <div>
+                    <label htmlFor="email" className="mb-2 block text-sm font-medium text-ink">
+                        {dictionary.emailLabel}
+                    </label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={(e) => handleChange('email', e.target.value)}
+                        placeholder={dictionary.emailPlaceholder}
+                        disabled={status === 'sending'}
+                        className={fieldClass(errors.email)}
+                    />
+                    {errors.email && <p className="mt-1.5 text-sm text-red-700">{errors.email}</p>}
+                </div>
             </div>
 
-            {/* Email field */}
             <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                    {dictionary.emailLabel}
-                </label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={(e) => handleChange('email', e.target.value)}
-                    placeholder={dictionary.emailPlaceholder}
-                    disabled={status === 'sending'}
-                    className={`w-full px-4 py-3 rounded-xl bg-white/5 border ${errors.email ? 'border-red-500' : 'border-white/10'
-                        } text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all disabled:opacity-50`}
-                />
-                {errors.email && (
-                    <p className="mt-1 text-sm text-red-400">{errors.email}</p>
-                )}
-            </div>
-
-            {/* Message field */}
-            <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="message" className="mb-2 block text-sm font-medium text-ink">
                     {dictionary.messageLabel}
                 </label>
                 <textarea
                     id="message"
                     name="message"
-                    rows={5}
+                    rows={6}
                     value={formData.message}
                     onChange={(e) => handleChange('message', e.target.value)}
                     placeholder={dictionary.messagePlaceholder}
                     disabled={status === 'sending'}
-                    className={`w-full px-4 py-3 rounded-xl bg-white/5 border ${errors.message ? 'border-red-500' : 'border-white/10'
-                        } text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all disabled:opacity-50 resize-none`}
+                    className={`${fieldClass(errors.message)} resize-none`}
                 />
-                {errors.message && (
-                    <p className="mt-1 text-sm text-red-400">{errors.message}</p>
-                )}
+                {errors.message && <p className="mt-1.5 text-sm text-red-700">{errors.message}</p>}
             </div>
 
-            {/* Error message */}
             {status === 'error' && (
-                <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="flex items-center gap-2 p-4 rounded-xl bg-red-500/10 border border-red-500/20"
-                >
-                    <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
-                    <p className="text-sm text-red-400">{dictionary.errorMessage}</p>
-                </motion.div>
+                <div className="flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 p-4">
+                    <AlertCircle className="h-5 w-5 flex-shrink-0 text-red-700" />
+                    <p className="text-sm text-red-700">{dictionary.errorMessage}</p>
+                </div>
             )}
 
-            {/* Submit button */}
             <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-gradient-to-r from-primary-500 to-primary-700 text-white font-medium hover:shadow-glow transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5"
+                className="btn-primary w-full py-3 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
             >
                 {status === 'sending' ? (
                     <>
-                        <Loader2 className="w-5 h-5 animate-spin" />
+                        <Loader2 className="h-4 w-4 animate-spin" />
                         {dictionary.sending}
                     </>
                 ) : (
                     <>
-                        <Send className="w-5 h-5" />
                         {dictionary.sendButton}
+                        <ArrowRight className="h-4 w-4" />
                     </>
                 )}
             </button>
-        </motion.form>
+        </form>
     )
 }

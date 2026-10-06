@@ -17,14 +17,13 @@ export default async function Home({ params: { lang } }: { params: { lang: Local
     <>
       <Hero dictionary={dictionary.hero} lang={lang} />
       <About dictionary={dictionary.about} />
-      <CV dictionary={dictionary.cv} />
       <Experience dictionary={dictionary.experience} />
-      <Skills dictionary={dictionary.skills} />
       <Projects dictionary={dictionary.projects} />
+      <Skills dictionary={dictionary.skills} />
       <AiTools dictionary={dictionary.aiTools} />
+      <CV dictionary={dictionary.cv} />
       <AdditionalInfo dictionary={dictionary.additionalInfo} />
       <Contact dictionary={dictionary.contact} />
     </>
   )
 }
-
