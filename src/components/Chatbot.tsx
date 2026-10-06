@@ -155,7 +155,7 @@ export default function Chatbot({ lang, dictionary }: ChatbotProps) {
             transition={{ duration: 0.3, delay: 0.4 }}
             onClick={() => setIsOpen(true)}
             aria-label={dictionary.title}
-            className="fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-full bg-ink py-3 pl-4 pr-5 text-sm font-medium text-ivory shadow-[0_8px_30px_rgba(20,20,19,0.18)] transition-colors hover:bg-ink-soft"
+            className="fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-full bg-ink py-3 pl-4 pr-5 text-sm font-medium text-ivory shadow-[0_8px_30px_rgba(0,0,0,0.18)] transition-colors hover:bg-ink-soft"
           >
             <Spark className="h-4 w-4 text-clay" />
             {dictionary.title}
@@ -171,7 +171,7 @@ export default function Chatbot({ lang, dictionary }: ChatbotProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-x-3 bottom-3 z-50 flex h-[min(600px,80vh)] flex-col overflow-hidden rounded-2xl border border-line bg-ivory shadow-[0_20px_60px_rgba(20,20,19,0.18)] sm:inset-x-auto sm:right-5 sm:bottom-5 sm:w-[400px]"
+            className="fixed inset-x-3 bottom-3 z-50 flex h-[min(600px,80vh)] flex-col overflow-hidden rounded-2xl border border-line bg-ivory shadow-[0_20px_60px_rgba(0,0,0,0.25)] sm:inset-x-auto sm:right-5 sm:bottom-5 sm:w-[400px]"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-line px-5 py-4">

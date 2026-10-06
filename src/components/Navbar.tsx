@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import LanguageSwitcher from './LanguageSwitcher'
+import ThemeToggle from './ThemeToggle'
 
 interface NavbarProps {
   lang: string
@@ -51,7 +52,7 @@ export default function Navbar({ lang, dictionary }: NavbarProps) {
       <nav className="page flex h-16 items-center justify-between gap-6">
         <Link href={`/${lang}`} className="flex items-center gap-2.5 text-ink" onClick={() => setIsOpen(false)}>
           <span aria-hidden className="h-2.5 w-2.5 rounded-full bg-clay" />
-          <span className="font-serif text-lg tracking-tight">Wojciech Soczyński</span>
+          <span className="whitespace-nowrap font-serif text-[1.05rem] tracking-tight sm:text-lg">Wojciech Soczyński</span>
         </Link>
 
         <div className="hidden lg:flex items-center gap-1">
@@ -66,21 +67,25 @@ export default function Navbar({ lang, dictionary }: NavbarProps) {
           ))}
         </div>
 
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-3">
           <LanguageSwitcher />
+          <ThemeToggle />
           <Link href={`/${lang}/#contact`} className="btn-primary">
             {dictionary.contact}
           </Link>
         </div>
 
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden -mr-2 rounded-full p-2 text-ink hover:bg-oat"
-          aria-label="Menu"
-          aria-expanded={isOpen}
-        >
-          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="lg:hidden -mr-2 flex items-center gap-1">
+          <ThemeToggle />
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="rounded-full p-2 text-ink hover:bg-oat"
+            aria-label="Menu"
+            aria-expanded={isOpen}
+          >
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>

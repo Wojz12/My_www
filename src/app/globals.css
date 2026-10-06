@@ -2,10 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Kanały RGB, żeby działały modyfikatory przezroczystości Tailwind (np. bg-ivory/90) */
 :root {
-  --ivory: #FAF9F5;
-  --ink: #141413;
+  --c-bg: 250 249 245;
+  --c-surface: 240 238 230;
+  --c-sand: 232 230 220;
+  --c-line: 222 219 208;
+  --c-ink: 20 20 19;
+  --c-ink-soft: 61 61 58;
+  --c-ink-muted: 94 93 89;
+  --c-ink-faint: 135 134 127;
+  --c-accent-text: 184 90 59;
+  --c-selection: 243 222 211;
   --clay: #D97757;
+  color-scheme: light;
+}
+
+.dark {
+  --c-bg: 38 38 36;
+  --c-surface: 48 48 46;
+  --c-sand: 60 60 57;
+  --c-line: 64 63 58;
+  --c-ink: 245 244 238;
+  --c-ink-soft: 222 220 209;
+  --c-ink-muted: 183 181 169;
+  --c-ink-faint: 142 140 130;
+  --c-accent-text: 229 145 111;
+  --c-selection: 110 62 44;
+  color-scheme: dark;
 }
 
 html {
@@ -15,8 +39,8 @@ html {
 }
 
 body {
-  background: var(--ivory);
-  color: var(--ink);
+  background: rgb(var(--c-bg));
+  color: rgb(var(--c-ink));
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
@@ -24,8 +48,8 @@ body {
 }
 
 ::selection {
-  background: #F3DED3;
-  color: var(--ink);
+  background: rgb(var(--c-selection));
+  color: rgb(var(--c-ink));
 }
 
 :focus-visible {

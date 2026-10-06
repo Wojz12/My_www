@@ -119,11 +119,11 @@ export default function GalleryGrid({ images, categories }: GalleryGridProps) {
               />
               
               {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute inset-0 bg-gradient-to-t from-night/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <p className="text-white text-sm font-medium truncate">{image.alt}</p>
                   {image.category && (
-                    <p className="text-ivory/70 text-xs">{image.category}</p>
+                    <p className="text-paper/70 text-xs">{image.category}</p>
                   )}
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -157,7 +157,7 @@ export default function GalleryGrid({ images, categories }: GalleryGridProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-ink/95 flex items-center justify-center"
+            className="fixed inset-0 z-50 bg-night/95 flex items-center justify-center"
             onClick={closeLightbox}
           >
             {/* Close button */}

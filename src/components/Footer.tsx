@@ -52,7 +52,7 @@ export default function Footer({ nav, footer, lang }: FooterProps) {
   ]
 
   return (
-    <footer className="mt-12 bg-ink text-ivory">
+    <footer className="mt-12 bg-night text-paper">
       <div className="page py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-6">
@@ -60,16 +60,16 @@ export default function Footer({ nav, footer, lang }: FooterProps) {
               <span aria-hidden className="h-2.5 w-2.5 rounded-full bg-clay" />
               <span className="font-serif text-2xl">Wojciech Soczyński</span>
             </Link>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-ivory/60">{footer.description}</p>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-paper/60">{footer.description}</p>
           </div>
 
           {footerLinks.map((section) => (
             <div key={section.title} className="md:col-span-2">
-              <h3 className="font-mono text-xs uppercase tracking-[0.14em] text-ivory/40">{section.title}</h3>
+              <h3 className="font-mono text-xs uppercase tracking-[0.14em] text-paper/40">{section.title}</h3>
               <ul className="mt-4 space-y-2.5">
                 {section.links.map((link) => (
                   <li key={link.name}>
-                    <Link href={link.href} className="text-sm text-ivory/80 transition-colors hover:text-ivory">
+                    <Link href={link.href} className="text-sm text-paper/80 transition-colors hover:text-paper">
                       {link.name}
                     </Link>
                   </li>
@@ -79,7 +79,7 @@ export default function Footer({ nav, footer, lang }: FooterProps) {
           ))}
 
           <div className="md:col-span-2">
-            <h3 className="font-mono text-xs uppercase tracking-[0.14em] text-ivory/40">Social</h3>
+            <h3 className="font-mono text-xs uppercase tracking-[0.14em] text-paper/40">Social</h3>
             <ul className="mt-4 space-y-2.5">
               {socialLinks.map((social) => (
                 <li key={social.name}>
@@ -87,7 +87,7 @@ export default function Footer({ nav, footer, lang }: FooterProps) {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-ivory/80 transition-colors hover:text-ivory"
+                    className="text-sm text-paper/80 transition-colors hover:text-paper"
                   >
                     {social.name}
                   </a>
@@ -97,7 +97,7 @@ export default function Footer({ nav, footer, lang }: FooterProps) {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-2 border-t border-ivory/10 pt-6 text-xs text-ivory/40 md:flex-row md:items-center md:justify-between">
+        <div className="mt-16 flex flex-col gap-2 border-t border-paper/10 pt-6 text-xs text-paper/40 md:flex-row md:items-center md:justify-between">
           <p>
             © {new Date().getFullYear()} Wojciech Soczyński. {footer.rights}
           </p>

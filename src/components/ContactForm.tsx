@@ -114,7 +114,7 @@ export default function ContactForm({ dictionary }: ContactFormProps) {
     }
 
     const fieldClass = (hasError?: string) =>
-        `${hasError ? '!border-red-600' : ''} disabled:opacity-50`
+        `${hasError ? '!border-red-600 dark:!border-red-400' : ''} disabled:opacity-50`
 
     if (status === 'success') {
         return (
@@ -158,7 +158,7 @@ export default function ContactForm({ dictionary }: ContactFormProps) {
                         disabled={status === 'sending'}
                         className={fieldClass(errors.name)}
                     />
-                    {errors.name && <p className="mt-1.5 text-sm text-red-700">{errors.name}</p>}
+                    {errors.name && <p className="mt-1.5 text-sm text-red-700 dark:text-red-300">{errors.name}</p>}
                 </div>
 
                 <div>
@@ -175,7 +175,7 @@ export default function ContactForm({ dictionary }: ContactFormProps) {
                         disabled={status === 'sending'}
                         className={fieldClass(errors.email)}
                     />
-                    {errors.email && <p className="mt-1.5 text-sm text-red-700">{errors.email}</p>}
+                    {errors.email && <p className="mt-1.5 text-sm text-red-700 dark:text-red-300">{errors.email}</p>}
                 </div>
             </div>
 
@@ -193,13 +193,13 @@ export default function ContactForm({ dictionary }: ContactFormProps) {
                     disabled={status === 'sending'}
                     className={`${fieldClass(errors.message)} resize-none`}
                 />
-                {errors.message && <p className="mt-1.5 text-sm text-red-700">{errors.message}</p>}
+                {errors.message && <p className="mt-1.5 text-sm text-red-700 dark:text-red-300">{errors.message}</p>}
             </div>
 
             {status === 'error' && (
-                <div className="flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 p-4">
-                    <AlertCircle className="h-5 w-5 flex-shrink-0 text-red-700" />
-                    <p className="text-sm text-red-700">{dictionary.errorMessage}</p>
+                <div className="flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 dark:border-red-900 dark:bg-red-950/40 p-4">
+                    <AlertCircle className="h-5 w-5 flex-shrink-0 text-red-700 dark:text-red-300" />
+                    <p className="text-sm text-red-700 dark:text-red-300">{dictionary.errorMessage}</p>
                 </div>
             )}
 
