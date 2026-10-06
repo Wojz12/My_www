@@ -55,7 +55,7 @@
         "educationTitle": "🎓 Wykształcenie",
         "education": [
             {
-                "title": "E-biznes",
+                "title": "E-biznes (magisterka)",
                 "desc": "Szkoła Główna Handlowa w Warszawie • w trakcie"
             },
             {
@@ -146,7 +146,7 @@
         ],
         "educationList": [
             {
-                "degree": "E-biznes",
+                "degree": "E-biznes (studia magisterskie)",
                 "school": "Szkoła Główna Handlowa w Warszawie",
                 "period": "2026 - obecnie",
                 "current": true

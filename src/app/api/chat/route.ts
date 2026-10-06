@@ -12,7 +12,7 @@ OBECNIE:
 - Pracujesz z agentami AI (Claude Code, Codex), serwerami MCP, bazą Neon (Postgres) i hostingiem Railway
 
 WYKSZTAŁCENIE:
-- E-biznes, Szkoła Główna Handlowa w Warszawie (w trakcie)
+- E-biznes (studia magisterskie), Szkoła Główna Handlowa w Warszawie (w trakcie)
 - Kognitywistyka (licencjat, ukończone i obronione) na Uniwersytecie Warszawskim (2023 - 2026)
 - Praca licencjacka: "Abstrakcyjne rozumowanie w systemach opartych na dużych modelach językowych: analiza możliwości i ograniczeń na przykładzie benchmarku ARC-AGI-2" (promotor: dr Andrzej Mizera). Wniosek: ARC-AGI-2 to wartościowy, ale ograniczony benchmark - nie mierzy ogólnej inteligencji, ale jest ważnym testem abstrakcyjnego rozwiązywania problemów. Omawia inteligencję płynną vs skrystalizowaną, test-time compute, pętle weryfikacji i przejście do ARC-AGI-3.
 - Wymiana Erasmus na University of the Basque Country w Hiszpanii (2025/26) - już zakończona
@@ -96,7 +96,7 @@ CURRENTLY:
 - Working with AI agents (Claude Code, Codex), MCP servers, Neon (Postgres) and Railway hosting
 
 EDUCATION:
-- E-business, SGH Warsaw School of Economics (in progress)
+- E-business (Master's), SGH Warsaw School of Economics (in progress)
 - Cognitive Science (Bachelor's, completed and defended) at the University of Warsaw (2023 - 2026)
 - Bachelor's thesis: "Abstract reasoning in systems based on large language models: an analysis of capabilities and limitations using the ARC-AGI-2 benchmark" (supervisor: Dr Andrzej Mizera). Conclusion: ARC-AGI-2 is a valuable but limited benchmark - it does not measure general intelligence, but it is an important test of abstract problem solving. Covers fluid vs crystallized intelligence, test-time compute, verification loops and the shift to ARC-AGI-3.
 - Erasmus exchange at the University of the Basque Country, Spain (2025/26) - completed

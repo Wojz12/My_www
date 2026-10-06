@@ -55,7 +55,7 @@
         "educationTitle": "🎓 Education",
         "education": [
             {
-                "title": "E-business",
+                "title": "E-business (MA)",
                 "desc": "SGH Warsaw School of Economics • in progress"
             },
             {
@@ -146,7 +146,7 @@
         ],
         "educationList": [
             {
-                "degree": "E-business",
+                "degree": "E-business (Master's)",
                 "school": "SGH Warsaw School of Economics",
                 "period": "2026 - present",
                 "current": true
